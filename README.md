@@ -1,6 +1,6 @@
 # Iris.js
 
-## Introduce to Iris.js
+## Introduce
 
 **Iris.js** is the implementation of *Iris programming language* using *Javascript* which is aimed at executing Iris scripts or Iris bytecode right on browser environment to provide another more language selection for *web development*.
 
@@ -17,9 +17,27 @@ To use **Iris.js**, you will be able to:
 npm install
 ```
 
-## Using Iris.js
+Or
 
->under construction
+```
+yarn
+```
+
+## Develop
+
+#### Development
+
+```
+npm run dev
+```
+
+And open `http://localhost:8012/build/` in browser. The default is 8012, customize it in package.json in need.
+
+#### Build
+
+```
+npm run build
+```
 
 ## About *Iris programming language*
 

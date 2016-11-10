@@ -1,5 +1,6 @@
 // Karma configuration
 // Generated on Thu Nov 10 2016 16:41:00 GMT+0800 (CST)
+var webpackConfig = require('./webpack.config.test');
 
 module.exports = function(config) {
   config.set({
@@ -15,7 +16,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/**/*.js',
+      // 'src/**/*.js',
       'test/**/*.spec.js'
     ],
 
@@ -23,7 +24,8 @@ module.exports = function(config) {
       'karma-mocha',
       'karma-chai',
       'karma-coverage',
-      'karma-phantomjs-launcher'
+      'karma-phantomjs-launcher',
+      'karma-webpack'
     ],
 
     // list of files to exclude
@@ -34,7 +36,8 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'src/**/*.js': ['coverage']
+      // 'src/**/*.js': ['coverage'],
+      'test/**/*.js': ['webpack']
     },
 
 
@@ -72,6 +75,8 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    webpack: webpackConfig
   })
-}
+};
