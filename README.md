@@ -11,16 +11,22 @@ To use **Iris.js**, you will be able to:
 >4. Be qualified for any requirements that *Javascript* can do, but beyond that you may also experience another web programming feel.
 >5. May you find :)
 
-## Getting Iris.js
->under construction
+## Get Started
+
+```
+npm install
+```
 
 ## Using Iris.js
+
 >under construction
 
 ## About *Iris programming language*
 
 ## About Document
+
 >under construction
 
 ## About Question & Contribute
+
 >under construction
