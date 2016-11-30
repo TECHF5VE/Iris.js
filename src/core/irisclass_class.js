@@ -4,8 +4,8 @@
  * Modified by Hui on 2016-11-29
  */
 
-import * as IrisObject from "irisobject_class.js";
-import * as IrisMethod from "irismethod_class.js";
+import IrisObject from "irisobject_class";
+import IrisMethod from "irismethod_class";
 
 const class_name_sym = Symbol("class_name");
 const super_class_sym = Symbol("super_class");

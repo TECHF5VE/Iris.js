@@ -3,7 +3,7 @@
  * Create by Hui on 2016-11-29
  */
 
-import * as IrisObject from "irisobject_class.js";
+import IrisObject from "irisobject_class";
 
 const method_name_sym = Symbol("method_name");
 const parameter_count_sym = Symbol("parameter_count");
