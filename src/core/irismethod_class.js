@@ -9,8 +9,6 @@ const method_name_sym = Symbol("method_name");
 const parameter_count_sym = Symbol("parameter_count");
 const is_with_variable_parameter_sym = Symbol("is_with_variable_parameter");
 const authority_sym = Symbol("authority");
-const user_method_sym = Symbol("user_method");
-const method_class_sym = Symbol("method_class");
 const native_method_handle_sym = Symbol("native_method_handle");
 
 const parameter_name_list_sym = Symbol("parameter_name_list");
@@ -94,9 +92,5 @@ export default class IrisMethod {
 
     static get CallSide() {
         return inline_CallSide;
-    }
-
-    constructor(init_obj) {
-        this[method_name_sym] = init_obj.method_name;
     }
 }
