@@ -32,7 +32,7 @@ export default class IrisObject {
     }
 
     set class(new_class) {
-        this[class_sym] = object_class; 
+        this[class_sym] = new_class; 
     }
 
     get class() {

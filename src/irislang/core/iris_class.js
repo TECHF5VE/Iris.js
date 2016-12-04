@@ -4,8 +4,8 @@
  * Modified by Hui on 2016-11-29
  */
 
-import IrisObject from "./irisobject_class";
-import IrisMethod from "./irismethod_class";
+import IrisObject from "./iris_object";
+import IrisMethod from "./iris_method";
 
 const class_name_sym = Symbol("class_name");
 const super_class_sym = Symbol("super_class");
@@ -14,6 +14,7 @@ const object_sym = Symbol("object");
 const instance_methods_sym = Symbol("instance_methods");
 const constances_sym  = Symbol("constances");
 const class_variables_sym = Symbol("class_variables");
+const method_name_sym = Symbol("method_name");
 
 export default class IrisClass {
      constructor({ class_name, super_class, upper_module, class_define_method, obj_alloc_method }) {
@@ -73,7 +74,7 @@ export default class IrisClass {
      }
 
      get method_name() {
-         return this[method_name];
+         return this[method_name_sym];
      }
 
      get super_class() {

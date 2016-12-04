@@ -3,7 +3,7 @@
  * Create by Hui on 2016-11-29
  */
 
-import IrisObject from "./irisobject_class";
+import IrisObject from "./iris_object";
 
 const method_name_sym = Symbol("method_name");
 const parameter_count_sym = Symbol("parameter_count");
@@ -60,12 +60,12 @@ export default class IrisMethod {
             this[method_name_sym] = init_obj[method_name_sym]
             this[parameter_count_sym] = init_obj[parameter_count_sym];
             this[is_with_variable_parameter_sym] = init_obj[is_with_variable_parameter_sym];
-            this[authority_sym] = init_obj[authority];
+            this[authority_sym] = init_obj[authority_sym];
         } else if(init_obj instanceof inline_UserMethod) {
             this[method_name_sym] = init_obj[method_name_sym]
-            this[parameter_count_sym] = init_obj[parameter_name_list].size();
-            this[is_with_variable_parameter_sym] = init_obj[variable_parameter_name] == "";
-            this[authority_sym] = init_obj[authority];
+            this[parameter_count_sym] = init_obj[parameter_name_list_sym].size();
+            this[is_with_variable_parameter_sym] = init_obj[variable_parameter_name_sym] == "";
+            this[authority_sym] = init_obj[authority_sym];
         } else {
             throw new Error("Invalid parameter of init_obj.");
         }
