@@ -16,8 +16,8 @@ const constances_sym  = Symbol("constances");
 const class_variables_sym = Symbol("class_variables");
 const method_name_sym = Symbol("method_name");
 
-export default class IrisClass {
-     constructor({ class_name, super_class, upper_module, class_define_method, obj_alloc_method }) {
+export default class Iris {
+     constructor(class_name, super_class, upper_module, class_define_method, obj_alloc_method) {
          this[class_name_sym] = class_name;
          this[super_class_sym] = super_class;
          this[upper_module_sym] = upper_module;

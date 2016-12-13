@@ -9,7 +9,7 @@ const instance_methods_sym  = Symbol("instance_methods_sym");
 const native_object_sym = Symbol("native_object");
 const object_id_sym = Symbol("object_id");
 
-var inline_OBJECT_COUNT = 0;
+let inline_OBJECT_COUNT = 0;
 
 export default class IrisObject {
     constructor() {
