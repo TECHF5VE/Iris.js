@@ -2,6 +2,8 @@
 
 ## Introduce
 
+![](./resource/iris.js.png)
+
 **Iris.js** is the implementation of *Iris programming language* using *Javascript* which is aimed at executing Iris scripts or Iris bytecode right on browser environment to provide another more language selection for *web development*.
 
 To use **Iris.js**, you will be able to:
