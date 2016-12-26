@@ -50,7 +50,7 @@ const inline_CallSide = {
     get Inside()  { return 1; }
 };
 
-default export class IrisMethod {
+export default class IrisMethod {
     constructor(init_obj) {
         if(init_obj instanceof inline_NativeMethod) {
             this[method_name_sym] = init_obj[method_name_sym];
