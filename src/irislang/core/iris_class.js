@@ -2,10 +2,12 @@
  * This file is part of IrisJS.
  * Created by Chi on 10/11/2016.
  * Modified by Hui on 2016-11-29
+ * Modified by DaraW on 2016-12-26
  */
 
 import IrisObject from "./iris_object";
 import IrisMethod from "./iris_method";
+import { warn, log } from "../util/index"
 
 const class_name_sym = Symbol("class_name");
 const super_class_sym = Symbol("super_class");
@@ -24,9 +26,18 @@ export default class Iris {
          
          this[object_sym] = new IrisObject();
          this[object_sym].class = this; 
-         this[object_sym].native_object = obj_alloc_method(); 
 
-         class_define_method(this);
+         if (obj_alloc_method) {
+            this[object_sym].native_object = obj_alloc_method();  
+         } else {
+             warn("obj_alloc_method is not a function");
+         }
+
+         if (class_define_method) {
+            class_define_method(this);
+         } else {
+            warn("class_define_method is not a function");
+         }
      }
 
      get_method(method_name) {
