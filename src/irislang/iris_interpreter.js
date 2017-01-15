@@ -1,8 +1,10 @@
 /**
  * IrisInterpreter class
  * Created by Hui in 2016-12-4
- * 
+ * Modified by DaraW in 2017-1-14
  */
+
+import { warn } from "./util/index";
 
 const root_method_hash_sym = Symbol("root_method_hash");
 const root_constance_hash_sym = Symbol("root_constance_hash");
@@ -12,7 +14,7 @@ const true_sym = Symbol("true");
 const false_sym = Symbol("false");
 const nil_sym = Symbol("nil");
 
-export var $interpreter = {
+export default {
 
     initialize() {
         this[root_method_hash_sym] = new Map();
@@ -42,12 +44,12 @@ export var $interpreter = {
      * class_name : maybe a raw String such as "A::B::C" or an array such as ["A", "B", "C"]
      */
     get_class(class_name) {
-        if(typeof class_name == String) {
+        if(typeof class_name === "string") {
 
         } else {
             for(let elem of class_name) {
-                if(typeof elem !=  String) {
-                    throw new Error("Fuck You.");
+                if(typeof elem == "string") {
+                    warn(class_name + " should be a string literal or an array literal!");
                 }
             }
         }

@@ -1,6 +1,7 @@
 /**
  * IrisMethod class
  * Create by Hui on 2016-11-29
+ * Modified by DaraW on 2016-1-15
  */
 
 import IrisObject from "./iris_object";
@@ -72,6 +73,30 @@ export default class IrisMethod {
     }
 
     [_create_method_object_sym](object_class) { 
+    }
+
+    call(caller, parameter_list, context, thread_info) {
+        let result = null;
+
+        // TODO
+
+        return result
+    }
+
+    get_authority() {
+        return this[authority_sym];
+    }
+
+    set_authority(authority) {
+        this[authority_sym] = authority;
+    }
+
+    get_method_name() {
+        return this[method_name_sym];
+    }
+
+    reset_methods_object() {
+        // TODO
     }
 
     static get NativeMethod() {

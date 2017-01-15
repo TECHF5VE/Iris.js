@@ -7,7 +7,7 @@
 
 import IrisObject from "./iris_object";
 import IrisMethod from "./iris_method";
-import { warn, log } from "../util/index"
+import { warn, log } from "../util/index";
 
 const class_name_sym = Symbol("class_name");
 const super_class_sym = Symbol("super_class");
@@ -73,7 +73,7 @@ export default class Iris {
      }
 
      get_constance(constance_name) {
-         
+         return this[constances_sym][constance_name];
      }
 
      add_class_variable(class_variable_name, value) {
@@ -81,7 +81,7 @@ export default class Iris {
      }
 
      get_class_variable(class_variable_name) {
-         this[class_variable_name];
+         return this[class_variable_name];
      }
 
      get method_name() {
@@ -94,6 +94,10 @@ export default class Iris {
 
      get upper_module() {
          return this[upper_module_sym]
+     }
+
+     static SearchResult() {
+         
      }
      
 }

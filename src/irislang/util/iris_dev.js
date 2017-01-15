@@ -1,23 +1,23 @@
 /**
  * IrisDevUtil class
  * created by Hui in 2016-12-4
- * 
+ * Modified by DaraW on 2016-1-15
  */
 
 import $interpreter from "../iris_interpreter.js";
 
-export var $dev_util = {
+export default {
 
     get true() {
-        return $interpreter.true();
+        return $interpreter.true;
     },
 
     get false() {
-        return $interpreter.false();
+        return $interpreter.false;
     },
 
     get nil() {
-        return $interpreter.nil();
+        return $interpreter.nil;
     },
 
     get_class(class_path) {
