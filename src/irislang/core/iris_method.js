@@ -20,26 +20,6 @@ const method_define_obj_sym = Symbol("method_define_obj");
 const method_object_sym = Symbol("method_object_sym");
 const _create_method_object_sym = Symbol("_create_method_object_sym");
 
-class inline_NativeMethod{
-    constructor(method_name, parameter_count, is_with_variable_parameter, authority, native_method_handle) {
-        this[method_name_sym] = method_name;
-        this[parameter_count_sym] = parameter_count;
-        this[is_with_variable_parameter_sym] = is_with_variable_parameter;
-        this[authority_sym] = authority;
-        this[native_method_handle_sym] = native_method_handle;
-    }
-};
-
-class inline_UserMethod {
-    constructor(method_name, parameter_name_list, variable_parameter_name, with_block, without_block) {
-        this[method_name_sym] = method_name;
-        this[parameter_name_list_sym] = parameter_name_list;
-        this[variable_parameter_name_sym] = variable_parameter_name;
-        this[with_block_sym] = with_block;
-        this[without_block_sym] = without_block_sym;
-    }
-};
-
 const inline_MethodAuthority = {
     get Everyone() { return 0; },
     get Relative() { return 1; },
@@ -50,6 +30,26 @@ const inline_CallSide = {
     get OutSide() { return 0; },
     get Inside()  { return 1; }
 };
+
+class inline_NativeMethod {
+    constructor(method_name, parameter_count, is_with_variable_parameter, authority, native_method_handle) {
+        this[method_name_sym] = method_name;
+        this[parameter_count_sym] = parameter_count;
+        this[is_with_variable_parameter_sym] = is_with_variable_parameter;
+        this[authority_sym] = authority;
+        this[native_method_handle_sym] = native_method_handle;
+    }
+}
+
+class inline_UserMethod {
+    constructor(method_name, parameter_name_list, variable_parameter_name, with_block, without_block) {
+        this[method_name_sym] = method_name;
+        this[parameter_name_list_sym] = parameter_name_list;
+        this[variable_parameter_name_sym] = variable_parameter_name;
+        this[with_block_sym] = with_block;
+        this[without_block_sym] = without_block_sym;
+    }
+}
 
 export default class IrisMethod {
     constructor(init_obj) {
