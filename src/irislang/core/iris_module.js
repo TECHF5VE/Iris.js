@@ -6,6 +6,11 @@
 const module_name_sym = Symbol("module_name");
 
 export default class IrisModule {
-    this
+    
+
+
+    search_constance() {
+        
+    }
 
 }

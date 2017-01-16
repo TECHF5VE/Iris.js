@@ -12,6 +12,11 @@ export const instance_methods_sym = Symbol("instance_methods");
 export const constances_sym  = Symbol("constances");
 export const class_variables_sym = Symbol("class_variables");
 export const method_name_sym = Symbol("method_name");
+export const method_sym = Symbol("method");
+export const is_current_class_method_sym = Symbol("is_current_class_method");
+export const involved_modules_sym = Symbol("involved_modules");
+export const involved_interfaces_sym = Symbol("involved_interfaces");
+export const extern_class_sym = Symbol("extern_class");
 
 // IrisContextEnviroment
 export const running_type_sym = Symbol("running_type");
