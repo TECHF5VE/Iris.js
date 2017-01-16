@@ -3,19 +3,20 @@
  * Created by DaraW on 2017-1-15
  */
 
-const running_type_sym = Symbol("running_type");
-const run_time_type_sym = Symbol("run_time_type");
-const local_variabl_map_sym = Symbol("local_variabl_map");
-const upper_context_sym = Symbol("upper_context");
-const current_method_sym = Symbol("current_method");
-// const local_variabl_map_sym = Symbol("local_variabl_map");
+import { 
+        running_type_sym,
+        run_time_type_sym,
+        local_variabl_map_sym,
+        upper_context_sym,
+        current_method_sym
+    } from "../util/iris_symbol";
 
 const RunTimeType = {
     ClassDefineTime: 0,
-		ModuleDefineTime: 1,
-		InterfaceDefineTime: 2,
-		RunTime: 3
-}
+    ModuleDefineTime: 1,
+    InterfaceDefineTime: 2,
+    RunTime: 3
+};
 
 export default class IrisContextEnvironment {
     constructor() {

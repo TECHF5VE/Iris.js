@@ -8,15 +8,17 @@
 import IrisObject from "./iris_object";
 import IrisMethod from "./iris_method";
 import { warn, log } from "../util/index";
+import { 
+        class_name_sym,
+        super_class_sym,
+        upper_module_sym,
+        object_sym,
+        instance_methods_sym,
+        constances_sym,
+        class_variables_sym,
+        method_name_sym
+    } from "../util/iris_symbol";
 
-const class_name_sym = Symbol("class_name");
-const super_class_sym = Symbol("super_class");
-const upper_module_sym = Symbol("upper_module");
-const object_sym = Symbol("object");
-const instance_methods_sym = Symbol("instance_methods");
-const constances_sym  = Symbol("constances");
-const class_variables_sym = Symbol("class_variables");
-const method_name_sym = Symbol("method_name");
 
 export default class Iris {
      constructor(class_name, super_class, upper_module, class_define_method, obj_alloc_method) {

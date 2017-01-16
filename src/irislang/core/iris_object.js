@@ -8,11 +8,13 @@ import IrisMethod from "./iris_method";
 import IrisValue from "./iris_value";
 import $dev_util from "../util/iris_dev"
 
-const class_sym = Symbol("class");
-const instance_variables_sym = Symbol("instance_variables");
-const instance_methods_sym  = Symbol("instance_methods_sym");
-const native_object_sym = Symbol("native_object");
-const object_id_sym = Symbol("object_id");
+import { 
+        class_sym,
+        instance_variables_sym,
+        instance_methods_sym,
+        native_object_sym,
+        object_id_sym
+    } from "../util/iris_symbol";
 
 let inline_OBJECT_COUNT = 0;
 

@@ -3,7 +3,7 @@
  * Created by DaraW on 2017-1-15
  */
 
-const object_sym = Symbol("object");
+import { object_sym } from "../util/iris_symbol";
 
 export default class IrisValue {
     constructor() {

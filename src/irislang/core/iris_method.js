@@ -6,19 +6,20 @@
 
 import IrisObject from "./iris_object";
 
-const method_name_sym = Symbol("method_name");
-const parameter_count_sym = Symbol("parameter_count");
-const is_with_variable_parameter_sym = Symbol("is_with_variable_parameter");
-const authority_sym = Symbol("authority");
-const native_method_handle_sym = Symbol("native_method_handle");
-
-const parameter_name_list_sym = Symbol("parameter_name_list");
-const variable_parameter_name_sym = Symbol("variable_parameter_name");
-const with_block_sym = Symbol("with_block");
-const without_block_sym = Symbol("without_block");
-const method_define_obj_sym = Symbol("method_define_obj");
-const method_object_sym = Symbol("method_object_sym");
-const _create_method_object_sym = Symbol("_create_method_object_sym");
+import { 
+        method_name_sym,
+        parameter_count_sym,
+        is_with_variable_parameter_sym,
+        authority_sym,
+        native_method_handle_sym,
+        parameter_name_list_sym,
+        variable_parameter_name_sym,
+        with_block_sym,
+        without_block_sym,
+        method_define_obj_sym,
+        method_object_sym,
+        _create_method_object_sym
+    } from "../util/iris_symbol";
 
 const inline_MethodAuthority = {
     get Everyone() { return 0; },
