@@ -42,11 +42,11 @@ export var $interpreter = {
      * class_name : maybe a raw String such as "A::B::C" or an array such as ["A", "B", "C"]
      */
     get_class(class_name) {
-        if(typeof class_name == String) {
+        if(typeof class_name === 'string') {
 
         } else {
             for(let elem of class_name) {
-                if(typeof elem !=  String) {
+                if(typeof elem !== 'string') {
                     throw new Error("Fuck You.");
                 }
             }
@@ -66,7 +66,7 @@ export var $interpreter = {
     },
 
     get false() {
-        return this[false_sym];;
+        return this[false_sym];
     },
 
     get nil() {

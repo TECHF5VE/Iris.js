@@ -11,15 +11,15 @@ if (process.env.NODE_ENV !== 'production') {
 
   warn = (msg) => {
     if (typeof console !== 'undefined') {
-      console.error(`[Iris warn]: ${msg} `);
+      console.warning(`[Iris warn]: ${msg} `);
     }
-  }
+  };
 
   log = (msg) => {
     if (typeof console !== 'undefined') {
       console.log(`[Iris]: ${msg} `);
     }
-  }
+  };
 }
 
-export { warn, log }
+export { warn, log };

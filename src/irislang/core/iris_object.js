@@ -17,7 +17,7 @@ export default class IrisObject {
         this[instance_variables_sym] = new Map();
         this[class_sym] = null;
         this[native_object_sym] = null;
-        this[object_id_sym] = ++inline_OBJECT_COUNT
+        this[object_id_sym] = ++inline_OBJECT_COUNT;
     }
 
     /*

@@ -7,14 +7,14 @@
 
 import IrisObject from "./iris_object";
 import IrisMethod from "./iris_method";
-import { warn, log } from "../util/index"
+import { warn, log } from "../util/index";
 
 const class_name_sym = Symbol("class_name");
 const super_class_sym = Symbol("super_class");
 const upper_module_sym = Symbol("upper_module");
 const object_sym = Symbol("object");
 const instance_methods_sym = Symbol("instance_methods");
-const constances_sym  = Symbol("constances");
+const constances_sym = Symbol("constances");
 const class_variables_sym = Symbol("class_variables");
 const method_name_sym = Symbol("method_name");
 
@@ -27,13 +27,13 @@ export default class Iris {
          this[object_sym] = new IrisObject();
          this[object_sym].class = this; 
 
-         if (obj_alloc_method) {
+         if (typeof obj_alloc_method === 'function') {
             this[object_sym].native_object = obj_alloc_method();  
          } else {
              warn("obj_alloc_method is not a function");
          }
 
-         if (class_define_method) {
+         if (typeof class_define_method === 'function') {
             class_define_method(this);
          } else {
             warn("class_define_method is not a function");
@@ -61,7 +61,7 @@ export default class Iris {
       * user_method : { method_name, authority, user_method }
       */
      add_class_method(regist_obj) {
-         if(regist_obj instanceof IrisMethod) {
+         if (regist_obj instanceof IrisMethod) {
             this[object_sym].add_instance_method(regist_obj);
          } else {
             this[object_sym].add_instance_method(new IrisMethod(regist_obj));
@@ -70,6 +70,7 @@ export default class Iris {
 
      add_constance(constance_name, value) {
          this[constances_sym][constance_name] = value;
+         return value;
      }
 
      get_constance(constance_name) {
@@ -77,11 +78,12 @@ export default class Iris {
      }
 
      add_class_variable(class_variable_name, value) {
-         this[class_variables_sym][class_variable_name] = value; 
+         this[class_variables_sym][class_variable_name] = value;
+         return value;
      }
 
      get_class_variable(class_variable_name) {
-         this[class_variable_name];
+         return this[class_variable_name];
      }
 
      get method_name() {
@@ -93,7 +95,7 @@ export default class Iris {
      }
 
      get upper_module() {
-         return this[upper_module_sym]
+         return this[upper_module_sym];
      }
      
 }
