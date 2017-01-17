@@ -44,3 +44,10 @@ export const class_sym = Symbol("class");
 export const instance_variables_sym = Symbol("instance_variables");
 export const native_object_sym = Symbol("native_object");
 export const object_id_sym = Symbol("object_id");
+
+// IrisModule
+export const module_name_sym = Symbol("module_name");
+export const module_object_sym = Symbol("module_object");
+export const sub_classes_sym = Symbol("sub_classes");
+export const sub_modules_sym = Symbol("sub_modules");
+export const constance_sym = Symbol("constance");

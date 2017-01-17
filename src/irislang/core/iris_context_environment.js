@@ -1,5 +1,5 @@
 /**
- * IrisValue class
+ * IrisContextEnvironment class
  * Created by DaraW on 2017-1-15
  */
 
