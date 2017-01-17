@@ -274,9 +274,12 @@ export default class IrisClass {
          this[object_sym] = object;
      }
      
+     static get SearchResult() {
+         return SearchResult;
+     }
 }
 
-IrisClass.SearchResult = class SearchResult {
+class SearchResult {
     constructor() {
         this[method_sym] = null;
         this[is_current_class_method_sym] = false;

@@ -5,9 +5,12 @@
  */
 import Iris from "./irislang/core/iris_class";
 import IrisMethod from "./irislang/core/iris_method";
+import IrisContextEnvironment from "./irislang/core/iris_context_environment";
+import { RunTimeType } from "./irislang/core/iris_context_environment";
 import $dev_util from "./irislang/util/iris_dev"
 
-console.log(IrisMethod.CallSide)
+console.log(IrisContextEnvironment);
+console.log(RunTimeType);
 
 // const iris = new Iris();
 // console.log(iris);

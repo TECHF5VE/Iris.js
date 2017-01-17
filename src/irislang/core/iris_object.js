@@ -6,7 +6,7 @@
 
 import IrisMethod from "./iris_method";
 import IrisValue from "./iris_value";
-import $dev_util from "../util/iris_dev"
+import $dev_util from "../util/iris_dev";
 
 import { 
         class_sym,
@@ -47,7 +47,7 @@ export default class IrisObject {
         }
 
         if (method === null) {
-            return $dev_util.nil
+            return $dev_util.nil;
         }
 
         let call_result = null;

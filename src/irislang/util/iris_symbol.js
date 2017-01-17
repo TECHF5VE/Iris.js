@@ -36,6 +36,7 @@ export const with_block_sym = Symbol("with_block");
 export const without_block_sym = Symbol("without_block");
 export const method_define_obj_sym = Symbol("method_define_obj");
 export const method_object_sym = Symbol("method_object_sym");
+export const user_method_sym = Symbol("user_method");
 export const _create_method_object_sym = Symbol("_create_method_object_sym");
 
 // IrisObject

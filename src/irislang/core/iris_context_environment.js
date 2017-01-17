@@ -11,7 +11,7 @@ import {
         current_method_sym
     } from "../util/iris_symbol";
 
-const RunTimeType = {
+export const RunTimeType = {
     ClassDefineTime: 0,
     ModuleDefineTime: 1,
     InterfaceDefineTime: 2,
