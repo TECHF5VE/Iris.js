@@ -51,3 +51,6 @@ export const module_object_sym = Symbol("module_object");
 export const sub_classes_sym = Symbol("sub_classes");
 export const sub_modules_sym = Symbol("sub_modules");
 export const constance_sym = Symbol("constance");
+
+// IrisInteger
+export const integer_sym = Symbol("integer");
