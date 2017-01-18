@@ -41,13 +41,13 @@ export default class IrisClass {
          this[constances_sym] = new Map();
          this[extern_class_sym] = null;
 
-         if (obj_alloc_method) {
+         if (typeof obj_alloc_method === 'function') {
             this[object_sym].native_object = obj_alloc_method();  
          } else {
              warn(`obj_alloc_method ${obj_alloc_method} is not a function`);
          }
 
-         if (class_define_method) {
+         if (typeof class_define_method === 'function') {
             class_define_method(this);
          } else {
             warn(`class_define_method ${class_define_method} is not a function`);
@@ -115,7 +115,7 @@ export default class IrisClass {
       * user_method : { method_name, authority, user_method }
       */
      add_class_method(regist_obj) {
-         if(regist_obj instanceof IrisMethod) {
+         if (regist_obj instanceof IrisMethod) {
             this[object_sym].add_instance_method(regist_obj);
          } else {
             this[object_sym].add_instance_method(new IrisMethod(regist_obj));
@@ -259,7 +259,7 @@ export default class IrisClass {
      }
 
      get upper_module() {
-         return this[upper_module_sym]
+         return this[upper_module_sym];
      }
 
      set upper_module(upper_module) {

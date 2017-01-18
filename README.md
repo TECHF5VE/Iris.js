@@ -2,7 +2,7 @@
 
 ## Introduce
 
-![](./resource/iris.js.png)
+![](http://7xngrd.com1.z0.glb.clouddn.com/ci_iris.js.png)
 
 **Iris.js** is the implementation of *Iris programming language* using *Javascript* which is aimed at executing Iris scripts or Iris bytecode right on browser environment to provide another more language selection for *web development*.
 

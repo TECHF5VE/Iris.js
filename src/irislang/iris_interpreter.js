@@ -48,7 +48,7 @@ export default {
 
         } else {
             for(let elem of class_name) {
-                if(typeof elem == "string") {
+                if(typeof elem !== "string") {
                     warn(class_name + " should be a string literal or an array literal!");
                 }
             }
@@ -68,7 +68,7 @@ export default {
     },
 
     get false() {
-        return this[false_sym];;
+        return this[false_sym];
     },
 
     get nil() {
