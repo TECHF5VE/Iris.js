@@ -1,13 +1,12 @@
 /**
- * IrisDevUtil class
+ * IrisDev class
  * created by Hui in 2016-12-4
  * Modified by DaraW on 2016-1-15
  */
 
 import $interpreter from "../iris_interpreter.js";
 
-export default {
-
+export const IrisDev = {
     get true() {
         return $interpreter.true;
     },
@@ -18,6 +17,10 @@ export default {
 
     get nil() {
         return $interpreter.nil;
+    },
+
+    get_native_object_ref(obj) {
+
     },
 
     get_class(class_path) {
@@ -47,5 +50,4 @@ export default {
     create_unique_string(string_value) {
 
     }
-
-}
+};
