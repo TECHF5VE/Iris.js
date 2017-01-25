@@ -54,3 +54,6 @@ export const constance_sym = Symbol("constance");
 
 // IrisInteger
 export const integer_sym = Symbol("integer");
+
+// IrisFloat
+export const float_sym = Symbol("float");

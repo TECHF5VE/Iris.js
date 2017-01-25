@@ -7,7 +7,7 @@ import IrisFloat from "./iris_float";
 import IrisMethod from "../core/iris_method";
 import $dev_util from "../util/iris_dev";
 
-import { 
+import {
         integer_sym
     } from "../util/iris_symbol";
 
@@ -32,7 +32,7 @@ export const Operation = {
     BigThan: 15,
     BigThanOrEqual: 16,
     LessThan: 17,
-    LessThanOrEqual: 18 
+    LessThanOrEqual: 18
 }
 
 export default class IrisInteger {
@@ -54,7 +54,7 @@ export default class IrisInteger {
     }
 
     native_class_define(class_obj) {
-        class_obj.add_instance_method(IrisInteger, "Add", "+", 1, false, )
+        class_obj.add_instance_method(IrisInteger, "Add", "+", 1, false, IrisMethod.MethodAuthority.Everyone);
         class_obj.AddInstanceMethod(IrisInteger.class, "Sub", "-", 1, false, IrisMethod.MethodAuthority.Everyone);
         class_obj.AddInstanceMethod(IrisInteger.class, "Mul", "*", 1, false, IrisMethod.MethodAuthority.Everyone);
         class_obj.AddInstanceMethod(IrisInteger.class, "Div", "/", 1, false, IrisMethod.MethodAuthority.Everyone);
@@ -76,12 +76,12 @@ export default class IrisInteger {
         class_obj.AddInstanceMethod(IrisInteger.class, "BitOr", "|", 1, false, IrisMethod.MethodAuthority.Everyone);
         class_obj.AddInstanceMethod(IrisInteger.class, "BitAnd", "&", 1, false, IrisMethod.MethodAuthority.Everyone);
 
-        class_obj.AddInstanceMethod(IrisInteger.class, "BitNot", "~", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "Minus", "__minus", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "Plus", "__plus", 1, false, IrisMethod.MethodAuthority.Everyone);
+        class_obj.AddInstanceMethod(IrisInteger.class, "BitNot", "~", 0, false, IrisMethod.MethodAuthority.Everyone);
+        class_obj.AddInstanceMethod(IrisInteger.class, "Minus", "__minus", 0, false, IrisMethod.MethodAuthority.Everyone);
+        class_obj.AddInstanceMethod(IrisInteger.class, "Plus", "__plus", 0, false, IrisMethod.MethodAuthority.Everyone);
 
-        class_obj.AddInstanceMethod(IrisInteger.class, "ToString", "to_string", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "ToFloat", "to_float", 1, false, IrisMethod.MethodAuthority.Everyone);
+        class_obj.AddInstanceMethod(IrisInteger.class, "ToString", "to_string", 0, false, IrisMethod.MethodAuthority.Everyone);
+        class_obj.AddInstanceMethod(IrisInteger.class, "ToFloat", "to_float", 0, false, IrisMethod.MethodAuthority.Everyone);
 
     }
 
@@ -148,7 +148,7 @@ export default class IrisInteger {
                 default:
                     break;
             }
-			
+
 			result = $dev_util.create_int(0);
             result.object.native_object = result_value;
         }
@@ -433,7 +433,7 @@ class IrisIntegerTag {
     equal(target) {
         return this[integer_sym] === target.integer;
     }
-    
+
     not_equal(target) {
         return !this.equal(target);
     }
