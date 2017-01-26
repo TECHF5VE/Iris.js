@@ -57,3 +57,6 @@ export const integer_sym = Symbol("integer");
 
 // IrisFloat
 export const float_sym = Symbol("float");
+
+// IrisClassBaseTag
+export const class_obj_sym = Symbol("class_obj");
