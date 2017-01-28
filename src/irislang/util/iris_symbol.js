@@ -63,3 +63,6 @@ export const class_obj_sym = Symbol("class_obj");
 
 // IrisFalse
 export const name_sym = Symbol("name");
+
+// IrisModuleBase
+export const module_sym = Symbol("module");

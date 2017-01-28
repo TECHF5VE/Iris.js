@@ -11,7 +11,7 @@ export default class IrisMethodBase {
     }
 
     native_super_class_define() {
-        return return IrisDev.get_class("Object");;
+        return IrisDev.get_class("Object");
     }
 
     native_super_module_define() {
@@ -23,7 +23,7 @@ export default class IrisMethodBase {
     }
 
     native_class_define(class_obj) {
-        
+
     }
 
     static get_name(self, parameter_list, variable_parameter_list, context, thread_info) {
