@@ -11,7 +11,7 @@ export default class IrisFalse {
     }
 
     native_super_class_define() {
-        return return IrisDev.get_class("Object");;
+        return null;
     }
 
     native_super_module_define() {
