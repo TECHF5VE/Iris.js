@@ -66,3 +66,6 @@ export const name_sym = Symbol("name");
 
 // IrisModuleBase
 export const module_sym = Symbol("module");
+
+// IrisString
+export const string_sym = Symbol("string");

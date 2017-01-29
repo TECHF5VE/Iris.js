@@ -4,7 +4,7 @@ import {
         name_sym
     } from "../util/iris_symbol";
 
-export default class IrisFalse {
+export default class IrisFalseClass {
 
     native_class_name_define() {
         return "FalseClass";
@@ -23,7 +23,7 @@ export default class IrisFalse {
     }
 
     native_class_define(class_obj) {
-        class_obj.add_instance_method(IrisFalse, "LogicNot", "!", 0, false, IrisMethod.MethodAuthority.Everyone);
+        class_obj.add_instance_method(IrisFalseClass, "LogicNot", "!", 0, false, IrisMethod.MethodAuthority.Everyone);
     }
 
     static logic_not(self, parameter_list, variable_parameter_list, context, thread_info) {
@@ -34,13 +34,13 @@ export default class IrisFalse {
         return IrisDev.create_string(IrisDev.get_native_object_ref(self).name);
     }
 
-    static get IrisFalseTag() {
-        return IrisFlseTag;
+    static get IrisFalseClassTag() {
+        return IrisFalseClassTag;
     }
 
 }
 
-class IrisFalseTag {
+class IrisFalseClassTag {
     constructor() {
         this[name_sym] = "false";
     }
