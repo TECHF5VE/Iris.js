@@ -7,42 +7,42 @@ import { IrisClass, IrisMethod, IrisContextEnvironment, IrisModule, IrisValue } 
 import { IrisDev } from '../util';
 
 export class IrisUniqueString extends IrisClass {
-    static sm_uniqueStringCache = {};
-
-    static add_unique_string(uniqueString, uniqueObj) {
-        IrisUniqueString.sm_uniqueStringCache[uniqueString] = uniqueObj;
+    static add_unique_string(unique_string, unique_obj) {
+        IrisUniqueString.unique_string_cache[unique_string] = unique_obj;
         return uniqueObj;
     }
 
-    static get_unique_string(uniqueString) {
-        return IrisUniqueString.sm_uniqueStringCache[uniqueString];
+    static get_unique_string(unique_string) {
+        return IrisUniqueString.unique_string_cache[unique_string];
     }
 
     static to_string(irisValue, paramterList, variableParameterList, context, threadInfo) {
         const obj = IrisDev.get_native_object_ref(this);
-        return IrisDev.create_string(obj)
+        return IrisDev.create_string(obj);
     }
 
-    get native_class_define(classObj) {
-        classObj.add_instance_method(IrisUniqueString.class, 'ToString', 'to_string', 0, false, MethodAuthority.Everyone);
+    native_class_define(classObj) {
+        classObj.add_instance_method(this.to_string, 'to_string', 0, false, IrisMethod.MethodAuthority.Everyone);
     }
 
-    get native_class_name_define() {
+    native_class_name_define() {
         return 'UniqueString';
     }
 
-    get native_super_class_define() {
+    native_super_class_define() {
         return IrisDev.get_class("Object");
     }
 
-    get native_upper_module_define() {
+    native_upper_module_define() {
         return null;
     }
 
-    get native_alloc() {
+    native_alloc() {
         return new IrisUniqueStringTag();
     }
 }
+
+IrisUniqueString.unique_string_cache = {}
 
 const douge_IUST = {
     m_string: Symbol('m_string')
@@ -53,7 +53,7 @@ class IrisUniqueStringTag {
         this[douge_IUST.m_string] = m_string;
     }
 
-    get get_string() {
+    get string() {
         return this[douge_IUST.m_string];
     }
 }

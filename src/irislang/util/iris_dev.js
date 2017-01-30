@@ -19,6 +19,14 @@ export const IrisDev = {
         return $interpreter.nil;
     },
 
+    is_class_object() {
+
+    },
+
+    check_class(element, class_path)  {
+
+    },
+
     get_native_object_ref(obj) {
 
     },

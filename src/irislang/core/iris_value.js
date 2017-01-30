@@ -10,11 +10,11 @@ export default class IrisValue {
         this[object_sym] = null;
     }
 
-    set_object(obj) {
+    set object(obj) {
         this[object_sym] = obj;
     }
 
-    get_object(obj) {
+    get object() {
         return this[object_sym]
     }
 

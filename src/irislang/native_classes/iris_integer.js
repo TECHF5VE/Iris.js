@@ -395,7 +395,7 @@ class IrisIntegerTag {
     }
 
     power(target) {
-        return new IrisIntegerTag(Math.pow(this[integer], target.integer));
+        return new IrisIntegerTag(Math.pow(this[integer_sym], target.integer));
     }
 
     shl(target) {

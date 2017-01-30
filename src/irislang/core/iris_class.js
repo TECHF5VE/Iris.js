@@ -9,6 +9,7 @@ import IrisObject from "./iris_object";
 import IrisMethod from "./iris_method";
 import IrisValue from "./iris_value";
 import { warn, log } from "../util/index";
+import $dev_util from "../util/iris_dev";
 import { 
         class_name_sym,
         super_class_sym,
@@ -22,7 +23,7 @@ import {
         is_current_class_method_sym,
         involved_modules_sym,
         involved_interfaces_sym,
-        extern_class_sym
+        object_alloc_method_sym,
     } from "../util/iris_symbol";
 
 
@@ -32,19 +33,29 @@ export default class IrisClass {
          this[class_name_sym] = class_name;
          this[super_class_sym] = super_class;
          this[upper_module_sym] = upper_module;
-         
-         this[object_sym] = new IrisObject();
-         this[object_sym].class = this; 
+
          this[involved_modules_sym] = new Set();
          this[involved_interfaces_sym] = new Set();
          this[instance_methods_sym] = new Map();
          this[constances_sym] = new Map();
-         this[extern_class_sym] = null;
 
-         if (typeof obj_alloc_method === 'function') {
-            this[object_sym].native_object = obj_alloc_method();  
+         this[object_alloc_method_sym] = obj_alloc_method;
+
+         let class_obj = $dev_util.get_class("Class");
+
+         if(class_obj != null) {
+            this[object_sym] = class_obj.create_new_instance(null, null, null).object;
+            this[object_sym].native_object.class_object = this;
          } else {
-             warn(`obj_alloc_method ${obj_alloc_method} is not a function`);
+            this[object_sym] = new IrisObject();
+            this[object_sym].class = this; 
+            // must be class class
+            if (typeof obj_alloc_method === 'function') {
+                this[object_sym].native_object = obj_alloc_method(); 
+            } else {
+                warn(`obj_alloc_method ${obj_alloc_method} is not a function`);
+            }
+            this[object_sym].native_obj.class_object = this;
          }
 
          if (typeof class_define_method === 'function') {
@@ -70,10 +81,11 @@ export default class IrisClass {
 
          method = this._get_method(this, method_name);
 
+         // found
          if (method !== null) {
              result.current_class_method = true;
              result.method = method;
-             return ;
+             return;
          }
 
          let cur_class = this[super_class_sym];
@@ -83,7 +95,7 @@ export default class IrisClass {
              if (method !== null) {
                  result.current_class_method = false;
                  result.method = method;
-                 return ;
+                 return;
              }
              cur_class = cur_class.super_class;
          }
@@ -92,7 +104,7 @@ export default class IrisClass {
      create_new_instance(parameter_list, context, thread_info) {
          let object = new IrisObject();
          object.class = this;
-         let native_obj = this[extern_class_sym];
+         let native_obj = this[object_alloc_method_sym]();
          object.native_object = native_obj;
          object.call_instance_method("__format", parameter_list, context, thread_info, IrisMethod.CallSide.OutSide);
          return IrisValue.wrap_object(object);
@@ -139,11 +151,12 @@ export default class IrisClass {
      }
 
      search_constance(constance_name) {
+         // current class, involved module, super class
          let cur_class = this;
          let result = null;
 
          while(cur_class !== null) {
-             result = this._get_constance(cur_class, name);
+             result = this._get_constance(cur_class, constance_name);
              if (result !== null) {
                  break;
              }
@@ -157,7 +170,7 @@ export default class IrisClass {
      }
 
      get_class_variable(class_variable_name) {
-         return this[class_variables_sym],get(class_variable_name);
+         return this[class_variables_sym].get(class_variable_name);
      }
 
      search_class_variable(constance_name) {
@@ -165,7 +178,7 @@ export default class IrisClass {
          let result = null;
 
          while(cur_class !== null) {
-             result = this._get_class_variable(cur_class, name);
+             result = this._get_class_variable(cur_class, constance_name);
              if (result !== null) {
                  break;
              }

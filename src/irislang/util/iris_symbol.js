@@ -16,7 +16,7 @@ export const method_sym = Symbol("method");
 export const is_current_class_method_sym = Symbol("is_current_class_method");
 export const involved_modules_sym = Symbol("involved_modules");
 export const involved_interfaces_sym = Symbol("involved_interfaces");
-export const extern_class_sym = Symbol("extern_class");
+export const object_alloc_method_sym = Symbol("object_alloc_method")
 
 // IrisContextEnviroment
 export const running_type_sym = Symbol("running_type");
@@ -69,3 +69,11 @@ export const module_sym = Symbol("module");
 
 // IrisString
 export const string_sym = Symbol("string");
+
+// IrisInterpreter
+export const root_method_hash_sym = Symbol("root_method_hash");
+export const root_constance_hash_sym = Symbol("root_constance_hash");
+export const root_global_value_hash_sym = Symbol("root_global_value_hash");
+export const true_sym = Symbol("true");
+export const false_sym = Symbol("false");
+export const nil_sym = Symbol("nil");

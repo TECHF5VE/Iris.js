@@ -6,6 +6,7 @@
 
 import IrisMethod from "./iris_method";
 import IrisValue from "./iris_value";
+import IrisClass from "./iris_class";
 import $dev_util from "../util/iris_dev";
 
 import { 

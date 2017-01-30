@@ -47,11 +47,11 @@ class IrisClassBaseTag {
         this[class_obj_sym] = null;
     }
 
-    get class_obj() {
+    get class_object() {
         return this[class_obj_sym];
     }
 
-    set class_obj(class_obj) {
+    set class_object(class_obj) {
         this[class_obj_sym] = class_obj;
     }
 
