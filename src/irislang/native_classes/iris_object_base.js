@@ -42,11 +42,7 @@ export default class IrisObjectBase {
     }
 
     static to_string(self, parameter_list, variable_parameter_list, context, thread_info) {
-        StringBuffer buffer = new StringBuffer();
-		String className = self.getObject().getObjectClass().getClassName();
-		String objectID = String.valueOf(self.getObject().getObjectID());
-		buffer.append("<").append(className).append(":").append(objectID).append(">");
-		return IrisDev.create_string(`<${self.object.object_class.class_name}:${self.object.object_id()}>`);
+    		return IrisDev.create_string(`<${self.object.object_class.class_name}:${self.object.object_id()}>`);
     }
 
     static get_class(self, parameter_list, variable_parameter_list, context, thread_info) {
@@ -64,21 +60,21 @@ export default class IrisObjectBase {
     }
 
     static logic_or(self, parameter_list, variable_parameter_list, context, thread_info) {
-        let right_value = parameter_list[0];
-        if(!self.equals(IrisDev.false)) && !self.equals(IrisDev.nil)) {
-			return IrisDev.true;
-		}
-		else if(!right_value.equals(IrisDev.false) && !right_value.equals(IrisDev.nil)){
-			return IrisDev.true;
-		}
-		else {
-			return IrisDev.false;
-		}
+        // let right_value = parameter_list[0];
+        // if((!self.equals(IrisDev.false)) && !self.equals(IrisDev.nil)) {
+    		// 	return IrisDev.true;
+    		// }
+    		// else if(!right_value.equals(IrisDev.false) && !right_value.equals(IrisDev.nil)){
+    		// 	return IrisDev.true;
+    		// }
+    		// else {
+    		// 	return IrisDev.false;
+		    // }
     }
 
     static logic_and(self, parameter_list, variable_parameter_list, context, thread_info) {
         let right_value = parameter_list[0];
-        if(self.equals(IrisDev.false)) || self.equals(IrisDev.nil)) {
+        if(self.equals(IrisDev.false) || self.equals(IrisDev.nil)) {
 			return IrisDev.false;
 		}
 		else if(right_value.equals(IrisDev.false) || right_value.equals(IrisDev.nil)){

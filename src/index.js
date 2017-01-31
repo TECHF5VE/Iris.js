@@ -8,7 +8,7 @@ import IrisMethod from "./irislang/core/iris_method";
 import IrisContextEnvironment from "./irislang/core/iris_context_environment";
 import { RunTimeType } from "./irislang/core/iris_context_environment";
 import $dev_util from "./irislang/util/iris_dev"
-import $interpreter from "../iris_interpreter.js";
+import $interpreter from "./irislang/iris_interpreter.js";
 
 // console.log(IrisContextEnvironment);
 // console.log(RunTimeType);

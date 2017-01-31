@@ -27,7 +27,7 @@ import IrisArrayClass from "./native_classes/iris_array"
 
 import IrisKernel from "./native_modules/iris_kernel"
 
-import $dev_util from "./irislang/util/iris_dev"
+import $dev_util from "./util/iris_dev"
 
 import {
        root_method_hash_sym,
@@ -36,7 +36,7 @@ import {
        true_sym,
        false_sym,
        nil_sym,
-      }  from "../util/iris_symbol";
+      }  from "./util/iris_symbol";
 
 export default {
 
@@ -81,7 +81,7 @@ export default {
     },
 
     run() {
-        
+
     },
 
     register_class(class_obj) {
@@ -99,10 +99,10 @@ export default {
         }
 
         let class_intern_obj = new IrisClass(
-            class_obj.native_class_name_define(), 
+            class_obj.native_class_name_define(),
             class_obj.native_super_class_define(),
-            class_obj.native_super_module_define(), 
-            class_obj.native_class_define, 
+            class_obj.native_super_module_define(),
+            class_obj.native_class_define,
             class_obj.native_alloc
         );
         let obj_value = IrisValue.wrap_object(class_intern_obj.object);
@@ -129,7 +129,7 @@ export default {
      * class_name : maybe a raw String such as "A::B::C" or an array such as ["A", "B", "C"]
      */
     get_class(class_name) {
-        // split the name 
+        // split the name
         let name_array = class_name.split("::");
         return this.get_class_with_name_array(name_array, class_name);
     },
@@ -151,10 +151,10 @@ export default {
              // if this constance is not a class object
              if($dev_util.is_class_object(tmpValue)) {
                  warn("constance " + class_name + " is not a Class object.")
-                 return null;   
+                 return null;
              }
              return $dev_util.get_native_object_ref(tmpValue).class_object;
-         } 
+         }
          // if with field
          else {
              // find upper module
@@ -168,9 +168,9 @@ export default {
                 // if this constance is not a class object
                 else {
                     warn("constance " + class_name + " is not a Class object.")
-                    return null;   
+                    return null;
                 }
-             } 
+             }
              // if not
              else {
                  warn("field " + full_path + " is not a vaild path.")
@@ -180,7 +180,7 @@ export default {
     },
 
     get_module(module_name) {
-        
+
     },
 
     get_module_with_name_array(name_array) {
@@ -188,7 +188,7 @@ export default {
     },
 
     get_interface(interface_name) {
-        
+
     },
 
     add_constance(const_name, value)
