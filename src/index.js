@@ -32,6 +32,6 @@ if(!$interpreter.initialize()) {
 let left_var = $dev_util.create_int(1);
 let right_var = $dev_util.create_int(2);
 
-let result = $dev_util.call_instance_method(left_var, "+", [right_var], null, null);
+let result = $dev_util.call_method(left_var, "+", [right_var], null, null);
 
 console.log($dev_util.get_native_object_ref(result));

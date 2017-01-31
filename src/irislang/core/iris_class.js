@@ -18,7 +18,6 @@ import {
         instance_methods_sym,
         constances_sym,
         class_variables_sym,
-        method_name_sym,
         method_sym,
         is_current_class_method_sym,
         involved_modules_sym,
@@ -249,10 +248,6 @@ export default class IrisClass {
          }
 
          return result;
-     }
-
-     get method_name() {
-         return this[method_name_sym];
      }
 
      get class_name() {

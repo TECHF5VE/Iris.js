@@ -6,6 +6,7 @@
 
 import { warn } from "./util/index";
 import IrisClass from "./core/iris_class"
+import IrisModule from "./core/iris_module"
 import IrisValue from "./core/iris_value"
 
 import IrisClassBase from "./native_classes/iris_class_base"
@@ -80,6 +81,10 @@ export default {
         return true;
     },
 
+    shut_down() {
+
+    },
+
     run() {
 
     },
@@ -118,7 +123,28 @@ export default {
     },
 
     register_module(module_obj) {
-        //let upper_module = module_obj.native_upper_module_define();
+        let upper_module = module_obj.native_upper_module_define();
+        let module_name = module_obj.native_module_name_define();
+
+        if(upper_module == null) {
+            if(this.get_constance(module_name) != null) {
+                warn("constance " + module_name + " already exists.")
+                return false;
+            }
+        } else {
+            if(upper_module.get_constance(module_name) != null) {
+                warn("constance " + module_name + " already exists.")
+            }
+        }
+
+        let module_intern_obj = new IrisModule();
+        let module_value = IrisValue.wrap_object(module_intern_obj.object);
+
+        if(upper_module == null) {
+            this.add_constance(module_name, module_value);
+        } else {
+            upper_module.add_constance(module_name, module_value);
+        }
     },
 
     register_interface(interface_obj) {
@@ -137,33 +163,33 @@ export default {
     get_class_with_name_array(name_array, full_path = "") {
          let class_name = name_array.pop();
 
-         let tmpUpperModule = null;
-         let tmpValue = null;
+         let tmp_upper_module = null;
+         let tmp_value = null;
 
          // if without field
          if(name_array.length == 0){
-             tmpValue = this.get_constance(class_name);
+             tmp_value = this.get_constance(class_name);
              // if not found
-             if(tmpValue == null) {
+             if(tmp_value == null) {
                  warn("class " + class_name + " not found.");
                  return null;
              }
              // if this constance is not a class object
-             if($dev_util.is_class_object(tmpValue)) {
+             if($dev_util.is_class_object(tmp_value)) {
                  warn("constance " + class_name + " is not a Class object.")
                  return null;
              }
-             return $dev_util.get_native_object_ref(tmpValue).class_object;
+             return $dev_util.get_native_object_ref(tmp_value).class_object;
          }
          // if with field
          else {
              // find upper module
-             tmpUpperModule = this.get_module(name_array);
+             tmp_upper_module = this.get_module_with_name_array(name_array);
              // if found
-             if(tmpUpperModule != null) {
-                tmpValue = tmpUpperModule.get_constance(class_name);
-                if($dev_util.is_class_object(tmpValue)) {
-                    return $dev_util.get_native_object_ref(tmpValue).class_object;
+             if(tmp_upper_module != null) {
+                tmp_value = tmp_upper_module.get_constance(class_name);
+                if($dev_util.is_class_object(tmp_value)) {
+                    return $dev_util.get_native_object_ref(tmp_value).class_object;
                 }
                 // if this constance is not a class object
                 else {
@@ -173,31 +199,71 @@ export default {
              }
              // if not
              else {
-                 warn("field " + full_path + " is not a vaild path.")
+                 warn("field " + full_path + " is not a valid path.")
                  return null;
              }
          }
     },
 
     get_module(module_name) {
-
+        let name_array = module_name.split("::");
+        return this.get_module_with_name_array(name_array, module_name);
     },
 
-    get_module_with_name_array(name_array) {
+    get_module_with_name_array(name_array, full_path="") {
+        if(name_array.length == 0) {
+            warn("Empty path!");
+            return null;
+        }
+        let tmp_cur = null;
+        let tmp_value = null;
+        let first_module_name = name_array.pop();
 
+        tmp_value = this.get_constance(first_module_name);
+        if(tmp_value != null) {
+            if($dev_util.is_module_object()) {
+                tmp_cur = $dev_util.get_native_object_ref(tmp_value).module;
+            } else {
+                warn("Constance " + first_module_name + " is not a module object");
+                return null;
+            }
+        }
+        else {
+            warn("field " + full_path + " is not a valid path.");
+            return null;
+        }
+
+        for(let module_name of name_array) {
+            tmp_value = tmp_cur.get_constance(module_name);
+            if($dev_util.is_module_object(tmp_value)) {
+                tmp_cur = $dev_util.get_native_object_ref(tmp_value).module;
+            } else {
+                warn("Constance " + module_name + " is not a module object");
+                break;
+            }
+        }
+
+        return tmp_cur;
     },
 
     get_interface(interface_name) {
 
     },
 
-    add_constance(const_name, value)
-    {
-
+    add_constance(name, value) {
+        this[root_constance_hash_sym][name] = value;
     },
 
-    get_constance(const_name) {
+    get_constance(name) {
+        return this[root_constance_hash_sym][name];
+    },
 
+    add_global_value(name, value) {
+        this[root_global_value_hash_sym][name] = value;
+    },
+
+    get_global_value(name) {
+        return this[root_global_value_hash_sym][name];
     },
 
     get true() {

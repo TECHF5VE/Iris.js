@@ -133,11 +133,11 @@ export default class IrisModule {
         this[class_variables_sym].set(name, value);
     }
 
-    get module_object() {
+    get object() {
         return this[module_name_sym];
     }
 
-    set module_object(module_object) {
+    set object(module_object) {
         this[module_name_sym] = module_object;
     }
 
