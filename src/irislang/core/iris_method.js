@@ -7,6 +7,7 @@
 import IrisObject from "./iris_object";
 import IrisContextEnvironment, { RunTimeType } from "./iris_context_environment";
 import $dev_util from "../util/iris_dev";
+import warn from "../util/iris_debug"
 
 import { 
         method_name_sym,
@@ -51,15 +52,15 @@ class inline_UserMethod {
         this[parameter_name_list_sym] = parameter_name_list;
         this[variable_parameter_name_sym] = variable_parameter_name;
         this[with_block_sym] = with_block;
-        this[without_block_sym] = without_block_sym;
+        this[without_block_sym] = without_block;
     }
 
     get parameter_list() {
-        return this[parameter_name_list];
+        return this[parameter_name_list_sym];
     }
 
     set parameter_list(parameter_list) {
-        this[parameter_name_list] = parameter_list;
+        this[parameter_name_list_sym] = parameter_list;
     }
 
     get variable_parameter_name() {
@@ -79,10 +80,11 @@ export default class IrisMethod {
             this[parameter_count_sym] = init_obj[parameter_count_sym];
             this[is_with_variable_parameter_sym] = init_obj[is_with_variable_parameter_sym];
             this[authority_sym] = init_obj[authority_sym];
+            this[native_method_handle_sym] = init_obj[native_method_handle_sym];
             this[user_method_sym] = null;
         } else if(init_obj instanceof inline_UserMethod) {
             this[method_name_sym] = init_obj[method_name_sym];
-            this[parameter_count_sym] = init_obj[parameter_name_list_sym].size();
+            this[parameter_count_sym] = init_obj[parameter_name_list_sym].length;
             this[is_with_variable_parameter_sym] = init_obj[variable_parameter_name_sym] == "";
             this[authority_sym] = init_obj[authority_sym];
             this[user_method_sym] = init_obj[user_method_sym];
@@ -92,10 +94,14 @@ export default class IrisMethod {
         this[method_define_obj_sym] = init_obj;
 
         // if get class of Object
-        // this[_create_method_object_sym]();
+        let method_class = $dev_util.get_class("Method");
+        if(method_class != null) {
+            this.create_method_object(method_class);
+        }
+
     }
 
-    create_new_context(caller, parameter_list, current_context, thread_info) {
+    _create_new_context(caller, parameter_list, current_context, thread_info) {
         let new_contex = new IrisContextEnvironment();
 
         new_contex.run_time_type = RunTimeType.RunTime;
@@ -104,19 +110,25 @@ export default class IrisMethod {
         new_contex.current_method = this;
 
         if (this[user_method_sym] !== null) {
+
+            // with without block
+
             if(parameter_list != null && parameter_list.length !== 0) {
                 let counter = 0;
-                for (value in this[user_method_sym].parameter_list) {
+                for (let value in this[user_method_sym].parameter_list) {
                     new_contex.add_local_variable(value, parameter_list[counter]);
-                    counter++;
+                    ++counter;
                 }
-
+                
+                // get the variable values
                 if (this[is_with_variable_parameter_sym]) {
-                    // TODO
+                    let variables = parameter_list.slice(counter, parameter_list.length);
+                    let array_obj = $dev_util.create_array(variables);
+                    new_contex.add_local_variable(this[user_method_sym].variable_parameter_name, array_obj);
                 }
             }
         }
-
+        
         return new_contex;
     }
 
@@ -133,28 +145,35 @@ export default class IrisMethod {
     }
 
     create_method_object(method_class) {
-        // let method_obj = method_class.create_new_instance(null, null, null);
-        // this[method_object_sym] = this;
+        let method_obj = method_class.create_new_instance(null, null, null);
+        $dev_util.get_native_object_ref(method_obj).object = this;
+        this[method_object_sym] = method_obj.object;
     }
 
     reset_methods_object() {
-        // TODO
+        this.create_method_object($dev_util.get_class("Method"));
     }
 
     call(caller, parameter_list, context, thread_info) {
         let result = null;
 
         if (this.parameter_check(this[parameter_name_list_sym])) {
+            // Error
+            warn("Invalid parameter of " + this[method_name_sym] + ".");
             return $dev_util.nil;
         }
+        
+        // Getter Setter
 
-        let new_contex = this.create_new_context(caller, parameter_list, current_context, thread_info);
+        let new_contex = this._create_new_context(caller, parameter_list, context, thread_info);
+        let result = $dev_util.nil;
 
         if (parameter_list === null || parameter_list.length === 0) {
             if (this[user_method_sym] === null) {
-
+                result = this[native_method_handle_sym](caller, null, null, new_contex, thread_info);
             } else {
-
+                // user method call
+                //result = this[native_method_handle_sym](caller, null, null, new_contex, thread_info);
             }
         } else {
             if (this[user_method_sym] === null) {
@@ -166,8 +185,9 @@ export default class IrisMethod {
                 if (this[parameter_count_sym] > 0) {
                     normal_parameters = parameter_list.slice(0, this[parameter_count_sym]);
                 }
-                // result = 
+                result = this[native_method_handle_sym](caller, normal_parameters, variable_values, new_contex, thread_info);
             } else {
+                // user method call
                 // result = 
             }
         }
@@ -177,12 +197,15 @@ export default class IrisMethod {
 
     call_main(array_list, context, thread_info) {
         if (!this.parameter_check(array_list)) {
+            // Error
+            warn("Invalid parameter of " + this[method_name_sym] + ".");
             return $dev_util.nil;
         }
 
-        let new_context = this.create_new_context(null, array_list, context, thread_info);
+        let new_context = this._create_new_context(null, array_list, context, thread_info);
 
-        // return 
+        // user method call
+        //return  
     }
 
     get authority() {

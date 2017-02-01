@@ -45,11 +45,11 @@ class IrisMethodBaseTag {
         return this[method_object_sym].method_name;
     }
 
-    get method_obj() {
+    get object() {
         return this[method_object_sym];
     }
 
-    set method_obj(method_obj) {
+    set object(method_obj) {
         this[method_object_sym] = method_obj;
     }
 }
