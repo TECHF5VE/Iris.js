@@ -68,7 +68,7 @@ export default class IrisClass {
          this[object_sym].reset_all_methods_object();
 
          for (let [method_name, method] of this[instance_methods_sym].entries()) {
-             method.reset_methods_object();
+             method.reset_method_object();
          }
 
      }

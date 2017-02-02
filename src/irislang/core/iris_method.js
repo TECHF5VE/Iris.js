@@ -150,7 +150,7 @@ export default class IrisMethod {
         this[method_object_sym] = method_obj.object;
     }
 
-    reset_methods_object() {
+    reset_method_object() {
         this.create_method_object($dev_util.get_class("Method"));
     }
 
@@ -166,7 +166,7 @@ export default class IrisMethod {
         // Getter Setter
 
         let new_contex = this._create_new_context(caller, parameter_list, context, thread_info);
-        let result = $dev_util.nil;
+        result = $dev_util.nil;
 
         if (parameter_list === null || parameter_list.length === 0) {
             if (this[user_method_sym] === null) {
