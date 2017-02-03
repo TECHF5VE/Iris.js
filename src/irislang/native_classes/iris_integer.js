@@ -2,16 +2,15 @@
  * IrisInteger class
  * Created by DaraW on 2017-1-15
  */
-
-import IrisFloat from "./iris_float";
 import IrisMethod from "../core/iris_method";
+import { warn, log } from '../util/iris_debug';
 import { IrisDev } from "../util/iris_dev";
 
 import {
         integer_sym
     } from "../util/iris_symbol";
 
-export const Operation = {
+export const IntegerOperation = {
     Add: 0,
     Sub: 1,
     Mul: 2,
@@ -33,7 +32,7 @@ export const Operation = {
     BigThanOrEqual: 16,
     LessThan: 17,
     LessThanOrEqual: 18
-}
+};
 
 export class IrisInteger {
 
@@ -42,7 +41,7 @@ export class IrisInteger {
     }
 
     native_super_class_define() {
-        return $dev_util.get_class("Object");
+        return IrisDev.get_class("Object");
     }
 
     native_super_module_define() {
@@ -93,63 +92,63 @@ export class IrisInteger {
         let result = null;
         let need_cast; // TODO
         if (need_cast) {
-            if (type != Operation.Mod) {
+            if (type != IntegerOperation.Mod) {
                 let cast_left_value = (new IrisInteger.IrisIntegerTag()).to_float.call(left_value);
                 let org_right_value ; // TODO
                 let result_value = null;
                 switch(type) {
-                    case Operation.Add:
+                    case IntegerOperation.Add:
                         result_value = cast_left_value.add(org_right_value);
                         break;
-                    case Operation.Sub:
+                    case IntegerOperation.Sub:
                         result_value = cast_left_value.sub(org_right_value);
                         break;
-                    case Operation.Mul:
+                    case IntegerOperation.Mul:
                         result_value = cast_left_value.mul(org_right_value);
                         break;
-                    case Operation.Div:
+                    case IntegerOperation.Div:
                         result_value = cast_left_value.div(org_right_value);
                         break;
-                    case Operation.Power:
+                    case IntegerOperation.Power:
                         result_value = cast_left_value.power(org_right_value);
                         break;
                     default:
                         break;
                 }
-                result = $dev_util.create_float(0.0);
+                result = IrisDev.create_float(0.0);
                 result.object.native_object = result_value;
             } else {
                 let cast_right_value = (new IrisFloat.IrisFloatTag()).to_integer.call(right_value);
-                let org_left_value = $dev_util.get_native_objec_ref(left_value);
+                let org_left_value = IrisDev.get_native_objec_ref(left_value);
                 let result_value = org_left_value.mod(cast_right_value);
-                result = $dev_util.create_int(0);
+                result = IrisDev.create_int(0);
                 result.object.native_object = result_value;
             }
         } else {
-            let org_left_value = $dev_util.get_native_objec_ref(left_value);
-			let org_right_value = $dev_util.get_native_objec_ref(right_value);
+            let org_left_value = IrisDev.get_native_objec_ref(left_value);
+			let org_right_value = IrisDev.get_native_objec_ref(right_value);
 			let result_value = null;
 			switch(type) {
-                case Operation.Add:
+                case IntegerOperation.Add:
                     result_value = cast_left_value.add(org_right_value);
                     break;
-                case Operation.Sub:
+                case IntegerOperation.Sub:
                     result_value = cast_left_value.sub(org_right_value);
                     break;
-                case Operation.Mul:
+                case IntegerOperation.Mul:
                     result_value = cast_left_value.mul(org_right_value);
                     break;
-                case Operation.Div:
+                case IntegerOperation.Div:
                     result_value = cast_left_value.div(org_right_value);
                     break;
-                case Operation.Power:
+                case IntegerOperation.Power:
                     result_value = cast_left_value.power(org_right_value);
                     break;
                 default:
                     break;
             }
 
-			result = $dev_util.create_int(0);
+			result = IrisDev.create_int(0);
             result.object.native_object = result_value;
         }
 
@@ -161,49 +160,49 @@ export class IrisInteger {
         let need_cast; // TODO
         if (need_cast) {
             let cast_left_value = (new IrisInteger.IrisIntegerTag()).to_float.call(left_value);
-            let org_right_value = $dev_util.get_native_objec_ref(right_value);
+            let org_right_value = IrisDev.get_native_objec_ref(right_value);
             switch(type) {
-                case Operation.Equal:
+                case IntegerOperation.Equal:
                     cmp_result = cast_left_value.equal(org_right_value);
                     break;
-                case Operation.NotEqual:
+                case IntegerOperation.NotEqual:
                     cmp_result = cast_left_value.not_equal(org_right_value);
                     break;
-                case Operation.BigThan:
+                case IntegerOperation.BigThan:
                     cmp_result = cast_left_value.big_than(org_right_value);
                     break;
-                case Operation.BigThanOrEqual:
+                case IntegerOperation.BigThanOrEqual:
                     cmp_result = cast_left_value.big_than_or_equal(org_right_value);
                     break;
-                case Operation.LessThan:
+                case IntegerOperation.LessThan:
                     cmp_result = cast_left_value.less_than(org_right_value);
                     break;
-                case Operation.LessThanOrEqual:
+                case IntegerOperation.LessThanOrEqual:
                     cmp_result = cast_left_value.less_than_or_equal(org_right_value);
                     break;
                 default:
                     break;
             }
         } else {
-            let org_left_value = $dev_util.get_native_objec_ref(left_value);
-			let org_right_value = $dev_util.get_native_objec_ref(right_value);
+            let org_left_value = IrisDev.get_native_objec_ref(left_value);
+			let org_right_value = IrisDev.get_native_objec_ref(right_value);
 			switch(type) {
-                case Operation.Equal:
+                case IntegerOperation.Equal:
                     cmp_result = cast_left_value.equal(org_right_value);
                     break;
-                case Operation.NotEqual:
+                case IntegerOperation.NotEqual:
                     cmp_result = cast_left_value.not_equal(org_right_value);
                     break;
-                case Operation.BigThan:
+                case IntegerOperation.BigThan:
                     cmp_result = cast_left_value.big_than(org_right_value);
                     break;
-                case Operation.BigThanOrEqual:
+                case IntegerOperation.BigThanOrEqual:
                     cmp_result = cast_left_value.big_than_or_equal(org_right_value);
                     break;
-                case Operation.LessThan:
+                case IntegerOperation.LessThan:
                     cmp_result = cast_left_value.less_than(org_right_value);
                     break;
-                case Operation.LessThanOrEqual:
+                case IntegerOperation.LessThanOrEqual:
                     cmp_result = cast_left_value.less_than_or_equal(org_right_value);
                     break;
                 default:
@@ -211,152 +210,152 @@ export class IrisInteger {
             }
         }
 
-        return cmp_result ? $dev_util.true : $dev_util.false;
+        return cmp_result ? IrisDev.true : IrisDev.false;
     }
 
     static bit_operation(type, left_value, right_value) {
-        if (!$dev_util.check_class(right_value, "Integer")) {
-            return $dev_util.nil;
+        if (!IrisDev.check_class(right_value, "Integer")) {
+            return IrisDev.nil;
         }
 
-        let org_left_value = $dev_util.get_native_objec_ref(left_value);
-        let org_right_value = $dev_util.get_native_objec_ref(right_value);
+        let org_left_value = IrisDev.get_native_objec_ref(left_value);
+        let org_right_value = IrisDev.get_native_objec_ref(right_value);
         let result_value = null;
         switch(type) {
-            case Operation.Sal:
+            case IntegerOperation.Sal:
                 result_value = cast_left_value.sal(org_right_value);
                 break;
-            case Operation.Sar:
+            case IntegerOperation.Sar:
                 result_value = cast_left_value.sar(org_right_value);
                 break;
-            case Operation.Shl:
+            case IntegerOperation.Shl:
                 result_value = cast_left_value.shl(org_right_value);
                 break;
-            case Operation.Shr:
+            case IntegerOperation.Shr:
                 result_value = cast_left_value.shr(org_right_value);
                 break;
-            case Operation.BitAnd:
+            case IntegerOperation.BitAnd:
                 result_value = cast_left_value.bit_and(org_right_value);
                 break;
-            case Operation.BitOr:
+            case IntegerOperation.BitOr:
                 result_value = cast_left_value.bit_or(org_right_value);
                 break;
-            case Operation.BitXor:
+            case IntegerOperation.BitXor:
                 result_value = cast_left_value.bit_xor(org_right_value);
                 break;
             default:
                 break;
         }
 
-        result = $dev_util.create_int(0);
+        result = IrisDev.create_int(0);
         result.object.native_object = result_value;
         return result;
     }
 
     static add(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cast_operation(Operation.Add, self, parameter_list[0]);
+        return this.cast_operation(IntegerOperation.Add, self, parameter_list[0]);
     }
 
     static sub(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cast_operation(Operation.Sub, self, parameter_list[0]);
+        return this.cast_operation(IntegerOperation.Sub, self, parameter_list[0]);
     }
 
     static mul(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cast_operation(Operation.Mul, self, parameter_list[0]);
+        return this.cast_operation(IntegerOperation.Mul, self, parameter_list[0]);
     }
 
     static div(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cast_operation(Operation.Div, self, parameter_list[0]);
+        return this.cast_operation(IntegerOperation.Div, self, parameter_list[0]);
     }
 
     static mod(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cast_operation(Operation.Mod, self, parameter_list[0]);
+        return this.cast_operation(IntegerOperation.Mod, self, parameter_list[0]);
     }
 
     static power(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cast_operation(Operation.Power, self, parameter_list[0]);
+        return this.cast_operation(IntegerOperation.Power, self, parameter_list[0]);
     }
 
     static equal(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cmp_operation(Operation.Equal, self, parameter_list[0]);
+        return this.cmp_operation(IntegerOperation.Equal, self, parameter_list[0]);
     }
 
     static not_equal(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cmp_operation(Operation.NotEqual, self, parameter_list[0]);
+        return this.cmp_operation(IntegerOperation.NotEqual, self, parameter_list[0]);
     }
 
     static big_than(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cmp_operation(Operation.BigThan, self, parameter_list[0]);
+        return this.cmp_operation(IntegerOperation.BigThan, self, parameter_list[0]);
     }
 
     static big_than_or_equal(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cmp_operation(Operation.BigThanOrEqual, self, parameter_list[0]);
+        return this.cmp_operation(IntegerOperation.BigThanOrEqual, self, parameter_list[0]);
     }
 
     static less_than(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cmp_operation(Operation.LessThan, self, parameter_list[0]);
+        return this.cmp_operation(IntegerOperation.LessThan, self, parameter_list[0]);
     }
 
     static less_than_or_equal(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cmp_operation(Operation.LessThanOrEqual, self, parameter_list[0]);
+        return this.cmp_operation(IntegerOperation.LessThanOrEqual, self, parameter_list[0]);
     }
 
     static shr(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.bit_operation(Operation.Shr, self, parameter_list[0]);
+        return this.bit_operation(IntegerOperation.Shr, self, parameter_list[0]);
     }
 
     static sar(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.bit_operation(Operation.Sar, self, parameter_list[0]);
+        return this.bit_operation(IntegerOperation.Sar, self, parameter_list[0]);
     }
 
     static shl(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.bit_operation(Operation.Shl, self, parameter_list[0]);
+        return this.bit_operation(IntegerOperation.Shl, self, parameter_list[0]);
     }
 
     static sal(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.bit_operation(Operation.Sal, self, parameter_list[0]);
+        return this.bit_operation(IntegerOperation.Sal, self, parameter_list[0]);
     }
 
     static bit_xor(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.bit_operation(Operation.BitXor, self, parameter_list[0]);
+        return this.bit_operation(IntegerOperation.BitXor, self, parameter_list[0]);
     }
 
     static bit_or(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.bit_operation(Operation.BitOr, self, parameter_list[0]);
+        return this.bit_operation(IntegerOperation.BitOr, self, parameter_list[0]);
     }
 
     static bit_and(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.bit_operation(Operation.BitAnd, self, parameter_list[0]);
+        return this.bit_operation(IntegerOperation.BitAnd, self, parameter_list[0]);
     }
 
     static bit_not(self, parameter_list, variable_parameter_list, context, thread_info) {
-        let self_value = $dev_util.get_native_objec_ref(self);
-        let result = $dev_util.create_int(0);
+        let self_value = IrisDev.get_native_objec_ref(self);
+        let result = IrisDev.create_int(0);
         result.object.native_object = self_value.bit_not();
         return result;
     }
 
     static plus(self, parameter_list, variable_parameter_list, context, thread_info) {
-        let self_value = $dev_util.get_native_objec_ref(self);
-        let result = $dev_util.create_int(0);
+        let self_value = IrisDev.get_native_objec_ref(self);
+        let result = IrisDev.create_int(0);
         result.object.native_object = self_value.plus();
         return result;
     }
 
     static minus(self, parameter_list, variable_parameter_list, context, thread_info) {
-        let self_value = $dev_util.get_native_objec_ref(self);
-        let result = $dev_util.create_int(0);
+        let self_value = IrisDev.get_native_objec_ref(self);
+        let result = IrisDev.create_int(0);
         result.object.native_object = self_value.minus();
         return result;
     }
 
     static to_float(self, parameter_list, variable_parameter_list, context, thread_info) {
-        let result = $dev_util.create_float($dev_util.get_int(self));
+        let result = IrisDev.create_float(IrisDev.get_int(self));
         return result;
     }
 
     static to_string(self, parameter_list, variable_parameter_list, context, thread_info) {
-        let result = $dev_util.create_string($dev_util.get_native_objec_ref(self).to_string());
+        let result = IrisDev.create_string(IrisDev.get_native_objec_ref(self).to_string());
         return result;
     }
 }

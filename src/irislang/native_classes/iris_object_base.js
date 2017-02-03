@@ -1,11 +1,9 @@
-import { IrisDev } from '../util';
-import { IrisMethod, IrisValue } from "../core";
-import {
-        string_sym
-    } from "../util/iris_symbol";
+import { IrisDev } from "../util/iris_dev";
+import { IrisMethod } from '../core/iris_method';
+import { IrisValue } from '../core/iris_value';
+import { string_sym } from "../util/iris_symbol";
 
 export class IrisObjectBase {
-
     native_class_name_define() {
         return "Object";
     }

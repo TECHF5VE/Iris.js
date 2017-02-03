@@ -1,5 +1,5 @@
-import { IrisMethod } from "../core";
-import { IrisDev } from '../util';
+import { IrisMethod } from '../core';
+import { IrisDev } from "../util/iris_dev";
 
 export class IrisArray {
     native_class_name_define() {

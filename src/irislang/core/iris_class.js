@@ -4,13 +4,12 @@
  * Modified by Hui on 2016-11-29
  * Modified by DaraW on 2016-12-26
  */
-
 import { IrisObject } from "./iris_object";
 import { IrisMethod } from "./iris_method";
 import { IrisValue } from "./iris_value";
-import { warn, log } from "../util/index";
 import { IrisDev } from "../util/iris_dev";
-import { 
+import { warn } from '../util/iris_debug';
+import {
         class_name_sym,
         super_class_sym,
         upper_module_sym,
@@ -24,7 +23,6 @@ import {
         involved_interfaces_sym,
         object_alloc_method_sym,
     } from "../util/iris_symbol";
-
 
 export class IrisClass {
      constructor(class_name, super_class, upper_module, class_define_method, obj_alloc_method) {
@@ -47,10 +45,10 @@ export class IrisClass {
             this[object_sym].native_object.class_object = this;
          } else {
             this[object_sym] = new IrisObject();
-            this[object_sym].class = this; 
+            this[object_sym].class = this;
             // must be class class
             if (typeof obj_alloc_method === 'function') {
-                this[object_sym].native_object = obj_alloc_method(); 
+                this[object_sym].native_object = obj_alloc_method();
             } else {
                 warn(`obj_alloc_method ${obj_alloc_method} is not a function`);
             }
@@ -165,7 +163,7 @@ export class IrisClass {
      }
 
      add_class_variable(class_variable_name, value) {
-         this[class_variables_sym].set(class_variable_name, value); 
+         this[class_variables_sym].set(class_variable_name, value);
      }
 
      get_class_variable(class_variable_name) {
@@ -281,7 +279,7 @@ export class IrisClass {
      set object(object) {
          this[object_sym] = object;
      }
-     
+
      static get SearchResult() {
          return SearchResult;
      }

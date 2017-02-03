@@ -1,5 +1,6 @@
-import { IrisDev } from '../util';
-import { IrisMethod } from "../core";
+import { warn, log } from '../util/iris_debug';
+import { IrisDev } from "../util/iris_dev";
+import { IrisMethod } from '../core/iris_method';
 import {
         string_sym
     } from "../util/iris_symbol";

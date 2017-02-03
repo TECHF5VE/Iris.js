@@ -2,14 +2,12 @@
  * IrisFloat class
  * Created by DaraW on 2017-1-15
  */
-
-import { Irisfloat } from "../core";
-import { IrisDev } from '../util';
+import { IrisDev } from "../util/iris_dev";
 import {
     float_sym
     } from "../util/iris_symbol";
 
-export const Operation = {
+export const FloatOperation = {
     Add: 0,
     Sub: 1,
     Mul: 2,
@@ -82,19 +80,19 @@ export class IrisFloat {
         }
 
         switch(type) {
-            case Operation.Add:
+            case FloatOperation.Add:
                 result_value = org_left_value.add(finally_right_value);
                 break;
-            case Operation.Sub:
+            case FloatOperation.Sub:
                 result_value = org_left_value.sub(finally_right_value);
                 break;
-            case Operation.Mul:
+            case FloatOperation.Mul:
                 result_value = org_left_value.mul(finally_right_value);
                 break;
-            case Operation.Div:
+            case FloatOperation.Div:
                 result_value = org_left_value.div(finally_right_value);
                 break;
-            case Operation.Power:
+            case FloatOperation.Power:
                 result_value = org_left_value.power(finally_right_value);
                 break;
             default:
@@ -122,22 +120,22 @@ export class IrisFloat {
         }
 
         switch(type) {
-            case Operation.Equal:
+            case FloatOperation.Equal:
                 result = org_left_value.equal(finally_right_value);
                 break;
-            case Operation.NotEqual:
+            case FloatOperation.NotEqual:
                 result = org_left_value.not_equal(finally_right_value);
                 break;
-            case Operation.BigThan:
+            case FloatOperation.BigThan:
                 result = org_left_value.big_than(finally_right_value);
                 break;
-            case Operation.BigThanOrEqual:
+            case FloatOperation.BigThanOrEqual:
                 result = org_left_value.big_than_or_equal(finally_right_value);
                 break;
-            case Operation.LessThan:
+            case FloatOperation.LessThan:
                 result = org_left_value.less_than(finally_right_value);
                 break;
-            case Operation.LessThanOrEqual:
+            case FloatOperation.LessThanOrEqual:
                 result = org_left_value.less_than_or_equal(finally_right_value);
                 break;
             default:
@@ -148,51 +146,51 @@ export class IrisFloat {
     }
 
     static add(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cast_operation(Operation.Add, self, parameter_list[0]);
+        return this.cast_operation(FloatOperation.Add, self, parameter_list[0]);
     }
 
     static sub(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cast_operation(Operation.Sub, self, parameter_list[0]);
+        return this.cast_operation(FloatOperation.Sub, self, parameter_list[0]);
     }
 
     static mul(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cast_operation(Operation.Mul, self, parameter_list[0]);
+        return this.cast_operation(FloatOperation.Mul, self, parameter_list[0]);
     }
 
     static div(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cast_operation(Operation.Div, self, parameter_list[0]);
+        return this.cast_operation(FloatOperation.Div, self, parameter_list[0]);
     }
 
     static mod(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cast_operation(Operation.Mod, self, parameter_list[0]);
+        return this.cast_operation(FloatOperation.Mod, self, parameter_list[0]);
     }
 
     static power(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cast_operation(Operation.Power, self, parameter_list[0]);
+        return this.cast_operation(FloatOperation.Power, self, parameter_list[0]);
     }
 
     static equal(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cmp_operation(Operation.Equal, self, parameter_list[0]);
+        return this.cmp_operation(FloatOperation.Equal, self, parameter_list[0]);
     }
 
     static not_equal(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cmp_operation(Operation.NotEqual, self, parameter_list[0]);
+        return this.cmp_operation(FloatOperation.NotEqual, self, parameter_list[0]);
     }
 
     static big_than(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cmp_operation(Operation.BigThan, self, parameter_list[0]);
+        return this.cmp_operation(FloatOperation.BigThan, self, parameter_list[0]);
     }
 
     static big_than_or_equal(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cmp_operation(Operation.BigThanOrEqual, self, parameter_list[0]);
+        return this.cmp_operation(FloatOperation.BigThanOrEqual, self, parameter_list[0]);
     }
 
     static less_than(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cmp_operation(Operation.LessThan, self, parameter_list[0]);
+        return this.cmp_operation(FloatOperation.LessThan, self, parameter_list[0]);
     }
 
     static less_than_or_equal(self, parameter_list, variable_parameter_list, context, thread_info) {
-        return this.cmp_operation(Operation.LessThanOrEqual, self, parameter_list[0]);
+        return this.cmp_operation(FloatOperation.LessThanOrEqual, self, parameter_list[0]);
     }
 
     static plus(self, parameter_list, variable_parameter_list, context, thread_info) {

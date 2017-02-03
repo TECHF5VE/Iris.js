@@ -8,8 +8,7 @@ import { IrisMethod } from "./iris_method";
 import { IrisValue } from "./iris_value";
 import { IrisClass } from "./iris_class";
 import { IrisDev } from "../util/iris_dev";
-
-import { 
+import {
         class_sym,
         instance_variables_sym,
         instance_methods_sym,
@@ -55,7 +54,7 @@ export class IrisObject {
         let caller = IrisValue.wrap_object(this);
 
         if (callside === IrisMethod.CallSide.Inside) {
-            
+
             if (is_current_method) {
                 // Inside Call
                 call_result = method.call(caller, parameter_list, context, thread_info);
@@ -95,7 +94,7 @@ export class IrisObject {
     // Getters and Setters
 
     set class(new_class) {
-        this[class_sym] = new_class; 
+        this[class_sym] = new_class;
     }
 
     get class() {
@@ -105,7 +104,7 @@ export class IrisObject {
     set native_object(new_native_object) {
         this[native_object_sym] = new_native_object;
     }
-    
+
     get native_object() {
         return this[native_object_sym];
     }

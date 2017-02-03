@@ -2,9 +2,9 @@
  * IrisKernel Class
  * Created by Hui on 2017-1-31
  */
-
-import { IrisDev } from "../util";
-import { IrisMethod } from "../core"
+import { IrisMethod } from '../core';
+import { warn, log } from '../util/iris_debug';
+import { IrisDev } from "../util/iris_dev";
 
 export class IrisKernel {
     native_module_name_define() {
@@ -22,17 +22,17 @@ export class IrisKernel {
     static print(self, parameter_list, variable_parameter_list, context, thread_info){
         if(variable_parameter_list != null) {
             variable_parameter_list.forEach(function(element) {
-                if($dev_util.check_class(element, "String")
-                    || $dev_util.check_class(element, "UniqueString")) {
-                    console.log($dev_util.get_native_object_ref(element).string);
+                if(IrisDev.check_class(element, "String")
+                    || IrisDev.check_class(element, "UniqueString")) {
+                    console.log(IrisDev.get_native_object_ref(element).string);
                 }
                 else {
                     let result = element.object.call_instance_method("to_string", null, context, thread_info, IrisMethod.CallSide.Outside);
-                    console.log($dev_util.get_native_object_ref(result).string);
+                    console.log(IrisDev.get_native_object_ref(result).string);
                 }
             }, this);
         }
 
-        return $dev_util.nil;
+        return IrisDev.nil;
     }
 }

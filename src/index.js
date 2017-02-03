@@ -3,12 +3,9 @@
  * Created by Chi on 11/4/16.
  * Modified by DaraW on 2016-12-26
  */
-// import Iris from "./irislang/core/iris_class";
-// import IrisMethod from "./irislang/core/iris_method";
-// import IrisContextEnvironment from "./irislang/core/iris_context_environment";
-// import { RunTimeType } from "./irislang/core/iris_context_environment";
-import { IrisDev } from "./irislang/util/iris_dev"
-// import $interpreter from "./irislang/iris_interpreter.js";
+import { IrisClass, IrisMethod, IrisContextEnvironment, RunTimeType } from "./irislang/core";
+import { IrisDev } from './irislang/util';
+import { IrisInterpreter } from './irislang/iris_interpreter';
 
 console.log(1, IrisDev);
 // console.log(IrisContextEnvironment);

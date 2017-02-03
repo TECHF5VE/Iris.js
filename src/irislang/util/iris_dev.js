@@ -3,24 +3,27 @@
  * created by Hui in 2016-12-4
  * Modified by DaraW on 2016-1-15
  */
+// import { IrisClass } from '../core/iris_class';
+// import { IrisObject, IrisValue, IrisMethod } from '../core';
+// import { IrisInteger, IrisFloat, IrisString, IrisUniqueString } from '../native_classes';
+// import { IrisInterpreter } from '../iris_interpreter';
+// import { warn } from './iris_debug';
+//
+// console.log( "2", IrisClass);
 
-import { IrisClass, IrisObject, IrisValue, IrisMethod } from '../core';
-import { IrisInteger, IrisFloat, IrisString, IrisUniqueString } from '../native_classes';
-import { IrisInterpreter } from "../iris_interpreter.js";
-import { warn } from "./iris_debug";
-export const IrisDev = 1;
+export const IrisDev = {};
 
 // export const IrisDev = {
 //     get true() {
-//         return $interpreter.true;
+//         return IrisInterpreter.true;
 //     },
 //
 //     get false() {
-//         return $interpreter.false;
+//         return IrisInterpreter.false;
 //     },
 //
 //     get nil() {
-//         return $interpreter.nil;
+//         return IrisInterpreter.nil;
 //     },
 //
 //     call_method(obj, method_name, args, context, thread_info) {
@@ -31,7 +34,7 @@ export const IrisDev = 1;
 //         return this.check_class(obj, "Class");
 //     },
 //
-//     is_module_object() {
+//     is_module_object(obj) {
 //         return this.check_class(obj, "Module");
 //     },
 //
@@ -50,11 +53,11 @@ export const IrisDev = 1;
 //     },
 //
 //     get_class(class_path) {
-//         return $interpreter.get_class(class_path);
+//         return IrisInterpreter.get_class(class_path);
 //     },
 //
 //     get_module(module_path) {
-//         return $interpreter.get_module(module_path);
+//         return IrisInterpreter.get_module(module_path);
 //     },
 //
 //     get_interface(interface_path) {

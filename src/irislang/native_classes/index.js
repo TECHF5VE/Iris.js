@@ -13,7 +13,6 @@ export * from './iris_method_base';
 export * from './iris_module_base';
 export * from './iris_nil_class';
 export * from './iris_object_base';
-export * from './iris_true_class';
 export * from './iris_string';
 export * from './iris_true_class';
 export * from './iris_unique_string';

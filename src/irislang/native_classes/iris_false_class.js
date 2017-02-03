@@ -1,5 +1,6 @@
-import { IrisDev } from '../util';
-import { IrisMethod } from "../core";
+import { IrisMethod } from '../core/iris_method';
+import { warn, log } from '../util/iris_debug';
+import { IrisDev } from "../util/iris_dev";
 import { name_sym } from "../util/iris_symbol";
 
 export class IrisFalseClass {

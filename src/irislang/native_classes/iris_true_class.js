@@ -1,8 +1,6 @@
-import { IrisDev } from '../util';
-import { IrisMethod } from "../core";
-import {
-        name_sym
-    } from "../util/iris_symbol";
+import { IrisMethod } from '../core/iris_method';
+import { IrisDev } from "../util/iris_dev";
+import { name_sym } from "../util/iris_symbol";
 
 export class IrisTrueClass {
 

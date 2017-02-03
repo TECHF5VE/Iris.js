@@ -3,13 +3,11 @@
  * Create by Hui on 2016-11-29
  * Modified by DaraW on 2016-1-15
  */
-
-import { IrisObject } from "./iris_object";
 import { RunTimeType, IrisContextEnvironment } from "./iris_context_environment";
+import { warn, log } from '../util/iris_debug';
 import { IrisDev } from "../util/iris_dev";
-import warn from "../util/iris_debug"
 
-import { 
+import {
         method_name_sym,
         parameter_count_sym,
         is_with_variable_parameter_sym,
@@ -119,7 +117,7 @@ export class IrisMethod {
                     new_contex.add_local_variable(value, parameter_list[counter]);
                     ++counter;
                 }
-                
+
                 // get the variable values
                 if (this[is_with_variable_parameter_sym]) {
                     let variables = parameter_list.slice(counter, parameter_list.length);
@@ -128,7 +126,7 @@ export class IrisMethod {
                 }
             }
         }
-        
+
         return new_contex;
     }
 
@@ -162,7 +160,7 @@ export class IrisMethod {
             warn("Invalid parameter of " + this[method_name_sym] + ".");
             return IrisDev.nil;
         }
-        
+
         // Getter Setter
 
         let new_contex = this._create_new_context(caller, parameter_list, context, thread_info);
@@ -188,7 +186,7 @@ export class IrisMethod {
                 result = this[native_method_handle_sym](caller, normal_parameters, variable_values, new_contex, thread_info);
             } else {
                 // user method call
-                // result = 
+                // result =
             }
         }
 
@@ -205,7 +203,7 @@ export class IrisMethod {
         let new_context = this._create_new_context(null, array_list, context, thread_info);
 
         // user method call
-        //return  
+        //return
     }
 
     get authority() {
@@ -234,7 +232,7 @@ export class IrisMethod {
 
     static get MethodAuthority() {
         return inline_MethodAuthority;
-    } 
+    }
 
     static get CallSide() {
         return inline_CallSide;

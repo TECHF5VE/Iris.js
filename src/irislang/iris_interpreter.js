@@ -20,7 +20,6 @@ import {
     IrisFalseClass,
     IrisNilClass,
     IrisArrayClass,
-
 } from './native_classes';
 import { IrisKernel } from "./native_modules/iris_kernel";
 import { IrisDev } from "./util";

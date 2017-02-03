@@ -2,14 +2,16 @@
  * IrisUniqueString class
  * Created by Chi on 2017-01-19
  */
+import { IrisClass } from '../core/iris_class';
+import { IrisMethod } from '../core/iris_method';
+import { IrisDev } from "../util/iris_dev";
 
-import { IrisClass, IrisMethod, IrisContextEnvironment, IrisModule, IrisValue } from '../core';
-import { IrisDev } from '../util/iris_dev.js';
+console.log('iris_unique_string', IrisClass);
 
-export class IrisUniqueString extends IrisClass {
+export class IrisUniqueString {
     static add_unique_string(unique_string, unique_obj) {
         IrisUniqueString.unique_string_cache[unique_string] = unique_obj;
-        return uniqueObj;
+        return unique_obj;
     }
 
     static get_unique_string(unique_string) {
@@ -42,7 +44,7 @@ export class IrisUniqueString extends IrisClass {
     }
 }
 
-IrisUniqueString.unique_string_cache = {}
+IrisUniqueString.unique_string_cache = {};
 
 const douge_IUST = {
     m_string: Symbol('m_string')

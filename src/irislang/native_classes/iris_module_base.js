@@ -1,4 +1,5 @@
-import { IrisDev } from '../util';
+import { warn, log } from '../util/iris_debug';
+import { IrisDev } from "../util/iris_dev";
 import { IrisMethod } from "../core";
 import {
     module_sym
