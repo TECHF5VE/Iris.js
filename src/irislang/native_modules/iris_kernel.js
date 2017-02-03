@@ -3,10 +3,10 @@
  * Created by Hui on 2017-1-31
  */
 
-import $dev_util from "../util/iris_dev";
-import IrisMethod from "../core/iris_method"
+import { IrisDev } from "../util";
+import { IrisMethod } from "../core"
 
-export default class IrisKernel {
+export class IrisKernel {
     native_module_name_define() {
         return "Kernel";
     }

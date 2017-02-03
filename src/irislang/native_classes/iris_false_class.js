@@ -1,10 +1,8 @@
 import { IrisDev } from '../util';
 import { IrisMethod } from "../core";
-import {
-        name_sym
-    } from "../util/iris_symbol";
+import { name_sym } from "../util/iris_symbol";
 
-export default class IrisFalseClass {
+export class IrisFalseClass {
 
     native_class_name_define() {
         return "FalseClass";

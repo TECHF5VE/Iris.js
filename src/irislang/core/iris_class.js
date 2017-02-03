@@ -5,11 +5,11 @@
  * Modified by DaraW on 2016-12-26
  */
 
-import IrisObject from "./iris_object";
-import IrisMethod from "./iris_method";
-import IrisValue from "./iris_value";
+import { IrisObject } from "./iris_object";
+import { IrisMethod } from "./iris_method";
+import { IrisValue } from "./iris_value";
 import { warn, log } from "../util/index";
-import $dev_util from "../util/iris_dev";
+import { IrisDev } from "../util/iris_dev";
 import { 
         class_name_sym,
         super_class_sym,
@@ -26,7 +26,7 @@ import {
     } from "../util/iris_symbol";
 
 
-export default class IrisClass {
+export class IrisClass {
      constructor(class_name, super_class, upper_module, class_define_method, obj_alloc_method) {
          // not sure to work !!!
          this[class_name_sym] = class_name;
@@ -40,7 +40,7 @@ export default class IrisClass {
 
          this[object_alloc_method_sym] = obj_alloc_method;
 
-         let class_obj = $dev_util.get_class("Class");
+         let class_obj = IrisDev.get_class("Class");
 
          if(class_obj != null) {
             this[object_sym] = class_obj.create_new_instance(null, null, null).object;

@@ -4,7 +4,7 @@
  */
 
 import { IrisClass, IrisMethod, IrisContextEnvironment, IrisModule, IrisValue } from '../core';
-import { IrisDev } from '../util';
+import { IrisDev } from '../util/iris_dev.js';
 
 export class IrisUniqueString extends IrisClass {
     static add_unique_string(unique_string, unique_obj) {
@@ -18,7 +18,7 @@ export class IrisUniqueString extends IrisClass {
 
     static to_string(irisValue, paramterList, variableParameterList, context, threadInfo) {
         const obj = IrisDev.get_native_object_ref(this);
-        return IrisDev.create_string(obj);
+        // return IrisDev.create_string(obj);
     }
 
     native_class_define(classObj) {
@@ -30,7 +30,7 @@ export class IrisUniqueString extends IrisClass {
     }
 
     native_super_class_define() {
-        return IrisDev.get_class("Object");
+        // return IrisDev.get_class("Object");
     }
 
     native_upper_module_define() {

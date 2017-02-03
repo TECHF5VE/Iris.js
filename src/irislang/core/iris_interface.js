@@ -3,6 +3,6 @@
  * Created by DaraW on 2017-1-16
  */
 
-export default class IrisInterface {
+export class IrisInterface {
   
 }

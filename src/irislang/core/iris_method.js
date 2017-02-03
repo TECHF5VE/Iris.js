@@ -4,9 +4,9 @@
  * Modified by DaraW on 2016-1-15
  */
 
-import IrisObject from "./iris_object";
-import IrisContextEnvironment, { RunTimeType } from "./iris_context_environment";
-import $dev_util from "../util/iris_dev";
+import { IrisObject } from "./iris_object";
+import { RunTimeType, IrisContextEnvironment } from "./iris_context_environment";
+import { IrisDev } from "../util/iris_dev";
 import warn from "../util/iris_debug"
 
 import { 
@@ -73,7 +73,7 @@ class inline_UserMethod {
 
 }
 
-export default class IrisMethod {
+export class IrisMethod {
     constructor(init_obj) {
         if(init_obj instanceof inline_NativeMethod) {
             this[method_name_sym] = init_obj[method_name_sym];
@@ -94,7 +94,7 @@ export default class IrisMethod {
         this[method_define_obj_sym] = init_obj;
 
         // if get class of Object
-        let method_class = $dev_util.get_class("Method");
+        let method_class = IrisDev.get_class("Method");
         if(method_class != null) {
             this.create_method_object(method_class);
         }
@@ -123,7 +123,7 @@ export default class IrisMethod {
                 // get the variable values
                 if (this[is_with_variable_parameter_sym]) {
                     let variables = parameter_list.slice(counter, parameter_list.length);
-                    let array_obj = $dev_util.create_array(variables);
+                    let array_obj = IrisDev.create_array(variables);
                     new_contex.add_local_variable(this[user_method_sym].variable_parameter_name, array_obj);
                 }
             }
@@ -160,7 +160,7 @@ export default class IrisMethod {
         if (this.parameter_check(this[parameter_name_list_sym])) {
             // Error
             warn("Invalid parameter of " + this[method_name_sym] + ".");
-            return $dev_util.nil;
+            return IrisDev.nil;
         }
         
         // Getter Setter
@@ -199,7 +199,7 @@ export default class IrisMethod {
         if (!this.parameter_check(array_list)) {
             // Error
             warn("Invalid parameter of " + this[method_name_sym] + ".");
-            return $dev_util.nil;
+            return IrisDev.nil;
         }
 
         let new_context = this._create_new_context(null, array_list, context, thread_info);

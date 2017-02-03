@@ -4,32 +4,26 @@
  * Modified by DaraW in 2017-1-14
  */
 
-import { warn } from "./util/index";
-import IrisClass from "./core/iris_class"
-import IrisModule from "./core/iris_module"
-import IrisValue from "./core/iris_value"
+import { warn } from "./util";
+import { IrisClass, IrisModule, IrisValue } from './core';
+import {
+    IrisClassBase,
+    IrisModuleBase,
+    IrisInterfaceBase,
+    IrisObjectBase,
+    IrisMethodBase,
+    IrisInteger,
+    IrisFloat,
+    IrisString,
+    IrisUniqueString,
+    IrisTrueClass,
+    IrisFalseClass,
+    IrisNilClass,
+    IrisArrayClass,
 
-import IrisClassBase from "./native_classes/iris_class_base"
-import IrisModuleBase from "./native_classes/iris_module_base"
-import IrisInterfaceBase from "./native_classes/iris_interface_base"
-import IrisObjectBase from "./native_classes/iris_object_base"
-import IrisMethodBase from "./native_classes/iris_method_base"
-
-import IrisInteger from "./native_classes/iris_integer"
-import IrisFloat from "./native_classes/iris_float"
-import IrisString from "./native_classes/iris_string"
-import IrisUniqueString from "./native_classes/iris_unique_string"
-
-import IrisTrueClass from "./native_classes/iris_true_class"
-import IrisFalseClass from "./native_classes/iris_false_class"
-import IrisNilClass from "./native_classes/iris_nil_class"
-
-import IrisArrayClass from "./native_classes/iris_array"
-
-import IrisKernel from "./native_modules/iris_kernel"
-
-import $dev_util from "./util/iris_dev"
-
+} from './native_classes';
+import { IrisKernel } from "./native_modules/iris_kernel";
+import { IrisDev } from "./util";
 import {
        root_method_hash_sym,
        root_constance_hash_sym,
@@ -39,7 +33,7 @@ import {
        nil_sym,
       }  from "./util/iris_symbol";
 
-export default {
+export const IrisInterpreter = {
 
     constructor() {
         this[root_method_hash_sym] = new Map();
@@ -55,13 +49,13 @@ export default {
 
         this.register_class(new IrisObjectBase())
 
-        $dev_util.get_class("Class").super_class = $dev_util.get_class("Object");
+        IrisDev.get_class("Class").super_class = IrisDev.get_class("Object");
 
         this.register_class(new IrisMethodBase());
 
-        $dev_util.get_class("Class").reset_all_methods_object();
-        $dev_util.get_class("Object").reset_all_methods_object();
-        $dev_util.get_class("Method").reset_all_methods_object();
+        IrisDev.get_class("Class").reset_all_methods_object();
+        IrisDev.get_class("Object").reset_all_methods_object();
+        IrisDev.get_class("Method").reset_all_methods_object();
 
         this.register_class(new IrisInteger());
         this.register_class(new IrisFloat());
@@ -74,9 +68,9 @@ export default {
 
         this.register_class(new IrisArrayClass());
 
-        this[true_sym] = $dev_util.get_class("TrueClass").create_new_instance(null, null, null);
-        this[false_sym] = $dev_util.get_class("FalseClass").create_new_instance(null, null, null);
-        this[nil_sym] = $dev_util.get_class("NilClass").create_new_instance(null, null, null);
+        this[true_sym] = IrisDev.get_class("TrueClass").create_new_instance(null, null, null);
+        this[false_sym] = IrisDev.get_class("FalseClass").create_new_instance(null, null, null);
+        this[nil_sym] = IrisDev.get_class("NilClass").create_new_instance(null, null, null);
 
         return true;
     },
@@ -175,11 +169,11 @@ export default {
                  return null;
              }
              // if this constance is not a class object
-             if($dev_util.is_class_object(tmp_value)) {
+             if(IrisDev.is_class_object(tmp_value)) {
                  warn("constance " + class_name + " is not a Class object.")
                  return null;
              }
-             return $dev_util.get_native_object_ref(tmp_value).class_object;
+             return IrisDev.get_native_object_ref(tmp_value).class_object;
          }
          // if with field
          else {
@@ -188,8 +182,8 @@ export default {
              // if found
              if(tmp_upper_module != null) {
                 tmp_value = tmp_upper_module.get_constance(class_name);
-                if($dev_util.is_class_object(tmp_value)) {
-                    return $dev_util.get_native_object_ref(tmp_value).class_object;
+                if(IrisDev.is_class_object(tmp_value)) {
+                    return IrisDev.get_native_object_ref(tmp_value).class_object;
                 }
                 // if this constance is not a class object
                 else {
@@ -221,8 +215,8 @@ export default {
 
         tmp_value = this.get_constance(first_module_name);
         if(tmp_value != null) {
-            if($dev_util.is_module_object()) {
-                tmp_cur = $dev_util.get_native_object_ref(tmp_value).module;
+            if(IrisDev.is_module_object()) {
+                tmp_cur = IrisDev.get_native_object_ref(tmp_value).module;
             } else {
                 warn("Constance " + first_module_name + " is not a module object");
                 return null;
@@ -235,8 +229,8 @@ export default {
 
         for(let module_name of name_array) {
             tmp_value = tmp_cur.get_constance(module_name);
-            if($dev_util.is_module_object(tmp_value)) {
-                tmp_cur = $dev_util.get_native_object_ref(tmp_value).module;
+            if(IrisDev.is_module_object(tmp_value)) {
+                tmp_cur = IrisDev.get_native_object_ref(tmp_value).module;
             } else {
                 warn("Constance " + module_name + " is not a module object");
                 break;

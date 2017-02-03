@@ -5,7 +5,7 @@
 
 import { object_sym } from "../util/iris_symbol";
 
-export default class IrisValue {
+export class IrisValue {
     constructor() {
         this[object_sym] = null;
     }

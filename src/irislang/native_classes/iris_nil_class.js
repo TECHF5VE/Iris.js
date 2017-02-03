@@ -4,7 +4,7 @@ import {
         name_sym
     } from "../util/iris_symbol";
 
-export default class IrisNilClass {
+export class IrisNilClass {
 
     native_class_name_define() {
         return "NilClass";

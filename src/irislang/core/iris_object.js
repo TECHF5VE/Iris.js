@@ -4,10 +4,10 @@
  * Modified by DaraW on 2016-1-15
  */
 
-import IrisMethod from "./iris_method";
-import IrisValue from "./iris_value";
-import IrisClass from "./iris_class";
-import $dev_util from "../util/iris_dev";
+import { IrisMethod } from "./iris_method";
+import { IrisValue } from "./iris_value";
+import { IrisClass } from "./iris_class";
+import { IrisDev } from "../util/iris_dev";
 
 import { 
         class_sym,
@@ -19,7 +19,7 @@ import {
 
 let inline_OBJECT_COUNT = 0;
 
-export default class IrisObject {
+export class IrisObject {
     constructor() {
         this[instance_methods_sym] = new Map();
         this[instance_variables_sym] = new Map();
@@ -48,7 +48,7 @@ export default class IrisObject {
         }
 
         if (method === null) {
-            return $dev_util.nil;
+            return IrisDev.nil;
         }
 
         let call_result = null;
@@ -62,7 +62,7 @@ export default class IrisObject {
             } else {
                 // Outside Call
                 if (method.get_authority() === IrisMethod.MethodAuthority.Personal) {
-                    call_result = $dev_util.nil;
+                    call_result = IrisDev.nil;
                 } else {
                     call_result = method.call(caller, parameter_list, context, thread_info);
                 }

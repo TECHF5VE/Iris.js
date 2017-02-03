@@ -4,7 +4,7 @@ import {
         string_sym
     } from "../util/iris_symbol";
 
-export default class IrisString {
+export class IrisString {
 
     native_class_name_define() {
         return "String";

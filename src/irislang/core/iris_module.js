@@ -3,7 +3,7 @@
  * Created by DaraW on 2017-1-15
  */
 
-import IrisMethod from "./iris_method";
+import { IrisMethod } from "./iris_method";
 
 import { 
         module_name_sym,
@@ -17,7 +17,7 @@ import {
         instance_methods_sym
     } from "../util/iris_symbol";
 
-export default class IrisModule {
+export class IrisModule {
     constructor(upper_module) {
         // not sure to work
         this[module_name_sym] = upper_module.native_module_name_define();

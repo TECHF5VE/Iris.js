@@ -4,7 +4,7 @@ import {
         class_obj_sym
     } from "../util/iris_symbol";
 
-export default class IrisClassBase {
+export class IrisClassBase {
 
     native_class_name_define() {
         return "Class";

@@ -4,7 +4,7 @@ import {
     method_object_sym
     } from "../util/iris_symbol";
 
-export default class IrisMethodBase {
+export class IrisMethodBase {
 
     native_class_name_define() {
         return "Method";

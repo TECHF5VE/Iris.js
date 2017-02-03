@@ -18,7 +18,7 @@ export const RunTimeType = {
     RunTime: 3
 };
 
-export default class IrisContextEnvironment {
+export class IrisContextEnvironment {
     constructor() {
         this[running_type_sym] = null;
         this[local_variabl_map_sym] = new Map();

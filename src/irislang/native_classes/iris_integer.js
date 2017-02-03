@@ -5,7 +5,7 @@
 
 import IrisFloat from "./iris_float";
 import IrisMethod from "../core/iris_method";
-import $dev_util from "../util/iris_dev";
+import { IrisDev } from "../util/iris_dev";
 
 import {
         integer_sym
@@ -35,7 +35,7 @@ export const Operation = {
     LessThanOrEqual: 18
 }
 
-export default class IrisInteger {
+export class IrisInteger {
 
     native_class_name_define() {
         return "Integer";

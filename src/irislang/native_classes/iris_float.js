@@ -25,7 +25,7 @@ export const Operation = {
     LessThanOrEqual: 18
 }
 
-export default class IrisFloat {
+export class IrisFloat {
 
     native_class_name_define() {
         return "Float";

@@ -1,7 +1,7 @@
 import { IrisMethod } from "../core";
 import { IrisDev } from '../util';
 
-export default class IrisArray {
+export class IrisArray {
     native_class_name_define() {
         return "Array";
     }
