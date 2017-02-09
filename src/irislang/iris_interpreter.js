@@ -3,50 +3,47 @@
  * Created by Hui in 2016-12-4
  * Modified by DaraW in 2017-1-14
  */
-
 import { warn } from "./util";
 import { IrisClass, IrisModule, IrisValue } from './core';
 import {
-    IrisClassBase,
-    IrisModuleBase,
-    IrisInterfaceBase,
-    IrisObjectBase,
-    IrisMethodBase,
-    IrisInteger,
-    IrisFloat,
-    IrisString,
-    IrisUniqueString,
-    IrisTrueClass,
-    IrisFalseClass,
-    IrisNilClass,
-    IrisArrayClass,
-} from './native_classes';
+        IrisClassBase,
+        IrisModuleBase,
+        IrisInterfaceBase,
+        IrisObjectBase,
+        IrisMethodBase,
+        IrisInteger,
+        IrisFloat,
+        IrisString,
+        IrisUniqueString,
+        IrisTrueClass,
+        IrisFalseClass,
+        IrisNilClass,
+        IrisArrayClass,
+    } from './native_classes';
 import { IrisKernel } from "./native_modules/iris_kernel";
 import { IrisDev } from "./util";
-import {
-       root_method_hash_sym,
-       root_constance_hash_sym,
-       root_global_value_hash_sym,
-       true_sym,
-       false_sym,
-       nil_sym,
-      }  from "./util/iris_symbol";
+import { iris_sym } from './util/iris_symbol';
+
+const root_method_hash_sym = Symbol("root_method_hash");
+const root_constance_hash_sym = Symbol("root_constance_hash");
+const root_global_value_hash_sym = Symbol("root_global_value_hash");
+const true_sym = Symbol("true");
+const false_sym = Symbol("false");
+const nil_sym = Symbol("nil");
 
 export const IrisInterpreter = {
 
-    constructor() {
+    initialize() {
         this[root_method_hash_sym] = new Map();
         this[root_constance_hash_sym] = new Map();
         this[root_global_value_hash_sym] = new Map();
-    },
 
-    initialize() {
         this.register_class(new IrisClassBase());
         this.register_class(new IrisModuleBase());
 
         this.register_module(new IrisKernel());
 
-        this.register_class(new IrisObjectBase())
+        this.register_class(new IrisObjectBase());
 
         IrisDev.get_class("Class").super_class = IrisDev.get_class("Object");
 
@@ -248,6 +245,7 @@ export const IrisInterpreter = {
     },
 
     get_constance(name) {
+        console.log(name);
         return this[root_constance_hash_sym][name];
     },
 
@@ -270,4 +268,6 @@ export const IrisInterpreter = {
     get nil() {
         return this[nil_sym];
     },
-}
+};
+
+window[iris_sym] = Object.assign({}, window[iris_sym], { IrisInterpreter });

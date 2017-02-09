@@ -3,6 +3,8 @@
  * Created by DaraW on 2017-1-16
  */
 
+export const iris_sym = Symbol('iris');
+
 // IrisClass
 export const class_name_sym = Symbol("class_name");
 export const super_class_sym = Symbol("super_class");
@@ -52,9 +54,6 @@ export const sub_classes_sym = Symbol("sub_classes");
 export const sub_modules_sym = Symbol("sub_modules");
 export const constance_sym = Symbol("constance");
 
-// IrisInteger
-export const integer_sym = Symbol("integer");
-
 // IrisFloat
 export const float_sym = Symbol("float");
 
@@ -69,11 +68,3 @@ export const module_sym = Symbol("module");
 
 // IrisString
 export const string_sym = Symbol("string");
-
-// IrisInterpreter
-export const root_method_hash_sym = Symbol("root_method_hash");
-export const root_constance_hash_sym = Symbol("root_constance_hash");
-export const root_global_value_hash_sym = Symbol("root_global_value_hash");
-export const true_sym = Symbol("true");
-export const false_sym = Symbol("false");
-export const nil_sym = Symbol("nil");

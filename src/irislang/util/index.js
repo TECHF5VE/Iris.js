@@ -6,3 +6,4 @@
 
 export * from "./iris_debug";
 export * from "./iris_dev";
+export * from "./iris_symbol";

@@ -9,20 +9,22 @@ import { IrisMethod } from "./iris_method";
 import { IrisValue } from "./iris_value";
 import { IrisDev } from "../util/iris_dev";
 import { warn } from '../util/iris_debug';
-import {
-        class_name_sym,
-        super_class_sym,
-        upper_module_sym,
-        object_sym,
-        instance_methods_sym,
-        constances_sym,
-        class_variables_sym,
-        method_sym,
-        is_current_class_method_sym,
-        involved_modules_sym,
-        involved_interfaces_sym,
-        object_alloc_method_sym,
-    } from "../util/iris_symbol";
+import { iris_sym } from '../util/iris_symbol';
+
+// Priate Symbols
+const class_name_sym = Symbol("class_name");
+const super_class_sym = Symbol("super_class");
+const upper_module_sym = Symbol("upper_module");
+const object_sym = Symbol("object");
+const instance_methods_sym = Symbol("instance_methods");
+const constances_sym  = Symbol("constances");
+const class_variables_sym = Symbol("class_variables");
+const method_name_sym = Symbol("method_name");
+const method_sym = Symbol("method");
+const is_current_class_method_sym = Symbol("is_current_class_method");
+const involved_modules_sym = Symbol("involved_modules");
+const involved_interfaces_sym = Symbol("involved_interfaces");
+const object_alloc_method_sym = Symbol("object_alloc_method");
 
 export class IrisClass {
      constructor(class_name, super_class, upper_module, class_define_method, obj_alloc_method) {
@@ -52,7 +54,7 @@ export class IrisClass {
             } else {
                 warn(`obj_alloc_method ${obj_alloc_method} is not a function`);
             }
-            this[object_sym].native_obj.class_object = this;
+            this[object_sym].native_object.class_object = this;
          }
 
          if (typeof class_define_method === 'function') {
@@ -307,3 +309,5 @@ class SearchResult {
         this[is_current_class_method] = is_current_class_method;
     }
 }
+
+window[iris_sym] = Object.assign({}, window[iris_sym], { IrisClass });

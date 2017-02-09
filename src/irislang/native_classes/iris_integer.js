@@ -2,13 +2,12 @@
  * IrisInteger class
  * Created by DaraW on 2017-1-15
  */
-import IrisMethod from "../core/iris_method";
-import { warn, log } from '../util/iris_debug';
-import { IrisDev } from "../util/iris_dev";
 
-import {
-        integer_sym
-    } from "../util/iris_symbol";
+import IrisMethod from "../core/iris_method";
+import { IrisDev } from "../util/iris_dev";
+import { iris_sym } from '../util/iris_symbol';
+
+export const integer_sym = Symbol("integer");
 
 export const IntegerOperation = {
     Add: 0,
@@ -468,5 +467,6 @@ class IrisIntegerTag {
     set integer(integer) {
         this[integer_sym] = integer;
     }
-
 }
+
+window[iris_sym] = Object.assign({}, window[iris_sym], { IrisInteger });

@@ -4,22 +4,20 @@
  * 
  */
 
-let warn = function () {};
-let log = function () {};
-
-if (process.env.NODE_ENV !== 'production') {
-
-  warn = (msg) => {
-    if (typeof console !== 'undefined') {
-      console.warning(`[Iris warn]: ${msg} `);
+export const error = (msg) => {
+    if (process.env.NODE_ENV !== 'production') {
+        console.error('[Iris Error]', msg);
     }
-  };
+};
 
-  log = (msg) => {
-    if (typeof console !== 'undefined') {
-      console.log(`[Iris]: ${msg} `);
+export const warn = (msg) => {
+    if (process.env.NODE_ENV !== 'production') {
+        console.warn('[Iris Warn]', msg);
     }
-  };
-}
+};
 
-export { warn, log };
+export const log = (msg) => {
+    if (process.env.NODE_ENV !== 'production') {
+        console.log('[Iris]', msg);
+    }
+};

@@ -6,8 +6,6 @@ import { IrisClass } from '../core/iris_class';
 import { IrisMethod } from '../core/iris_method';
 import { IrisDev } from "../util/iris_dev";
 
-console.log('iris_unique_string', IrisClass);
-
 export class IrisUniqueString {
     static add_unique_string(unique_string, unique_obj) {
         IrisUniqueString.unique_string_cache[unique_string] = unique_obj;
