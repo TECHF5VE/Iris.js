@@ -20,6 +20,7 @@ import {
 export class IrisModule {
     constructor(upper_module) {
         // not sure to work
+        console.log(1, upper_module);
         this[module_name_sym] = upper_module.native_module_name_define();
         this[module_object_sym] = null;
         this[upper_module_sym] = null;

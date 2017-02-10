@@ -127,7 +127,7 @@ export const IrisInterpreter = {
             }
         }
 
-        let module_intern_obj = new IrisModule();
+        let module_intern_obj = new IrisModule(module_obj);
         let module_value = IrisValue.wrap_object(module_intern_obj.object);
 
         if(upper_module == null) {
@@ -147,6 +147,7 @@ export const IrisInterpreter = {
     get_class(class_name) {
         // split the name
         let name_array = class_name.split("::");
+        console.log(name_array);
         return this.get_class_with_name_array(name_array, class_name);
     },
 
@@ -166,7 +167,7 @@ export const IrisInterpreter = {
              }
              // if this constance is not a class object
              if(IrisDev.is_class_object(tmp_value)) {
-                 warn("constance " + class_name + " is not a Class object.")
+                 warn("constance " + class_name + " is not a Class object.");
                  return null;
              }
              return IrisDev.get_native_object_ref(tmp_value).class_object;
@@ -183,13 +184,13 @@ export const IrisInterpreter = {
                 }
                 // if this constance is not a class object
                 else {
-                    warn("constance " + class_name + " is not a Class object.")
+                    warn("constance " + class_name + " is not a Class object.");
                     return null;
                 }
              }
              // if not
              else {
-                 warn("field " + full_path + " is not a valid path.")
+                 warn("field " + full_path + " is not a valid path.");
                  return null;
              }
          }
@@ -245,7 +246,7 @@ export const IrisInterpreter = {
     },
 
     get_constance(name) {
-        console.log(name);
+        warn('get_constance', name);
         return this[root_constance_hash_sym][name];
     },
 

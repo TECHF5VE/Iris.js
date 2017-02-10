@@ -4,20 +4,20 @@
  * 
  */
 
-export const error = (msg) => {
+export const error = (...msgs) => {
     if (process.env.NODE_ENV !== 'production') {
-        console.error('[Iris Error]', msg);
+        console.error('[Iris Error]', ...msgs);
     }
 };
 
-export const warn = (msg) => {
+export const warn = (...msgs) => {
     if (process.env.NODE_ENV !== 'production') {
-        console.warn('[Iris Warn]', msg);
+        console.warn('[Iris Warn]', ...msgs);
     }
 };
 
-export const log = (msg) => {
+export const log = (...msgs) => {
     if (process.env.NODE_ENV !== 'production') {
-        console.log('[Iris]', msg);
+        console.log('[Iris]', ...msgs);
     }
 };

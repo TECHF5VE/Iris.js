@@ -34,7 +34,7 @@ const inline_CallSide = {
     get Inside()  { return 1; }
 };
 
-class inline_NativeMethod {
+export class inline_NativeMethod {
     constructor(method_name, parameter_count, is_with_variable_parameter, authority, native_method_handle) {
         this[method_name_sym] = method_name;
         this[parameter_count_sym] = parameter_count;
@@ -44,7 +44,7 @@ class inline_NativeMethod {
     }
 }
 
-class inline_UserMethod {
+export class inline_UserMethod {
     constructor(method_name, parameter_name_list, variable_parameter_name, with_block, without_block) {
         this[method_name_sym] = method_name;
         this[parameter_name_list_sym] = parameter_name_list;
@@ -144,12 +144,12 @@ export class IrisMethod {
 
     create_method_object(method_class) {
         let method_obj = method_class.create_new_instance(null, null, null);
-        $dev_util.get_native_object_ref(method_obj).object = this;
+        IrisDev.get_native_object_ref(method_obj).object = this;
         this[method_object_sym] = method_obj.object;
     }
 
     reset_method_object() {
-        this.create_method_object($dev_util.get_class("Method"));
+        this.create_method_object(IrisDev.get_class("Method"));
     }
 
     call(caller, parameter_list, context, thread_info) {
@@ -164,7 +164,7 @@ export class IrisMethod {
         // Getter Setter
 
         let new_contex = this._create_new_context(caller, parameter_list, context, thread_info);
-        result = $dev_util.nil;
+        result = IrisDev.nil;
 
         if (parameter_list === null || parameter_list.length === 0) {
             if (this[user_method_sym] === null) {

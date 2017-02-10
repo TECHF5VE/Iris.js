@@ -5,7 +5,7 @@
  * Modified by DaraW on 2016-12-26
  */
 import { IrisObject } from "./iris_object";
-import { IrisMethod } from "./iris_method";
+import { IrisMethod, inline_NativeMethod, inline_UserMethod } from "./iris_method";
 import { IrisValue } from "./iris_value";
 import { IrisDev } from "../util/iris_dev";
 import { warn } from '../util/iris_debug';
@@ -113,11 +113,15 @@ export class IrisClass {
       * native_method : { method_name, parameter_count, is_with_variable_parameter, authority, native_func }
       * user_method : { method_name, authority, user_method }
       */
-     add_instance_method(regist_obj) {
-         if(regist_obj instanceof IrisMethod) {
-            this[instance_methods_sym][regist_obj.method_name] = regist_obj;
+     add_instance_method(...args) {
+         if (args.length === 6) {
+             // native method
+             this[instance_methods_sym][args[0]] = new IrisMethod(new inline_NativeMethod(...args));
          } else {
-            this[instance_methods_sym][regist_obj.method_name] = new IrisMethod(regist_obj);
+             // user method
+             const [method_name, authority, user_method] = args;
+             // FIXME: the number of arguments is not correct!
+             this[instance_methods_sym][args[0]] = new IrisMethod(new inline_UserMethod(...args));
          }
      }
 
