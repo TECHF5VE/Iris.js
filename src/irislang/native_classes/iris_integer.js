@@ -3,7 +3,8 @@
  * Created by DaraW on 2017-1-15
  */
 
-import IrisMethod from "../core/iris_method";
+import { IrisMethod } from "../core/iris_method";
+import { IrisFloat } from '../native_classes/iris_float';
 import { IrisDev } from "../util/iris_dev";
 import { iris_sym } from '../util/iris_symbol';
 
@@ -34,6 +35,32 @@ export const IntegerOperation = {
 };
 
 export class IrisInteger {
+    static native_methods = {
+        add: [IrisInteger.add, '+', 1, false, IrisMethod.MethodAuthority.Everyone],
+        sub: [IrisInteger.sub, '-', 1, false, IrisMethod.MethodAuthority.Everyone],
+        mul: [IrisInteger.mul, '*', 1, false, IrisMethod.MethodAuthority.Everyone],
+        div: [IrisInteger.div, '/', 1, false, IrisMethod.MethodAuthority.Everyone],
+        mod: [IrisInteger.mod, '%', 1, false, IrisMethod.MethodAuthority.Everyone],
+        power: [IrisInteger.power, '**', 1, false, IrisMethod.MethodAuthority.Everyone],
+        equal: [IrisInteger.equal, '==', 1, false, IrisMethod.MethodAuthority.Everyone],
+        not_equal: [IrisInteger.not_equal, '!=', 1, false, IrisMethod.MethodAuthority.Everyone],
+        big_than: [IrisInteger.big_than, '>', 1, false, IrisMethod.MethodAuthority.Everyone],
+        big_than_or_equal: [IrisInteger.big_than_or_equal, '>=', 1, false, IrisMethod.MethodAuthority.Everyone],
+        less_than: [IrisInteger.less_than, '<', 1, false, IrisMethod.MethodAuthority.Everyone],
+        less_than_or_equal: [IrisInteger.less_than_or_equal, '<=', 1, false, IrisMethod.MethodAuthority.Everyone],
+        shr: [IrisInteger.shr, '-', 1, false, IrisMethod.MethodAuthority.Everyone],
+        sar: [IrisInteger.sar, '-', 1, false, IrisMethod.MethodAuthority.Everyone],
+        shl: [IrisInteger.shl, '<<', 1, false, IrisMethod.MethodAuthority.Everyone],
+        sal: [IrisInteger.sal, '<<<', 1, false, IrisMethod.MethodAuthority.Everyone],
+        bit_xor: [IrisInteger.bit_xor, '^', 1, false, IrisMethod.MethodAuthority.Everyone],
+        bit_or: [IrisInteger.bit_or, '|', 1, false, IrisMethod.MethodAuthority.Everyone],
+        bit_and: [IrisInteger.bit_and, '&', 1, false, IrisMethod.MethodAuthority.Everyone],
+        bit_not: [IrisInteger.bit_not, '~', 0, false, IrisMethod.MethodAuthority.Everyone],
+        minus: [IrisInteger.minus, '__minus', 0, false, IrisMethod.MethodAuthority.Everyone],
+        plus: [IrisInteger.plus, '__plus', 0, false, IrisMethod.MethodAuthority.Everyone],
+        to_string: [IrisInteger.to_string, 'to_string', 0, false, IrisMethod.MethodAuthority.Everyone],
+        to_float: [IrisInteger.to_float, 'to_float', 0, false, IrisMethod.MethodAuthority.Everyone]
+    };
 
     native_class_name_define() {
         return "Integer";
@@ -52,35 +79,9 @@ export class IrisInteger {
     }
 
     native_class_define(class_obj) {
-        class_obj.add_instance_method(IrisInteger, "Add", "+", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "Sub", "-", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "Mul", "*", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "Div", "/", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "Mod", "%", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "Power", "**", 1, false, IrisMethod.MethodAuthority.Everyone);
-
-        class_obj.AddInstanceMethod(IrisInteger.class, "Equal", "==", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "NotEqual", "!=", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "BigThan", ">", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "BigThanOrEqual", ">=", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "LessThan", "<", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "LessThanOrEqual", "<=", 1, false, IrisMethod.MethodAuthority.Everyone);
-
-        class_obj.AddInstanceMethod(IrisInteger.class, "Shr", ">>", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "Sar", ">>>", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "Shl", "<<", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "Sal", "<<<", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "BitXor", "^", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "BitOr", "|", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "BitAnd", "&", 1, false, IrisMethod.MethodAuthority.Everyone);
-
-        class_obj.AddInstanceMethod(IrisInteger.class, "BitNot", "~", 0, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "Minus", "__minus", 0, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "Plus", "__plus", 0, false, IrisMethod.MethodAuthority.Everyone);
-
-        class_obj.AddInstanceMethod(IrisInteger.class, "ToString", "to_string", 0, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.AddInstanceMethod(IrisInteger.class, "ToFloat", "to_float", 0, false, IrisMethod.MethodAuthority.Everyone);
-
+        Object.keys(IrisInteger.native_methods).map((method) => {
+           class_obj.add_instance_method(...IrisInteger.native_methods[method]);
+        });
     }
 
     static get IrisIntegerTag() {
@@ -124,24 +125,24 @@ export class IrisInteger {
                 result.object.native_object = result_value;
             }
         } else {
-            let org_left_value = IrisDev.get_native_objec_ref(left_value);
-			let org_right_value = IrisDev.get_native_objec_ref(right_value);
+            let org_left_value = IrisDev.get_native_object_ref(left_value);
+			let org_right_value = IrisDev.get_native_object_ref(right_value);
 			let result_value = null;
 			switch(type) {
                 case IntegerOperation.Add:
-                    result_value = cast_left_value.add(org_right_value);
+                    result_value = org_left_value.add(org_right_value);
                     break;
                 case IntegerOperation.Sub:
-                    result_value = cast_left_value.sub(org_right_value);
+                    result_value = org_left_value.sub(org_right_value);
                     break;
                 case IntegerOperation.Mul:
-                    result_value = cast_left_value.mul(org_right_value);
+                    result_value = org_left_value.mul(org_right_value);
                     break;
                 case IntegerOperation.Div:
-                    result_value = cast_left_value.div(org_right_value);
+                    result_value = org_left_value.div(org_right_value);
                     break;
                 case IntegerOperation.Power:
-                    result_value = cast_left_value.power(org_right_value);
+                    result_value = org_left_value.power(org_right_value);
                     break;
                 default:
                     break;
@@ -158,51 +159,51 @@ export class IrisInteger {
         let cmp_result = false;
         let need_cast; // TODO
         if (need_cast) {
-            let cast_left_value = (new IrisInteger.IrisIntegerTag()).to_float.call(left_value);
-            let org_right_value = IrisDev.get_native_objec_ref(right_value);
+            let org_left_value = (new IrisInteger.IrisIntegerTag()).to_float.call(left_value);
+            let org_right_value = IrisDev.get_native_object_ref(right_value);
             switch(type) {
                 case IntegerOperation.Equal:
-                    cmp_result = cast_left_value.equal(org_right_value);
+                    cmp_result = org_left_value.equal(org_right_value);
                     break;
                 case IntegerOperation.NotEqual:
-                    cmp_result = cast_left_value.not_equal(org_right_value);
+                    cmp_result = org_left_value.not_equal(org_right_value);
                     break;
                 case IntegerOperation.BigThan:
-                    cmp_result = cast_left_value.big_than(org_right_value);
+                    cmp_result = org_left_value.big_than(org_right_value);
                     break;
                 case IntegerOperation.BigThanOrEqual:
-                    cmp_result = cast_left_value.big_than_or_equal(org_right_value);
+                    cmp_result = org_left_value.big_than_or_equal(org_right_value);
                     break;
                 case IntegerOperation.LessThan:
-                    cmp_result = cast_left_value.less_than(org_right_value);
+                    cmp_result = org_left_value.less_than(org_right_value);
                     break;
                 case IntegerOperation.LessThanOrEqual:
-                    cmp_result = cast_left_value.less_than_or_equal(org_right_value);
+                    cmp_result = org_left_value.less_than_or_equal(org_right_value);
                     break;
                 default:
                     break;
             }
         } else {
-            let org_left_value = IrisDev.get_native_objec_ref(left_value);
-			let org_right_value = IrisDev.get_native_objec_ref(right_value);
+            let org_left_value = IrisDev.get_native_object_ref(left_value);
+			let org_right_value = IrisDev.get_native_object_ref(right_value);
 			switch(type) {
                 case IntegerOperation.Equal:
-                    cmp_result = cast_left_value.equal(org_right_value);
+                    cmp_result = org_left_value.equal(org_right_value);
                     break;
                 case IntegerOperation.NotEqual:
-                    cmp_result = cast_left_value.not_equal(org_right_value);
+                    cmp_result = org_left_value.not_equal(org_right_value);
                     break;
                 case IntegerOperation.BigThan:
-                    cmp_result = cast_left_value.big_than(org_right_value);
+                    cmp_result = org_left_value.big_than(org_right_value);
                     break;
                 case IntegerOperation.BigThanOrEqual:
-                    cmp_result = cast_left_value.big_than_or_equal(org_right_value);
+                    cmp_result = org_left_value.big_than_or_equal(org_right_value);
                     break;
                 case IntegerOperation.LessThan:
-                    cmp_result = cast_left_value.less_than(org_right_value);
+                    cmp_result = org_left_value.less_than(org_right_value);
                     break;
                 case IntegerOperation.LessThanOrEqual:
-                    cmp_result = cast_left_value.less_than_or_equal(org_right_value);
+                    cmp_result = org_left_value.less_than_or_equal(org_right_value);
                     break;
                 default:
                     break;
@@ -217,30 +218,30 @@ export class IrisInteger {
             return IrisDev.nil;
         }
 
-        let org_left_value = IrisDev.get_native_objec_ref(left_value);
-        let org_right_value = IrisDev.get_native_objec_ref(right_value);
+        let org_left_value = IrisDev.get_native_object_ref(left_value);
+        let org_right_value = IrisDev.get_native_object_ref(right_value);
         let result_value = null;
         switch(type) {
             case IntegerOperation.Sal:
-                result_value = cast_left_value.sal(org_right_value);
+                result_value = org_left_value.sal(org_right_value);
                 break;
             case IntegerOperation.Sar:
-                result_value = cast_left_value.sar(org_right_value);
+                result_value = org_left_value.sar(org_right_value);
                 break;
             case IntegerOperation.Shl:
-                result_value = cast_left_value.shl(org_right_value);
+                result_value = org_left_value.shl(org_right_value);
                 break;
             case IntegerOperation.Shr:
-                result_value = cast_left_value.shr(org_right_value);
+                result_value = org_left_value.shr(org_right_value);
                 break;
             case IntegerOperation.BitAnd:
-                result_value = cast_left_value.bit_and(org_right_value);
+                result_value = org_left_value.bit_and(org_right_value);
                 break;
             case IntegerOperation.BitOr:
-                result_value = cast_left_value.bit_or(org_right_value);
+                result_value = org_left_value.bit_or(org_right_value);
                 break;
             case IntegerOperation.BitXor:
-                result_value = cast_left_value.bit_xor(org_right_value);
+                result_value = org_left_value.bit_xor(org_right_value);
                 break;
             default:
                 break;

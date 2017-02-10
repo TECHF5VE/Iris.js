@@ -19,11 +19,11 @@ export class IrisArray {
     }
 
     native_class_define(class_obj) {
-        class_obj.add_instance_method(this.initialize, "__format", 0, true, IrisMethod.MethodAuthority.Everyone);
-        class_obj.add_instance_method(this.at, "[]", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.add_instance_method(this.set, "[]=", 2, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.add_instance_method(this.push, "push", 1, false, IrisMethod.MethodAuthority.Everyone);
-        class_obj.add_instance_method(this.pop, "pop", 0, false, IrisMethod.MethodAuthority.Everyone);
+        class_obj.add_instance_method(IrisArray.initialize, "__format", 0, true, IrisMethod.MethodAuthority.Everyone);
+        class_obj.add_instance_method(IrisArray.at, "[]", 1, false, IrisMethod.MethodAuthority.Everyone);
+        class_obj.add_instance_method(IrisArray.set, "[]=", 2, false, IrisMethod.MethodAuthority.Everyone);
+        class_obj.add_instance_method(IrisArray.push, "push", 1, false, IrisMethod.MethodAuthority.Everyone);
+        class_obj.add_instance_method(IrisArray.pop, "pop", 0, false, IrisMethod.MethodAuthority.Everyone);
     }
 
     static initialize(self, parameter_list, variable_parameter_list, context, thread_info) {
