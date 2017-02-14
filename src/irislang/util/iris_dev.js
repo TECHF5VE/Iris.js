@@ -8,7 +8,7 @@
 // import { IrisObject, IrisValue, IrisMethod } from '../core';
 // import { IrisInteger, IrisFloat, IrisString, IrisUniqueString } from '../native_classes';
 // import { IrisInterpreter } from '../iris_interpreter';
-import { error } from './iris_debug';
+import { error, warn, log } from './iris_debug';
 import { iris_sym } from '../util/iris_symbol';
 
 const iris = {
@@ -63,6 +63,7 @@ export const IrisDev = {
 
     get_class(class_path) {
         const IrisInterpreter = iris.target('IrisInterpreter');
+        log('class_path', class_path);
         return IrisInterpreter.get_class(class_path);
     },
 
@@ -106,7 +107,7 @@ export const IrisDev = {
 
         let native_value = null;
 
-        if(elements == null) {
+        if (elements == null) {
             native_value = [];
         } else {
             native_value = elements.concat();
@@ -117,7 +118,7 @@ export const IrisDev = {
 
     create_unique_string(unique_string_value) {
         let obj = IrisUniqueString.get_unique_string(unique_string_value);
-        if(obj != null) {
+        if (obj != null) {
             return obj;
         }
 

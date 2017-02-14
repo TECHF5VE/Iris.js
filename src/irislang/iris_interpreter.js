@@ -3,7 +3,7 @@
  * Created by Hui in 2016-12-4
  * Modified by DaraW in 2017-1-14
  */
-import { warn } from "./util";
+import { error, warn, log } from "./util";
 import { IrisClass, IrisModule, IrisValue } from './core';
 import {
         IrisClassBase,
@@ -45,13 +45,13 @@ export const IrisInterpreter = {
 
         this.register_class(new IrisObjectBase());
 
-        IrisDev.get_class("Class").super_class = IrisDev.get_class("Object");
+        this.get_class("Class").super_class = IrisDev.get_class("Object");
 
         this.register_class(new IrisMethodBase());
 
-        IrisDev.get_class("Class").reset_all_methods_object();
-        IrisDev.get_class("Object").reset_all_methods_object();
-        IrisDev.get_class("Method").reset_all_methods_object();
+        this.get_class("Class").reset_all_methods_object();
+        this.get_class("Object").reset_all_methods_object();
+        this.get_class("Method").reset_all_methods_object();
 
         this.register_class(new IrisInteger());
         this.register_class(new IrisFloat());
@@ -64,9 +64,9 @@ export const IrisInterpreter = {
 
         this.register_class(new IrisArrayClass());
 
-        this[true_sym] = IrisDev.get_class("TrueClass").create_new_instance(null, null, null);
-        this[false_sym] = IrisDev.get_class("FalseClass").create_new_instance(null, null, null);
-        this[nil_sym] = IrisDev.get_class("NilClass").create_new_instance(null, null, null);
+        this[true_sym] = this.get_class("TrueClass").create_new_instance(null, null, null);
+        this[false_sym] = this.get_class("FalseClass").create_new_instance(null, null, null);
+        this[nil_sym] = this.get_class("NilClass").create_new_instance(null, null, null);
 
         return true;
     },
@@ -102,7 +102,7 @@ export const IrisInterpreter = {
         );
         let obj_value = IrisValue.wrap_object(class_intern_obj.object);
 
-        if(upper_module == null){
+        if (typeof upper_module === 'undefined') {
             this.add_constance(class_name, obj_value);
         } else {
             upper_module.add_constance(class_name, obj_value);
@@ -147,7 +147,7 @@ export const IrisInterpreter = {
     get_class(class_name) {
         // split the name
         let name_array = class_name.split("::");
-        console.log(name_array);
+        log('name_array', name_array);
         return this.get_class_with_name_array(name_array, class_name);
     },
 
@@ -158,15 +158,15 @@ export const IrisInterpreter = {
          let tmp_value = null;
 
          // if without field
-         if(name_array.length == 0){
+         if (name_array.length === 0) {
              tmp_value = this.get_constance(class_name);
              // if not found
-             if(tmp_value == null) {
-                 warn("class " + class_name + " not found.");
+             if (tmp_value === null) {
+                 error("class " + class_name + " not found.");
                  return null;
              }
              // if this constance is not a class object
-             if(IrisDev.is_class_object(tmp_value)) {
+             if (IrisDev.is_class_object(tmp_value)) {
                  warn("constance " + class_name + " is not a Class object.");
                  return null;
              }
@@ -177,7 +177,7 @@ export const IrisInterpreter = {
              // find upper module
              tmp_upper_module = this.get_module_with_name_array(name_array);
              // if found
-             if(tmp_upper_module != null) {
+             if(tmp_upper_module !== null) {
                 tmp_value = tmp_upper_module.get_constance(class_name);
                 if(IrisDev.is_class_object(tmp_value)) {
                     return IrisDev.get_native_object_ref(tmp_value).class_object;
