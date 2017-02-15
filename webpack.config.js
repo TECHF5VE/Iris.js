@@ -52,7 +52,7 @@ module.exports = {
     resolve:{
         extensions: ['', ".js", ".jsx"]
     },
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
     plugins:[
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
