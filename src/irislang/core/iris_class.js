@@ -27,40 +27,37 @@ const involved_interfaces_sym = Symbol("involved_interfaces");
 const object_alloc_method_sym = Symbol("object_alloc_method");
 
 export class IrisClass {
-     constructor(class_name, super_class, upper_module, class_define_method, obj_alloc_method) {
-         // not sure to work !!!
-         this[class_name_sym] = class_name;
-         this[super_class_sym] = super_class;
-         this[upper_module_sym] = upper_module;
+     constructor(extern_class) {
+         const native_class_define = extern_class.native_class_define;
+         // FIXME: not sure to work !!!
+         this[class_name_sym] = extern_class.native_class_name_define();
+         this[super_class_sym] = extern_class.native_super_class_define();
+         this[upper_module_sym] = extern_class.native_upper_module_define();
 
          this[involved_modules_sym] = new Set();
          this[involved_interfaces_sym] = new Set();
          this[instance_methods_sym] = new Map();
          this[constances_sym] = new Map();
 
-         this[object_alloc_method_sym] = obj_alloc_method;
+         this[object_alloc_method_sym] = extern_class.native_alloc;
 
          let class_obj = IrisDev.get_class("Class");
 
-         if(class_obj != null) {
+         if (class_obj !== null) {
             this[object_sym] = class_obj.create_new_instance(null, null, null).object;
             this[object_sym].native_object.class_object = this;
          } else {
             this[object_sym] = new IrisObject();
             this[object_sym].class = this;
-            // must be class class
-            if (typeof obj_alloc_method === 'function') {
-                this[object_sym].native_object = obj_alloc_method();
-            } else {
-                warn(`obj_alloc_method ${obj_alloc_method} is not a function`);
-            }
+            console.log(extern_class.native_alloc())
+             this[object_sym].native_object = extern_class.native_alloc();
             this[object_sym].native_object.class_object = this;
          }
 
-         if (typeof class_define_method === 'function') {
-            class_define_method(this);
+         if (typeof extern_class.native_class_define === 'function') {
+             extern_class.native_class_define(this);
          } else {
-            warn(`class_define_method ${class_define_method} is not a function`);
+            warn(`class_define_method ${extern_class.native_class_define} is not a function`);
          }
      }
 

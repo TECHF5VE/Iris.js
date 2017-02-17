@@ -37,13 +37,12 @@ export const IrisInterpreter = {
         this[root_constance_hash_sym] = new Map();
         this[root_global_value_hash_sym] = new Map();
         this.register_class(new IrisClassBase());
-        debugger;
         this.register_class(new IrisModuleBase());
-        this.register_module(new IrisKernel());
         this.register_class(new IrisObjectBase());
-        this.get_class("Class").super_class = IrisDev.get_class("Object");
-
+        this.register_module(new IrisKernel());
         this.register_class(new IrisMethodBase());
+
+        this.get_class("Class").super_class = IrisDev.get_class("Object");
 
         this.get_class("Class").reset_all_methods_object();
         this.get_class("Object").reset_all_methods_object();
@@ -76,11 +75,8 @@ export const IrisInterpreter = {
     },
 
     register_class(class_obj) {
-        console.log(class_obj);
         let upper_module = class_obj.native_upper_module_define();
         let class_name = class_obj.native_class_name_define();
-
-        debugger;
 
         if (upper_module === null && typeof this.get_constance(class_name) !== 'undefined') {
             return false;
@@ -88,23 +84,15 @@ export const IrisInterpreter = {
             return false;
         }
 
-        debugger;
-
-        let class_intern_obj = new IrisClass(
-            class_obj.native_class_name_define(),
-            class_obj.native_super_class_define(),
-            class_obj.native_upper_module_define(),
-            class_obj.native_class_define,
-            class_obj.native_alloc
-        );
-        let class_value = IrisValue.wrap_object(class_intern_obj.object);
-
-        if (upper_module === null) {
-            this.add_constance(class_name, class_value);
-        } else {
-            upper_module.add_constance(class_name, class_value);
-            upper_module.add_sub_class(class_intern_obj);
-        }
+        let class_intern_obj = new IrisClass(class_obj);
+        // let class_value = IrisValue.wrap_object(class_intern_obj.object);
+        //
+        // if (upper_module === null) {
+        //     this.add_constance(class_name, class_value);
+        // } else {
+        //     upper_module.add_constance(class_name, class_value);
+        //     upper_module.add_sub_class(class_intern_obj);
+        // }
 
         return true;
     },
@@ -146,48 +134,42 @@ export const IrisInterpreter = {
     },
 
     get_class_with_name_array(name_array, full_path = "") {
-         let class_name = name_array.pop();
+        let class_name = name_array.pop();
+        let tmp_upper_module = null;
+        let tmp_value = null;
 
-         let tmp_upper_module = null;
-         let tmp_value = null;
-
-         // if without field
-         if (name_array.length === 0) {
-             tmp_value = this.get_constance(class_name);
-             // if not found
-             if (tmp_value === null) {
-                 error("class " + class_name + " not found.");
-                 return null;
-             }
-             // if this constance is not a class object
-             if (IrisDev.is_class_object(tmp_value)) {
-                 warn("constance " + class_name + " is not a Class object.");
-                 return null;
-             }
-             return IrisDev.get_native_object_ref(tmp_value).class_object;
-         }
-         // if with field
-         else {
-             // find upper module
-             tmp_upper_module = this.get_module_with_name_array(name_array);
-             // if found
-             if(tmp_upper_module !== null) {
+        // if without field
+        if (name_array.length === 0) {
+            tmp_value = this.get_constance(class_name);
+            // if not found
+            if (typeof tmp_value === 'undefined') {
+                error("class " + class_name + " not found.");
+                return null;
+            }
+            // if this constance is not a class object
+            if (IrisDev.is_class_object(tmp_value)) {
+                return IrisDev.get_native_object_ref(tmp_value).class_object;
+            } else {
+                warn("constance " + class_name + " is not a Class object.");
+                return null;
+            }
+        } else {
+            // find upper module
+            tmp_upper_module = this.get_module(full_path);
+            // if found
+            if (tmp_upper_module !== null) {
                 tmp_value = tmp_upper_module.get_constance(class_name);
-                if(IrisDev.is_class_object(tmp_value)) {
+                if (IrisDev.is_class_object(tmp_value)) {
                     return IrisDev.get_native_object_ref(tmp_value).class_object;
-                }
-                // if this constance is not a class object
-                else {
+                } else {
                     warn("constance " + class_name + " is not a Class object.");
                     return null;
                 }
-             }
-             // if not
-             else {
-                 warn("field " + full_path + " is not a valid path.");
-                 return null;
-             }
-         }
+            } else {
+                warn("field " + full_path + " is not a valid path.");
+                return null;
+            }
+        }
     },
 
     get_module(module_name) {

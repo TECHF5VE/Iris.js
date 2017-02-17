@@ -2,8 +2,6 @@ import { IrisMethod } from '../core/iris_method';
 import { warn, log } from '../util/iris_debug';
 import { IrisDev } from "../util/iris_dev";
 
-const class_obj_sym = Symbol("class_obj");
-
 export class IrisClassBase {
 
     native_class_name_define() {
@@ -41,6 +39,8 @@ export class IrisClassBase {
         return IrisClassBaseTag;
     }
 }
+
+const class_obj_sym = Symbol("class_obj");
 
 class IrisClassBaseTag {
     constructor() {
