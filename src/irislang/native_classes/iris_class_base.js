@@ -1,9 +1,8 @@
 import { IrisMethod } from '../core/iris_method';
 import { warn, log } from '../util/iris_debug';
 import { IrisDev } from "../util/iris_dev";
-import {
-        class_obj_sym
-    } from "../util/iris_symbol";
+
+const class_obj_sym = Symbol("class_obj");
 
 export class IrisClassBase {
 
@@ -15,7 +14,7 @@ export class IrisClassBase {
         return null;
     }
 
-    native_super_module_define() {
+    native_upper_module_define() {
         return null;
     }
 

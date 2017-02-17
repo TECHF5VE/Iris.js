@@ -12,7 +12,7 @@ export class IrisObjectBase {
         return null;
     }
 
-    native_super_module_define() {
+    native_upper_module_define() {
         return null;
     }
 

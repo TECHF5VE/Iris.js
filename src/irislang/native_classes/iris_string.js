@@ -15,7 +15,7 @@ export class IrisString {
         return IrisDev.get_class("Object");
     }
 
-    native_super_module_define() {
+    native_upper_module_define() {
         return null;
     }
 

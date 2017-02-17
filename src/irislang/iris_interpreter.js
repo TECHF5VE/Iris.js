@@ -32,19 +32,15 @@ const false_sym = Symbol("false");
 const nil_sym = Symbol("nil");
 
 export const IrisInterpreter = {
-
     initialize() {
         this[root_method_hash_sym] = new Map();
         this[root_constance_hash_sym] = new Map();
         this[root_global_value_hash_sym] = new Map();
-
         this.register_class(new IrisClassBase());
+        debugger;
         this.register_class(new IrisModuleBase());
-
         this.register_module(new IrisKernel());
-
         this.register_class(new IrisObjectBase());
-
         this.get_class("Class").super_class = IrisDev.get_class("Object");
 
         this.register_class(new IrisMethodBase());
@@ -80,32 +76,33 @@ export const IrisInterpreter = {
     },
 
     register_class(class_obj) {
-        let upper_module = class_obj.upper_module;
-        let class_name = class_obj.class_name;
+        console.log(class_obj);
+        let upper_module = class_obj.native_upper_module_define();
+        let class_name = class_obj.native_class_name_define();
 
-        if(upper_module == null){
-            if(this.get_constance(class_name)) {
-                return false;
-            }
-        } else {
-            if(upper_module.get_constance(class_name) != null) {
-                return false;
-            }
+        debugger;
+
+        if (upper_module === null && typeof this.get_constance(class_name) !== 'undefined') {
+            return false;
+        } else if (upper_module !== null && typeof upper_module.get_constance(class_name) !== 'undefined') {
+            return false;
         }
+
+        debugger;
 
         let class_intern_obj = new IrisClass(
             class_obj.native_class_name_define(),
             class_obj.native_super_class_define(),
-            class_obj.native_super_module_define(),
+            class_obj.native_upper_module_define(),
             class_obj.native_class_define,
             class_obj.native_alloc
         );
-        let obj_value = IrisValue.wrap_object(class_intern_obj.object);
+        let class_value = IrisValue.wrap_object(class_intern_obj.object);
 
-        if (typeof upper_module === 'undefined') {
-            this.add_constance(class_name, obj_value);
+        if (upper_module === null) {
+            this.add_constance(class_name, class_value);
         } else {
-            upper_module.add_constance(class_name, obj_value);
+            upper_module.add_constance(class_name, class_value);
             upper_module.add_sub_class(class_intern_obj);
         }
 
@@ -116,15 +113,12 @@ export const IrisInterpreter = {
         let upper_module = module_obj.native_upper_module_define();
         let module_name = module_obj.native_module_name_define();
 
-        if(upper_module == null) {
-            if(this.get_constance(module_name) != null) {
-                warn("constance " + module_name + " already exists.")
-                return false;
-            }
-        } else {
-            if(upper_module.get_constance(module_name) != null) {
-                warn("constance " + module_name + " already exists.")
-            }
+        if(upper_module === null && typeof this.get_constance(module_name) !== 'undefined') {
+            warn("constance " + module_name + " already exists.");
+            return false;
+        } else if (upper_module !== null && typeof upper_module.get_constance(module_name) !== 'undefined') {
+            warn("constance " + module_name + " already exists.");
+            return false;
         }
 
         let module_intern_obj = new IrisModule(module_obj);
