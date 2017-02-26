@@ -2,7 +2,7 @@
 
 ## Introduce
 
-![](http://7xngrd.com1.z0.glb.clouddn.com/ci_iris.js.png)
+[![](http://7xngrd.com1.z0.glb.clouddn.com/ci_iris.js.png)](http://www.irislang.org)
 
 **Iris.js** is the implementation of *Iris programming language* using *Javascript* which is aimed at executing Iris scripts or Iris bytecode right on browser environment to provide another more language selection for *web development*.
 
@@ -33,19 +33,19 @@ yarn
 npm run dev
 ```
 
-And open `http://localhost:8012/build/` in browser. The default is 8012, customize it in package.json in need.
+And open `http://localhost:8012/` in browser. The default is 8012, customize it in package.json in need.
 
 #### Build
 
 ```
-npm run build
+npm run build:prod
 ```
 
 ## About *Iris programming language*
 
 ## About Document
 
->under construction
+[Check Here](http://doc.irislang.org/)
 
 ## About Question & Contribute
 

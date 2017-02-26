@@ -9,7 +9,7 @@
     "dist"
   ],
   "author": "Chi",
-  "license": "MIT",
+  "license": "BSD 2-Clause",
   "engines": {
     "node": ">=6.0.0"
   },
@@ -26,7 +26,7 @@
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "commit": "git-cz",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "prepush": "npm run test:prod && npm run build",
+    "prepush": "npm run test:prod",
     "commitmsg": "validate-commit-msg"
   },
   "config": {
