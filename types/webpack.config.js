@@ -1,12 +1,12 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var _a = require('path'), join = _a.join, resolve = _a.resolve;
+// import webpack from 'webpack';
 var TypedocWebpackPlugin = require('typedoc-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require("webpack");
 var env = process && process.env && process.env.NODE_ENV;
 var dev = !(env && env === 'production');
 var tsConfig = dev ? { configFileName: 'tsconfig.prod.json' } : {};
-var projectName = 'Iris';
 var libraryName = 'iris';
 var entry = dev ? [
     // 'react-hot-loader/patch',
@@ -17,13 +17,12 @@ var entry = dev ? [
     'webpack/hot/only-dev-server',
     // bundle the client for hot reloading
     // only- means to only hot reload for successful updates
-    ("./src/" + libraryName + ".ts")
+    "./src/" + libraryName + ".ts"
+    // the entry point of our app
 ] : join(__dirname, "src/" + libraryName + ".ts");
-Object.defineProperty(exports, "__esModule", { value: true });
+console.log(entry);
 exports.default = {
-    entry: {
-        index: entry
-    },
+    entry: entry,
     output: {
         path: join(__dirname, 'dist'),
         libraryTarget: 'umd',
@@ -69,19 +68,7 @@ exports.default = {
         // enable HMR globally
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "common",
-            filename: "common.js"
-        }),
         new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
-        new HtmlWebpackPlugin({
-            inject: true,
-            title: projectName,
-            filename: "index.html",
-            template: join(__dirname, "src/template/common.html"),
-            hash: true,
-            chunks: ["common", "index"]
-        }),
         new TypedocWebpackPlugin({
             theme: 'minimal',
             out: 'docs',
@@ -95,3 +82,4 @@ exports.default = {
         publicPath: '/'
     }
 };
+//# sourceMappingURL=webpack.config.js.map
