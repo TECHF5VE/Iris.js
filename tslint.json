@@ -1,12 +1,7 @@
 {
-  "extends": "tslint:latest",
+  "extends": "tslint-config-standard",
   "rules": {
     "no-console": false,
     "curly": true
-  },
-  "jsRules": {
-    "curly": true
-  },
-  "rulesDirectory": [
-  ]
+  }
 }

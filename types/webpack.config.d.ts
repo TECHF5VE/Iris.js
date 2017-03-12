@@ -1,42 +1,29 @@
 declare var _default: {
-    entry: any;
+    entry: {
+        index: string | string[];
+    };
+    devtool: string;
     output: {
-        path: any;
+        path: string;
         libraryTarget: string;
-        library: string;
+        library: any;
         filename: string;
     };
     resolve: {
         extensions: string[];
     };
     module: {
-        rules: ({
-            enforce: string;
+        rules: {
             test: RegExp;
-            loader: string;
-        } | {
-            enforce: string;
-            test: RegExp;
-            use: string;
-        } | {
-            test: RegExp;
-            use: ({
+            use: {
                 loader: string;
-                options: {
-                    presets: string[];
-                };
-            } | {
-                loader: string;
-                options: {};
-            })[];
-            exclude: any[];
-        })[];
+            }[];
+        }[];
     };
-    devtool: string;
     plugins: any[];
     devServer: {
         hot: boolean;
-        contentBase: any;
+        contentBase: string;
         publicPath: string;
     };
 };
