@@ -2,6 +2,7 @@
   "extends": "tslint-config-standard",
   "rules": {
     "no-console": false,
-    "curly": true
+    "curly": true,
+    "no-irregular-whitespace": false
   }
 }

@@ -1,11 +1,11 @@
-﻿import { IrisClass } from "../core/IrisClass"
+﻿import { IrisClass } from '../core/IrisClass'
 
 export class IrisDevUtil {
-    public get_class(path: string): IrisClass | null{
-        return null;
-    }
+  public get_class(path: string): IrisClass | null {
+    return null
+  }
 }
 
 const IrisDev: IrisDevUtil = new IrisDevUtil()
 
-export { IrisDev };
+export { IrisDev }

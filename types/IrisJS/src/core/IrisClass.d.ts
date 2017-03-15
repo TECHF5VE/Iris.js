@@ -1,19 +1,19 @@
-import { IrisObject } from "./IrisObject";
-import { IrisValue } from "./IrisValue";
-import { IrisContextEnvironment } from "./IrisContextEnvironment";
-import { IrisThreadInfo } from "./IrisThreadInfo";
-import { IrisNativeClassBase } from "../interface/IrisNativeClassBase";
+import { IrisObject } from './IrisObject';
+import { IrisValue } from './IrisValue';
+import { IrisContextEnvironment } from './IrisContextEnvironment';
+import { IrisThreadInfo } from './IrisThreadInfo';
+import { IrisNativeClassBase } from '../interface/IrisNativeClassBase';
 export declare class IrisClass {
-    private class_name;
-    private super_class;
-    private upper_module;
-    private involved_modules;
-    private involved_interfaces;
-    private instance_method;
+    private className;
+    private superClass;
+    private upperModule;
+    private involvedModules;
+    private involvedInterfaces;
+    private instanceMethod;
     private constances;
-    private object_alloc_method;
+    private objectAllocMethod;
     object: IrisObject | null;
-    constructor(extern_class: IrisNativeClassBase);
+    constructor(externClass: IrisNativeClassBase);
     reset_all_methods_object(): void;
-    create_new_instance(parameter_list: IrisValue[] | null, context: IrisContextEnvironment | null, thread_info: IrisThreadInfo | null): IrisValue;
+    create_new_instance(parameterList: IrisValue[] | null, context: IrisContextEnvironment | null, threadInfo: IrisThreadInfo | null): IrisValue;
 }

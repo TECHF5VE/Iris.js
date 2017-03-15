@@ -1,3 +1,4 @@
-﻿export class IrisInterface {
+﻿
+export class IrisInterface {
 
 }

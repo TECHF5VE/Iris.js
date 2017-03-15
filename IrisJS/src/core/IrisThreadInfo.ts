@@ -1,3 +1,4 @@
-﻿export class IrisThreadInfo {
+﻿
+export class IrisThreadInfo {
 
 }

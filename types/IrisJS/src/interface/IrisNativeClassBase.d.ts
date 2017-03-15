@@ -1,5 +1,5 @@
-import { IrisClass } from "../core/IrisClass";
-import { IrisModule } from "../core/IrisModule";
+import { IrisClass } from '../core/IrisClass';
+import { IrisModule } from '../core/IrisModule';
 export interface IrisAllocFunc {
     (): Object;
 }

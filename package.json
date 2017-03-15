@@ -14,7 +14,7 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "lint": "tslint -e **/node_modules/** -e **/dist/** **/*.ts ",
+    "lint": "tslint -e **/node_modules/** -e **/dist/** **/src/*.ts ",
     "dev": "webpack-dev-server --port 8081",
     "prebuild": "rimraf dist && rimraf docs",
     "build": "cross-env NODE_ENV=production webpack -p",

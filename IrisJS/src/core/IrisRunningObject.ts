@@ -1,3 +1,4 @@
-﻿export interface IrisRunningObject {
+﻿
+export interface IrisRunningObject {
 
 }
