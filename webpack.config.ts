@@ -20,9 +20,9 @@ const entry = dev ? [
       'webpack/hot/only-dev-server',
       // bundle the client for hot reloading
       // only- means to only hot reload for successful updates
-      "./src/" + libraryName + ".ts"
+      "./IrisJS/src/" + libraryName + ".ts"
       // the entry point of our apps
-    ] : join(__dirname, "src/" + libraryName + ".ts");
+    ] : join(__dirname, "IrisJS/src/" + libraryName + ".ts");
 
 export default {
   entry: {
@@ -59,7 +59,7 @@ export default {
       inject: true,
       title: libraryName,
       filename: "index.html",
-      template: join(__dirname, "src/template/common.html"),
+      template: join(__dirname, "IrisJS/src/template/common.html"),
       hash: true,
       chunks: ["common", "index"]
     }),
@@ -70,7 +70,7 @@ export default {
         target: 'es6',
         ignoreCompilerErrors: true
       },
-      'src'
+      'IrisJS/src'
     ),
   ],
   devServer: {

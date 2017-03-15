@@ -38,5 +38,5 @@ npm-debug.log
 *.log
 .vscode
 /dist/
-/src/**/*.js
-/src/**/*.map
+**/src/**/*.js
+**/src/**/*.map

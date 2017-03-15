@@ -38,7 +38,7 @@ And open `http://localhost:8012/` in browser. The default is 8012, customize it 
 #### Build
 
 ```
-npm run build:prod
+npm run build
 ```
 
 ## About *Iris programming language*
@@ -50,3 +50,5 @@ npm run build:prod
 ## About Question & Contribute
 
 >under construction
+
+
