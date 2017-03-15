@@ -1,6 +1,6 @@
 import { join, resolve } from 'path'
 const { camelCase } = require('lodash')
-const webpack = require("webpack")
+const webpack = require('webpack')
 const { TsConfigPathsPlugin, CheckerPlugin } = require('awesome-typescript-loader')
 const TypedocWebpackPlugin = require('typedoc-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -12,17 +12,17 @@ const libraryName = 'iris-js'
 const env = process && process.env && process.env.NODE_ENV;
 const dev = !(env && env === 'production');
 const entry = dev ? [
-      // 'react-hot-loader/patch',
-      // activate HMR for React
-      'webpack-dev-server/client?http://localhost:8081',
-      // bundle the client for webpack-dev-server
-      // and connect to the provided endpoint
-      'webpack/hot/only-dev-server',
-      // bundle the client for hot reloading
-      // only- means to only hot reload for successful updates
-      "./IrisJS/src/" + libraryName + ".ts"
-      // the entry point of our apps
-    ] : join(__dirname, "IrisJS/src/" + libraryName + ".ts");
+  // 'react-hot-loader/patch',
+  // activate HMR for React
+  'webpack-dev-server/client?http://localhost:8081',
+  // bundle the client for webpack-dev-server
+  // and connect to the provided endpoint
+  'webpack/hot/only-dev-server',
+  // bundle the client for hot reloading
+  // only- means to only hot reload for successful updates
+  './IrisJS/src/' + libraryName + '.ts'
+  // the entry point of our apps
+] : join(__dirname, './IrisJS/src/' + libraryName + '.ts')
 
 export default {
   entry: {
@@ -58,10 +58,10 @@ export default {
     new HtmlWebpackPlugin({
       inject: true,
       title: libraryName,
-      filename: "index.html",
-      template: join(__dirname, "IrisJS/src/template/common.html"),
+      filename: 'index.html',
+      template: join(__dirname, 'IrisJS/src/template/common.html'),
       hash: true,
-      chunks: ["common", "index"]
+      chunks: ['common', 'index']
     }),
     new TypedocWebpackPlugin(
       {
