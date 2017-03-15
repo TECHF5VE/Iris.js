@@ -8,3 +8,8 @@ export interface IrisNativeMethod {
 export class IrisMethod {
 
 }
+
+export enum IrisCallSide {
+    InSide,
+    OutSide,
+}
