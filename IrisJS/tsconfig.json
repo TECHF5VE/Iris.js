@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es2015",
+    "lib": [ "es2016", "dom" ],
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "declaration": true
+  },
+  "awesomeTypescriptLoaderOptions": {
+    "useBabel": true
+  },
+  "exclude": [
+    "node_modules",
+    "**/*.test.ts"
+  ]
+}

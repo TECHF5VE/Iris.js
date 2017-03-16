@@ -47,19 +47,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="src\template\common.html" />
-    <Content Include="package.json" />
-    <Content Include="README.md" />
+    <Content Include="tsconfig.json" />
+    <Content Include="tslint.json" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
-    <TypeScriptCompile Include="src\core\IrisClass.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="src\core\IrisInterface.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="src\core\IrisModule.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\core\IrisClass.ts" />
+    <TypeScriptCompile Include="src\core\IrisContextEnvironment.ts" />
+    <TypeScriptCompile Include="src\core\IrisInterface.ts" />
+    <TypeScriptCompile Include="src\core\IrisMethod.ts" />
+    <TypeScriptCompile Include="src\core\IrisModule.ts" />
+    <TypeScriptCompile Include="src\core\IrisObject.ts" />
+    <TypeScriptCompile Include="src\core\IrisRunningObject.ts" />
+    <TypeScriptCompile Include="src\core\IrisThreadInfo.ts" />
+    <TypeScriptCompile Include="src\core\IrisValue.ts" />
+    <TypeScriptCompile Include="src\interface\IrisNativeClassBase.ts" />
     <TypeScriptCompile Include="src\iris-js.ts" />
+    <TypeScriptCompile Include="src\util\IrisDevUtil.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\" />
@@ -67,7 +69,9 @@
     <Folder Include="Scripts\typings\node\" />
     <Folder Include="src\" />
     <Folder Include="src\core\" />
+    <Folder Include="src\interface\" />
     <Folder Include="src\template\" />
+    <Folder Include="src\util\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
