@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-﻿
-import { IrisValue } from './IrisValue'
-import { IrisMethod } from './IrisMethod'
-=======
 ﻿import { IrisValue } from "./IrisValue"
 import { IrisMethod } from "./IrisMethod"
 import { IrisRunningObject } from "./IrisRunningObject"
->>>>>>> origin/typescript
 
 export enum IrisRuntTimeType {
   ClassDefineTime,
@@ -16,14 +10,6 @@ export enum IrisRuntTimeType {
 }
 
 export class IrisContextEnvironment {
-<<<<<<< HEAD
-  public runtTimeType: IrisRuntTimeType = IrisRuntTimeType.RuntTime
-  public localVariableMap: Map<string, IrisValue> = new Map<string, IrisValue>()
-  public upperContext: IrisContextEnvironment | null = null
-  public currentMethod: IrisMethod | null = null
-}
-
-=======
     public runt_time_type: IrisRuntTimeType = IrisRuntTimeType.RuntTime;
     public local_variable_map: Map<string, IrisValue> = new Map<string, IrisValue>();
     public upper_context: IrisContextEnvironment | null = null;
@@ -42,4 +28,3 @@ export class IrisContextEnvironment {
         
     }
 }
->>>>>>> origin/typescript

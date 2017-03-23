@@ -47,7 +47,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="src\template\common.html" />
-<<<<<<< HEAD
     <Content Include="tsconfig.json" />
     <Content Include="tslint.json" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
@@ -62,8 +61,13 @@
     <TypeScriptCompile Include="src\core\IrisValue.ts" />
     <TypeScriptCompile Include="src\interface\IrisNativeClassBase.ts" />
     <TypeScriptCompile Include="src\iris-js.ts" />
+    <TypeScriptCompile Include="src\native_classes\IrisClassBase.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\util\IrisCompiler.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\util\IrisDevUtil.ts" />
-=======
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="tsconfig.json" />
@@ -102,7 +106,9 @@
     <TypeScriptCompile Include="src\util\IrisDevUtil.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
->>>>>>> origin/typescript
+    <TypeScriptCompile Include="src\util\IrisInterpreter.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\" />
@@ -111,10 +117,8 @@
     <Folder Include="src\" />
     <Folder Include="src\core\" />
     <Folder Include="src\interface\" />
-<<<<<<< HEAD
-=======
+    <Folder Include="src\native_classes\" />
     <Folder Include="src\util\" />
->>>>>>> origin/typescript
     <Folder Include="src\template\" />
     <Folder Include="src\util\" />
   </ItemGroup>
