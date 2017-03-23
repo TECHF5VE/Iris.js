@@ -47,6 +47,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="src\template\common.html" />
+<<<<<<< HEAD
     <Content Include="tsconfig.json" />
     <Content Include="tslint.json" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
@@ -62,6 +63,46 @@
     <TypeScriptCompile Include="src\interface\IrisNativeClassBase.ts" />
     <TypeScriptCompile Include="src\iris-js.ts" />
     <TypeScriptCompile Include="src\util\IrisDevUtil.ts" />
+=======
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+    <Content Include="tsconfig.json" />
+    <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
+    <TypeScriptCompile Include="src\core\IrisClass.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\core\IrisContextEnvironment.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\core\IrisInterface.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\core\IrisMethod.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\core\IrisModule.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\core\IrisObject.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\core\IrisRunningObject.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\core\IrisThreadInfo.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\core\IrisValue.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\interface\IrisNativeClassBase.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\iris-js.ts" />
+    <TypeScriptCompile Include="src\util\IrisDevUtil.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+>>>>>>> origin/typescript
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\" />
@@ -70,6 +111,10 @@
     <Folder Include="src\" />
     <Folder Include="src\core\" />
     <Folder Include="src\interface\" />
+<<<<<<< HEAD
+=======
+    <Folder Include="src\util\" />
+>>>>>>> origin/typescript
     <Folder Include="src\template\" />
     <Folder Include="src\util\" />
   </ItemGroup>

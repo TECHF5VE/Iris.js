@@ -20,7 +20,6 @@ const entry = dev ? [
     // bundle the client for hot reloading
     // only- means to only hot reload for successful updates
     "./src/" + libraryName + ".ts"
-    // the entry point of our apps
 ] : join(__dirname, "src/" + libraryName + ".ts");
 export default {
     entry: {
