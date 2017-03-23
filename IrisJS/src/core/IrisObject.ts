@@ -32,7 +32,7 @@ export class IrisObject implements IrisRunningObject {
     }
 
     public add_instance_method(method: IrisMethod): void {
-
+        
     }
 
     public add_instance_variable(name: string, value: IrisValue): void {

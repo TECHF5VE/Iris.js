@@ -1,1 +1,1 @@
-{"version":3,"file":"iris-js.js","sourceRoot":"","sources":["../../src/iris-js.ts"],"names":[],"mappings":"AAAA,yCAAyC;AAEzC,AAFA,yCAAyC;AAEzC,MAAM,CAAC,OAAO;CAIb;AAED,2CAA2C;AAC3C,SAAS"}
+{"version":3,"file":"iris-js.js","sourceRoot":"","sources":["../../src/iris-js.ts"],"names":[],"mappings":"AAAA,yCAAyC;AAEzC,AAFA,yCAAyC;AAEzC,MAAM,CAAC,OAAO;IACT;QACI,OAAO,CAAC,GAAG,CAAC,YAAY,CAAC,CAAA;IAC7B,CAAC;CACL;AAEA,MAAM,KAAK,GAAc,IAAI,SAAS,EAAE,CAAA;AACzC,SAAS"}
