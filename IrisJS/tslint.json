@@ -1,8 +1,0 @@
-{
-  "extends": "tslint-config-standard",
-  "rules": {
-    "no-console": false,
-    "curly": true,
-    "no-irregular-whitespace": false
-  }
-}

@@ -1,4 +1,6 @@
-import { join, resolve } from 'path';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const path_1 = require("path");
 const { camelCase } = require('lodash');
 const webpack = require('webpack');
 const { TsConfigPathsPlugin, CheckerPlugin } = require('awesome-typescript-loader');
@@ -19,17 +21,17 @@ const entry = dev ? [
     'webpack/hot/only-dev-server',
     // bundle the client for hot reloading
     // only- means to only hot reload for successful updates
-    './IrisJS/src/' + libraryName + '.ts'
+    './src/' + libraryName + '.ts'
     // the entry point of our apps
-] : join(__dirname, './IrisJS/src/' + libraryName + '.ts');
-export default {
+] : path_1.join(__dirname, './src/' + libraryName + '.ts');
+exports.default = {
     entry: {
         index: entry
     },
     // Currently cheap-module-source-map is broken https://github.com/webpack/webpack/issues/4176
     devtool: 'source-map',
     output: {
-        path: join(__dirname, 'dist'),
+        path: path_1.join(__dirname, 'dist'),
         libraryTarget: 'umd',
         library: camelCase(libraryName),
         filename: `${libraryName}.js`
@@ -57,7 +59,7 @@ export default {
             inject: true,
             title: libraryName,
             filename: 'index.html',
-            template: join(__dirname, 'IrisJS/src/template/common.html'),
+            template: path_1.join(__dirname, 'src/template/common.html'),
             hash: true,
             chunks: ['common', 'index']
         }),
@@ -66,11 +68,11 @@ export default {
             out: 'docs',
             target: 'es6',
             ignoreCompilerErrors: true
-        }, 'IrisJS/src'),
+        }, 'src'),
     ],
     devServer: {
         hot: true,
-        contentBase: resolve(__dirname, 'dist'),
+        contentBase: path_1.resolve(__dirname, 'dist'),
         publicPath: '/'
     }
 };

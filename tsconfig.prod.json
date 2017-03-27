@@ -14,7 +14,7 @@
         ]
     },
     "include": [
-        "IrisJS/src/**/*"
+        "src/**/*"
     ],
     "exclude": [
         "test",

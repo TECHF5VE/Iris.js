@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "module": "commonjs",
         "moduleResolution": "node",
         "target": "es2015",
         "lib": ["es2016", "dom"],
@@ -12,6 +13,11 @@
           "node_modules/@types"
         ]
     },
+    "exclude": [
+        "node_modules",
+        "**/*.d.ts",
+        "**/*.test.ts"
+    ],
     "awesomeTypescriptLoaderOptions": {
         "useBabel": true
     }

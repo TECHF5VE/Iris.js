@@ -1,1 +1,0 @@
-{"version":3,"file":"IrisValue.js","sourceRoot":"","sources":["../../../src/core/IrisValue.ts"],"names":[],"mappings":"AAEA,MAAM;IAIF;QAFO,WAAM,GAAsB,IAAI,CAAC;IAIxC,CAAC;IAED,MAAM,CAAC,WAAW,CAAC,GAAe;QAC9B,IAAI,KAAK,GAAG,IAAI,SAAS,EAAE,CAAC;QAC5B,KAAK,CAAC,MAAM,GAAG,GAAG,CAAC;QACnB,MAAM,CAAC,KAAK,CAAC;IACjB,CAAC;CACJ"}
