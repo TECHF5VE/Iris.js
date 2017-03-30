@@ -1,0 +1,39 @@
+{
+    // Use IntelliSense to learn about possible Node.js debug attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Linux Launch",
+            "cwd": "${workspaceRoot}",
+            "program": "${workspaceRoot}/src/iris-js.ts",
+            "outFiles": ["${workspaceRoot}/types/src/**/*.js"],
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "sourceMaps": true
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Win Launch",
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "program": "${workspaceRoot}\\src\\iris-js.ts",
+            "outFiles": ["${workspaceRoot}\\types\\src\\**\\*.js"],
+            "sourceMaps": true
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach to Process",
+            "address": "localhost",
+            "port": 5858,
+            "outFiles": []
+        }
+    ]
+}

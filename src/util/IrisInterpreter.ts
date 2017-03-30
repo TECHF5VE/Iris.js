@@ -102,19 +102,18 @@ export class IrisInterpreter {
     public get_class(full_path: string): IrisClass | undefined
     public get_class(full_path: string[]): IrisClass | undefined
     public get_class(full_path: any): any {
-        if (typeof full_path == "string") {
-            let path_arr: string[] = full_path.split("::");
+        if (typeof full_path === 'string') {
+            let path_arr: string[] = full_path.split('::');
             return this.get_class(path_arr);
-        }
-        else if (Array.isArray(full_path)) {
+        } else if (Array.isArray(full_path)) {
             let class_name: string = full_path.pop() as string;
 
             let tmp_upper_module: IrisModule | undefined = undefined;
             let tmp_value: IrisValue | undefined = undefined;
 
-            if (full_path.length == 0) {
+            if (full_path.length === 0) {
                 tmp_value = this.get_constance(class_name);
-                if (tmp_value == undefined) {
+                if (tmp_value === undefined) {
                     return undefined;
                 }
                 if (!IrisDev.check_is_class_object(tmp_value)) {

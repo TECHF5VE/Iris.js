@@ -1,14 +1,13 @@
 ﻿import { IrisClass } from '../core/IrisClass';
 import { IrisModule } from '../core/IrisModule';
-import { IrisObject} from "../core/IrisObject"
-import { IrisValue } from "../core/IrisValue"
-import { IrisIntpr } from "./IrisInterpreter"
-import { IrisContextEnvironment } from "../core/IrisContextEnvironment"
-import { IrisThreadInfo } from "../core/IrisThreadInfo"
-import { IrisCallSide } from "../core/IrisMethod"
-
-import { IrisIntegerClassTag } from "../native_classes/IrisInteger";
-import { IrisFloatClassTag } from "../native_classes/IrisFloat";
+import { IrisObject} from '../core/IrisObject';
+import { IrisValue } from '../core/IrisValue';
+import { IrisIntpr } from './IrisInterpreter';
+import { IrisContextEnvironment } from '../core/IrisContextEnvironment';
+import { IrisThreadInfo } from '../core/IrisThreadInfo';
+import { IrisCallSide } from '../core/IrisMethod';
+import { IrisIntegerClassTag } from '../native_classes/IrisInteger';
+import { IrisFloatClassTag } from '../native_classes/IrisFloat';
 
 export class IrisDevUtil {
 
@@ -24,9 +23,9 @@ export class IrisDevUtil {
         return IrisIntpr.get_module(path);
     }
 
-    public get_native_object_ref<T>(obj: IrisValue): T
-    public get_native_object_ref<T>(obj: IrisObject): T
-    public get_native_object_ref<T>(obj: any): any {
+    public get_native_object_ref<T> (obj: IrisValue): T
+    public get_native_object_ref<T> (obj: IrisObject): T
+    public get_native_object_ref<T> (obj: any): any {
         if (obj instanceof IrisValue) {
             return ((obj.object as IrisObject).native_object as Object) as T;
         } else if (obj instanceof IrisObject) {
@@ -34,19 +33,19 @@ export class IrisDevUtil {
         }
     }
 
-    public check_is_class_object(obj: IrisValue): boolean {
-        return (obj.object as IrisObject).class_object == this.class_native_object;
+    public check_is_class_object (obj: IrisValue): boolean {
+        return (obj.object as IrisObject).class_object === this.class_native_object;
     }
 
-    public check_is_integer(obj: IrisValue) : boolean {
-        return (obj.object as IrisObject).class_object == this.integer_native_object; 
+    public check_is_integer (obj: IrisValue): boolean {
+        return (obj.object as IrisObject).class_object === this.integer_native_object;
     }
     
-    public check_is_float(obj: IrisValue) : boolean {
-        return (obj.object as IrisObject).class_object == this.float_native_object; 
+    public check_is_float (obj: IrisValue): boolean {
+        return (obj.object as IrisObject).class_object === this.float_native_object;
     }
 
-    public create_int(value: number): IrisValue {
+    public create_int (value: number): IrisValue {
         let tmp: IrisValue = this.integer_native_object.create_new_instance(undefined, undefined, undefined);
         this.get_native_object_ref<IrisIntegerClassTag>(tmp).integer = Math.round(value);
         return tmp;
@@ -59,20 +58,20 @@ export class IrisDevUtil {
         return 0;
     }
 
-    public create_float(value: number): IrisValue {
+    public create_float (value: number): IrisValue {
         let tmp: IrisValue = this.float_native_object.create_new_instance(undefined, undefined, undefined);
         this.get_native_object_ref<IrisFloatClassTag>(tmp).float = value;
         return tmp;
     }
 
-    public get_float(value: IrisValue): number {
-        if(this.check_is_float(value)) {
+    public get_float (value: IrisValue): number {
+        if (this.check_is_float(value)) {
             return this.get_native_object_ref<IrisFloatClassTag>(value).float;
         }
         return 0.0;
     }
 
-    public call_instance_method(obj: IrisValue, method_name: string, parameter_list: IrisValue[], context: IrisContextEnvironment | undefined, thread_info: IrisThreadInfo | undefined): IrisValue {
+    public call_instance_method (obj: IrisValue, method_name: string, parameter_list: IrisValue[], context: IrisContextEnvironment | undefined, thread_info: IrisThreadInfo | undefined): IrisValue {
         return (obj.object as IrisObject).call_instance_method(method_name, parameter_list, context, thread_info, IrisCallSide.OutSide);
     }
 
@@ -89,6 +88,6 @@ export class IrisDevUtil {
     }
 }
 
-const IrisDev: IrisDevUtil = new IrisDevUtil()
+const IrisDev: IrisDevUtil = new IrisDevUtil();
 
 export { IrisDev }

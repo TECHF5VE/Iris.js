@@ -1,30 +1,28 @@
-﻿import { IrisObject } from './IrisObject'
-import { IrisModule } from './IrisModule'
-import { IrisInterface } from './IrisInterface'
-import { IrisMethod, IrisMethodAuthority, IrisNativeMethodDescriptor, IrisCallSide } from './IrisMethod'
-import { IrisValue } from './IrisValue'
-import { IrisContextEnvironment } from './IrisContextEnvironment'
-import { IrisThreadInfo } from './IrisThreadInfo'
-import { IrisAllocFunc, IrisNativeClassBase } from '../interface/IrisNativeClassBase'
-import { IrisDev } from '../util/IrisDevUtil'
-import { IrisClassBaseTag } from "../native_classes/IrisClassBase"
-import { IrisMethodDefineDescriptor } from "../interface/IrisNativeClassBase"
-import { IrisIntpr } from "../util/IrisInterpreter"
+﻿import { IrisObject } from './IrisObject';
+import { IrisModule } from './IrisModule';
+import { IrisInterface } from './IrisInterface';
+import { IrisMethod, IrisMethodAuthority, IrisNativeMethodDescriptor, IrisCallSide } from './IrisMethod';
+import { IrisValue } from './IrisValue';
+import { IrisContextEnvironment } from './IrisContextEnvironment';
+import { IrisThreadInfo } from './IrisThreadInfo';
+import { IrisAllocFunc, IrisNativeClassBase } from '../interface/IrisNativeClassBase';
+import { IrisDev } from '../util/IrisDevUtil';
+import { IrisClassBaseTag } from '../native_classes/IrisClassBase';
+import { IrisMethodDefineDescriptor } from '../interface/IrisNativeClassBase';
+import { IrisIntpr } from '../util/IrisInterpreter';
 
 export class IrisClass {
 
     public name: string = '';
     public super_class: IrisClass | undefined = undefined;
     public upper_module: IrisModule | undefined = undefined;
+    public object: IrisObject | undefined = undefined;
 
     private involved_modules: Set<IrisModule> = new Set<IrisModule>();
     private involved_interfaces: Set<IrisInterface> = new Set<IrisInterface>();
     private instance_methods: Map<string, IrisMethod> = new Map<string, IrisMethod>();
     private constances: Map<string, IrisValue> = new Map<string, IrisValue>();
-
     private object_alloc_method: IrisAllocFunc | undefined = undefined;
-
-    public object: IrisObject | undefined = undefined;
 
     public constructor(extern_class: IrisNativeClassBase) {
         this.name = extern_class.native_class_name_define();
@@ -71,21 +69,19 @@ export class IrisClass {
         let native_obj: Object = (this.object_alloc_method as IrisAllocFunc)();
         object.native_object = native_obj;
 
-        if(IrisIntpr.method_class_generated) {
-            object.call_instance_method("__format", parameter_list == undefined ? [] : parameter_list, context, threadInfo, IrisCallSide.OutSide);
+        if (IrisIntpr.method_class_generated) {
+            object.call_instance_method('__format', parameter_list === undefined ? [] : parameter_list, context, threadInfo, IrisCallSide.OutSide);
         }
-        
         return IrisValue.wrap_object(object);
     }
 
-    public add_instance_method(param: IrisMethodDefineDescriptor): void
-    public add_instance_method(param: IrisMethod): void
-    public add_instance_method(param: any): any{
+    public add_instance_method (param: IrisMethodDefineDescriptor): void
+    public add_instance_method (param: IrisMethod): void
+    public add_instance_method (param: any): any {
         if (param instanceof IrisMethod) {
             this.instance_methods.set(param.name, param);
-        }
-        // native method define
-        else if (param instanceof IrisMethodDefineDescriptor) {
+        } else if (param instanceof IrisMethodDefineDescriptor) {
+             // native method define
             let descriptor: IrisNativeMethodDescriptor = {
                 method_name : param.method_name,
                 authority:  param.authority,
@@ -100,34 +96,18 @@ export class IrisClass {
         }
     }
 
-    private inner_search_class_module_method(class_obj: IrisClass, method_name: string) : IrisMethod | undefined {
-        return undefined;
-    }
-
-    private inner_get_method(class_obj: IrisClass, method_name: string): IrisMethod | undefined {
-        let method: IrisMethod | undefined = class_obj.instance_methods.get(method_name);
-
-        if (method == undefined) {
-            method = this.inner_search_class_module_method(class_obj, method_name);
-        }
-        return method;
-    }
-
-    public get_method(method_name: string, result: { method: IrisMethod | undefined; is_current_class_method: boolean }) {
-
+    public get_method (method_name: string, result: { method: IrisMethod | undefined; is_current_class_method: boolean }) {
         result.is_current_class_method = false;
         result.method = undefined;
-
         let method: IrisMethod | undefined = this.inner_get_method(this, method_name);
 
-        if (method != undefined) {
+        if (method !== undefined) {
             result.is_current_class_method = true;
             result.method = method;
             return;
         }
 
         let cur_class: IrisClass | undefined = this.super_class;
-
         while (cur_class != undefined) {
             method = this.inner_get_method(cur_class, method_name);
             if (method != undefined) {
@@ -137,6 +117,18 @@ export class IrisClass {
             }
             cur_class = cur_class.super_class;
         }
+    }
 
+    private inner_search_class_module_method(class_obj: IrisClass, method_name: string) : IrisMethod | undefined {
+        return undefined;
+    }
+
+    private inner_get_method (class_obj: IrisClass, method_name: string): IrisMethod | undefined {
+        let method: IrisMethod | undefined = class_obj.instance_methods.get(method_name);
+
+        if (method === undefined) {
+            method = this.inner_search_class_module_method(class_obj, method_name);
+        }
+        return method;
     }
 }
