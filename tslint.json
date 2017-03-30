@@ -3,6 +3,9 @@
   "rules": {
     "no-console": false,
     "curly": true,
-    "no-irregular-whitespace": false
+    "no-irregular-whitespace": false,
+    "ter-indent": [true, 4],
+    "variable-name": [true, "allow-leading-underscore", "allow-trailing-underscore", "ban-keywords", "allow-pascal-case"],
+    "semicolon": [true, "always"]
   }
 }

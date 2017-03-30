@@ -14,8 +14,7 @@ import { IrisValue } from "./core/IrisValue"
 
 if (!IrisIntpr.initialize()) {
     IrisIntpr.shut_down();
-}
-else {
+} else {
     // DO: 1 + 1
     let left_value: IrisValue = IrisDev.create_int(1);
     let right_value: IrisValue = IrisDev.create_int(1);
