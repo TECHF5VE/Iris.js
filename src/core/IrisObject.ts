@@ -21,11 +21,11 @@ export class IrisObject implements IrisRunningObject {
         this._object_id = ++IrisObject._OBJECT_COUNT;
     }
 
-    public get object_id(): number {
+    public get object_id (): number {
         return this._object_id;
     }
 
-    public call_instance_method(method_name: string, parameter_list: IrisValue[], context: IrisContextEnvironment | undefined, thread_info: IrisThreadInfo | undefined, callSide: IrisCallSide): IrisValue {
+    public call_instance_method (method_name: string, parameter_list: IrisValue[], context: IrisContextEnvironment | undefined, thread_info: IrisThreadInfo | undefined, callSide: IrisCallSide): IrisValue {
         //return new IrisValue()
         let method: IrisMethod | undefined = undefined;
         let is_current_method: boolean = false;

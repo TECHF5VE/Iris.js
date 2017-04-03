@@ -10,7 +10,7 @@
             "name": "Linux Launch",
             "cwd": "${workspaceRoot}",
             "program": "${workspaceRoot}/src/iris-js.ts",
-            "outFiles": ["${workspaceRoot}/types/src/**/*.js"],
+            "outFiles": ["${workspaceRoot}/types/**/*.js"],
             "env": {
                 "NODE_ENV": "development"
             },
@@ -24,7 +24,7 @@
                 "NODE_ENV": "development"
             },
             "program": "${workspaceRoot}\\src\\iris-js.ts",
-            "outFiles": ["${workspaceRoot}\\types\\src\\**\\*.js"],
+            "outFiles": ["${workspaceRoot}\\types\\**\\*.js"],
             "sourceMaps": true
         },
         {

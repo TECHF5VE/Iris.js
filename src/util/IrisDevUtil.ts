@@ -15,11 +15,11 @@ export class IrisDevUtil {
     public integer_native_object: IrisClass;
     public float_native_object: IrisClass;
 
-    public get_class(path: string): IrisClass | undefined {
+    public get_class (path: string): IrisClass | undefined {
         return IrisIntpr.get_class(path);
     }
 
-    public get_module(path: string): IrisModule | undefined {
+    public get_module (path: string): IrisModule | undefined {
         return IrisIntpr.get_module(path);
     }
 
@@ -40,7 +40,7 @@ export class IrisDevUtil {
     public check_is_integer (obj: IrisValue): boolean {
         return (obj.object as IrisObject).class_object === this.integer_native_object;
     }
-    
+
     public check_is_float (obj: IrisValue): boolean {
         return (obj.object as IrisObject).class_object === this.float_native_object;
     }

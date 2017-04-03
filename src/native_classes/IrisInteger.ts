@@ -283,7 +283,7 @@ export class IrisIntegerClass implements IrisNativeClassBase {
         ];
     }
 
-    private bit_operation(type: Operation, left_value: IrisValue, right_value: IrisValue): IrisValue {
+    private bit_operation (type: Operation, left_value: IrisValue, right_value: IrisValue): IrisValue {
         if(!IrisDev.check_is_integer(right_value)) {
             // Error
             return IrisDev.nil();
@@ -293,7 +293,7 @@ export class IrisIntegerClass implements IrisNativeClassBase {
         let org_right_value: IrisIntegerClassTag = IrisDev.get_native_object_ref<IrisIntegerClassTag>(left_value);
         let result_value: IrisIntegerClassTag | undefined = undefined;
 
-		switch(type) {
+		switch (type) {
             case Operation.Sal:
                 result_value = org_left_value.sal(org_right_value);
                 break;
@@ -327,93 +327,94 @@ export class IrisIntegerClass implements IrisNativeClassBase {
 }
 
 export class IrisIntegerClassTag {
+
     public integer: number = 0;
 
-    public to_float(): IrisFloatClassTag {
-        return new IrisFloatClassTag(this.integer * 1.0);
-    }
-
-    public to_string(): string {
-        return this.integer.toString();
-    }
-
-    public constructor(integer: number) {
+    public constructor (integer: number) {
         this.integer = Math.round(integer);
     }
 
-    public add(value: IrisIntegerClassTag): IrisIntegerClassTag {
+    public to_float (): IrisFloatClassTag {
+        return new IrisFloatClassTag(this.integer * 1.0);
+    }
+
+    public to_string (): string {
+        return this.integer.toString();
+    }
+
+    public add (value: IrisIntegerClassTag): IrisIntegerClassTag {
         return new IrisIntegerClassTag(this.integer + value.integer);
     }
 
-    public sub(value: IrisIntegerClassTag): IrisIntegerClassTag {
+    public sub (value: IrisIntegerClassTag): IrisIntegerClassTag {
         return new IrisIntegerClassTag(this.integer - value.integer);
     }
-    
-    public mul(value: IrisIntegerClassTag): IrisIntegerClassTag {
+
+    public mul (value: IrisIntegerClassTag): IrisIntegerClassTag {
         return new IrisIntegerClassTag(this.integer * value.integer);
     }
 
-    public div(value: IrisIntegerClassTag): IrisIntegerClassTag {
+    public div (value: IrisIntegerClassTag): IrisIntegerClassTag {
         return new IrisIntegerClassTag(this.integer / value.integer);
     }
 
-    public power(value: IrisIntegerClassTag): IrisIntegerClassTag {
+    public power (value: IrisIntegerClassTag): IrisIntegerClassTag {
         return new IrisIntegerClassTag(this.integer ** value.integer);
     }
 
-    public mod(value: IrisIntegerClassTag): IrisIntegerClassTag {
+    public mod (value: IrisIntegerClassTag): IrisIntegerClassTag {
         return new IrisIntegerClassTag(this.integer % value.integer);
     }
 
-    public shr(value: IrisIntegerClassTag): IrisIntegerClassTag {
-        return new IrisIntegerClassTag(this.integer >> value.integer);
-    }
-
-    public shl(value: IrisIntegerClassTag): IrisIntegerClassTag {
-        return new IrisIntegerClassTag(this.integer << value.integer);
-    }
-
-    public sar(value: IrisIntegerClassTag): IrisIntegerClassTag {
+    public shr (value: IrisIntegerClassTag): IrisIntegerClassTag {
         return new IrisIntegerClassTag(this.integer >>> value.integer);
     }
 
-    public sal(value: IrisIntegerClassTag): IrisIntegerClassTag {
+    public shl (value: IrisIntegerClassTag): IrisIntegerClassTag {
         return new IrisIntegerClassTag(this.integer << value.integer);
     }
 
-    public bit_xor(value: IrisIntegerClassTag): IrisIntegerClassTag {
+    public sar (value: IrisIntegerClassTag): IrisIntegerClassTag {
+        return new IrisIntegerClassTag(this.integer >> value.integer);
+    }
+
+    public sal (value: IrisIntegerClassTag): IrisIntegerClassTag {
+        return new IrisIntegerClassTag(this.integer << value.integer);
+    }
+
+    public bit_xor (value: IrisIntegerClassTag): IrisIntegerClassTag {
         return new IrisIntegerClassTag(this.integer ^ value.integer);
     }
 
-    public bit_and(value: IrisIntegerClassTag): IrisIntegerClassTag {
+    public bit_and (value: IrisIntegerClassTag): IrisIntegerClassTag {
         return new IrisIntegerClassTag(this.integer & value.integer);
     }
 
-    public bit_or(value: IrisIntegerClassTag): IrisIntegerClassTag {
+    public bit_or (value: IrisIntegerClassTag): IrisIntegerClassTag {
         return new IrisIntegerClassTag(this.integer | value.integer);
     }
 
-    public equal(value: IrisIntegerClassTag): boolean {
-        return this.integer == value.integer;
+    public equal (value: IrisIntegerClassTag): boolean {
+        return this.integer === value.integer;
     }
 
-    public not_equal(value: IrisIntegerClassTag): boolean {
+    public not_equal (value: IrisIntegerClassTag): boolean {
         return !this.equal(value);
     }
 
-    public big_than(value: IrisIntegerClassTag): boolean {
+    public big_than (value: IrisIntegerClassTag): boolean {
         return this.integer > value.integer;
     }
 
-    public big_than_or_equal(value: IrisIntegerClassTag): boolean {
+    public big_than_or_equal (value: IrisIntegerClassTag): boolean {
         return this.integer >= value.integer;
     }
 
-    public less_than(value: IrisIntegerClassTag): boolean {
+    public less_than (value: IrisIntegerClassTag): boolean {
         return this.integer < value.integer;
     }
 
-    public less_than_or_equal(value: IrisIntegerClassTag): boolean {
+    public less_than_or_equal (value: IrisIntegerClassTag): boolean {
         return this.integer <= value.integer;
     }
 }

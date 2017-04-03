@@ -14,12 +14,13 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "dev:vsc": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\"",
+    "parser": "pegjs ./src/parser/iris.pegjs",
     "lite": "lite-server",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "lint": "tslint -e **/node_modules/** -e **/dist/** **/src/*.ts ",
     "dev": "webpack-dev-server --port 8081",
+    "dev:vsc": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\"",
     "prebuild": "rimraf dist && rimraf docs",
     "build": "cross-env NODE_ENV=production webpack -p",
     "build:dev": "webpack",
@@ -92,6 +93,7 @@
     "jest": "^19.0.2",
     "lite-server": "^2.3.0",
     "lodash": "^4.17.4",
+    "pegjs": "^0.10.0",
     "prompt": "^1.0.0",
     "replace-in-file": "^2.3.2",
     "rimraf": "^2.5.4",

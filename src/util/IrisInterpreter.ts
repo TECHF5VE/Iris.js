@@ -1,21 +1,20 @@
-﻿import { IrisValue } from "../core/IrisValue"
-import { IrisMethod } from "../core/IrisMethod"
-import { IrisCompiler } from "./IrisCompiler"
-import { IrisModule } from "../core/IrisModule"
-import { IrisClass } from "../core/IrisClass"
-import { IrisDev } from "../util/IrisDevUtil"
-import { IrisInterface } from "../core/IrisInterface"
-import { IrisNativeClassBase } from "../interface/IrisNativeClassBase"
-import { IrisObject } from "../core/IrisObject"
-
-import { IrisClassBase, IrisClassBaseTag } from "../native_classes/IrisClassBase"
-import { IrisObjectBase } from "../native_classes/IrisObjectBase"
-import { IrisMethodBase } from "../native_classes/IrisMethodBase"
-import { IrisNilClass } from "../native_classes/IrisNilClass"
-import { IrisTrueClass } from "../native_classes/IrisTrueClass"
-import { IrisFalseClass } from "../native_classes/IrisFalseClass"
-import { IrisIntegerClass } from "../native_classes/IrisInteger"
-import { IrisFloatClass} from "../native_classes/IrisFloat"
+﻿import { IrisValue } from '../core/IrisValue';
+import { IrisMethod } from '../core/IrisMethod';
+import { IrisCompiler } from './IrisCompiler';
+import { IrisModule } from '../core/IrisModule';
+import { IrisClass } from '../core/IrisClass';
+import { IrisDev } from '../util/IrisDevUtil';
+import { IrisInterface } from '../core/IrisInterface';
+import { IrisNativeClassBase } from '../interface/IrisNativeClassBase';
+import { IrisObject } from '../core/IrisObject';
+import { IrisClassBase, IrisClassBaseTag } from '../native_classes/IrisClassBase';
+import { IrisObjectBase } from '../native_classes/IrisObjectBase';
+import { IrisMethodBase } from '../native_classes/IrisMethodBase';
+import { IrisNilClass } from '../native_classes/IrisNilClass';
+import { IrisTrueClass } from '../native_classes/IrisTrueClass';
+import { IrisFalseClass } from '../native_classes/IrisFalseClass';
+import { IrisIntegerClass } from '../native_classes/IrisInteger';
+import { IrisFloatClass} from '../native_classes/IrisFloat';
 
 export class IrisInterpreter {
 
@@ -41,7 +40,7 @@ export class IrisInterpreter {
         return this._false;
     }
 
-    public constructor() {
+    public constructor () {
 
     }
 
@@ -54,54 +53,50 @@ export class IrisInterpreter {
         // do not use undefined, just undefined
         if (method === undefined) {
             return undefined;
-        }
-        else {
+        } else {
             return method;
-        } 
+        }
     }
 
     public add_constance(name: string, value: IrisValue): void {
         this.constances.set(name, value);
     }
 
-    public get_constance(name: string) {
+    public get_constance (name: string) {
         let constance: IrisValue | undefined = this.constances.get(name);
-        if (constance == undefined) {
+        if (constance === undefined) {
             return undefined;
-        }
-        else {
+        } else {
             return constance;
         }
     }
 
-    public add_global_value(name: string, value: IrisValue): void {
+    public add_global_value (name: string, value: IrisValue): void {
         this.global_values.set(name, value);
     }
 
-    public get_global_value(name: string) {
+    public get_global_value (name: string) {
         let value: IrisValue | undefined = this.global_values.get(name);
-        if (value == undefined) {
+        if (value === undefined) {
             return undefined;
-        }
-        else {
+        } else {
             return value;
         }
     }
 
-    public get_module(full_path: string): IrisModule | undefined
-    public get_module(full_path: string[]): IrisModule | undefined
-    public get_module(full_path: any): any {
-        if (typeof full_path == "string") {
+    public get_module (full_path: string): IrisModule | undefined
+    public get_module (full_path: string[]): IrisModule | undefined
+    public get_module (full_path: any): any {
+        if (typeof full_path === 'string') {
 
-        }
-        else if (Array.isArray(full_path)) {
+        } else if (Array.isArray(full_path)) {
 
         }
     }
 
-    public get_class(full_path: string): IrisClass | undefined
-    public get_class(full_path: string[]): IrisClass | undefined
-    public get_class(full_path: any): any {
+    public get_class (full_path: string): IrisClass | undefined
+    public get_class (full_path: string[]): IrisClass | undefined
+    public get_class (full_path: any): any {
         if (typeof full_path === 'string') {
             let path_arr: string[] = full_path.split('::');
             return this.get_class(path_arr);
@@ -120,13 +115,12 @@ export class IrisInterpreter {
                     return undefined;
                 }
                 return IrisDev.get_native_object_ref<IrisClassBaseTag>(tmp_value).class_object;
-            }
-            else {
+            } else {
                 tmp_upper_module = this.get_module(full_path);
 
-                if (tmp_upper_module != undefined) {
+                if (tmp_upper_module !== undefined) {
                     tmp_value = tmp_upper_module.get_constance(class_name);
-                    if (tmp_value != undefined && IrisDev.check_is_class_object(tmp_value)) {
+                    if (tmp_value !== undefined && IrisDev.check_is_class_object(tmp_value)) {
                         return IrisDev.get_native_object_ref<IrisClassBaseTag>(tmp_value).class_object;
                     }
                 }
@@ -136,23 +130,22 @@ export class IrisInterpreter {
         }
     }
 
-    public get_interface(full_path: string): IrisInterface | undefined
-    public get_interface(full_path: string[]): IrisInterface | undefined
-    public get_interface(full_path: any): any {
+    public get_interface (full_path: string): IrisInterface | undefined
+    public get_interface (full_path: string[]): IrisInterface | undefined
+    public get_interface (full_path: any): any {
 
     }
 
-    public regist_class(class_obj: IrisNativeClassBase): boolean {
+    public regist_class (class_obj: IrisNativeClassBase): boolean {
 
         let upper_module: IrisModule | undefined = class_obj. native_upper_module_define();
         let class_name: string = class_obj.native_class_name_define();
 
-        if (upper_module == undefined) {
-            if (this.get_constance(class_name) != undefined) {
+        if (upper_module === undefined) {
+            if (this.get_constance(class_name) !== undefined) {
                 return false;
             }
-        }
-        else if (upper_module.get_constance(class_name) != undefined) {
+        } else if (upper_module.get_constance(class_name) !== undefined) {
             return false;
         }
 
@@ -161,8 +154,7 @@ export class IrisInterpreter {
 
         if (upper_module == undefined) {
             this.add_constance(class_name, class_value);
-        }
-        else {
+        } else {
             upper_module.add_constance(class_name, class_value);
             upper_module.add_sub_class(class_intern_obj);
         }
@@ -172,44 +164,44 @@ export class IrisInterpreter {
 
     //public regist_module()
 
-    public initialize(): boolean {
+    public initialize (): boolean {
 
         this.method_class_generated = false;
 
         this.regist_class(new IrisClassBase());
-        IrisDev.class_native_object = IrisDev.get_native_object_ref<IrisClassBaseTag>((this.constances.get("Class") as IrisValue).object as IrisObject).class_object as IrisClass;
+        IrisDev.class_native_object = IrisDev.get_native_object_ref<IrisClassBaseTag>((this.constances.get('Class') as IrisValue).object as IrisObject).class_object as IrisClass;
 
         this.regist_class(new IrisObjectBase());
 
-        let a = IrisDev.get_class("Object");
-        (IrisDev.get_class("Class") as IrisClass).super_class = IrisDev.get_class("Object");
- 
+        let a = IrisDev.get_class('Object');
+        (IrisDev.get_class('Class') as IrisClass).super_class = IrisDev.get_class('Object');
+
         this.regist_class(new IrisMethodBase());
 
         this.method_class_generated = true;
 
-        (IrisDev.get_class("Class") as IrisClass).reset_all_methods_object();
-        (IrisDev.get_class("Object") as IrisClass).reset_all_methods_object();
-        (IrisDev.get_class("Method") as IrisClass).reset_all_methods_object();
+        (IrisDev.get_class('Class') as IrisClass).reset_all_methods_object();
+        (IrisDev.get_class('Object') as IrisClass).reset_all_methods_object();
+        (IrisDev.get_class('Method') as IrisClass).reset_all_methods_object();
 
         this.regist_class(new IrisIntegerClass());
-        IrisDev.integer_native_object = IrisDev.get_native_object_ref<IrisClassBaseTag>((this.constances.get("Integer") as IrisValue).object as IrisObject).class_object as IrisClass;
+        IrisDev.integer_native_object = IrisDev.get_native_object_ref<IrisClassBaseTag>((this.constances.get('Integer') as IrisValue).object as IrisObject).class_object as IrisClass;
 
         this.regist_class(new IrisFloatClass());
-        IrisDev.float_native_object = IrisDev.get_native_object_ref<IrisClassBaseTag>((this.constances.get("Float") as IrisValue).object as IrisObject).class_object as IrisClass;
+        IrisDev.float_native_object = IrisDev.get_native_object_ref<IrisClassBaseTag>((this.constances.get('Float') as IrisValue).object as IrisObject).class_object as IrisClass;
 
         this.regist_class(new IrisTrueClass());
         this.regist_class(new IrisFalseClass());
         this.regist_class(new IrisNilClass());
 
-        this._true = (IrisDev.get_class("TrueClass") as IrisClass).create_new_instance(undefined, undefined, undefined);
-        this._false = (IrisDev.get_class("FalseClass") as IrisClass).create_new_instance(undefined, undefined, undefined);
-        this._nil = (IrisDev.get_class("NilClass") as IrisClass).create_new_instance(undefined, undefined, undefined);
+        this._true = (IrisDev.get_class('TrueClass') as IrisClass).create_new_instance(undefined, undefined, undefined);
+        this._false = (IrisDev.get_class('FalseClass') as IrisClass).create_new_instance(undefined, undefined, undefined);
+        this._nil = (IrisDev.get_class('NilClass') as IrisClass).create_new_instance(undefined, undefined, undefined);
 
         return true;
     }
 
-    public shut_down(): boolean {
+    public shut_down (): boolean {
         return true;
     }
 
